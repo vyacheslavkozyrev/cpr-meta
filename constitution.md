@@ -1,7 +1,7 @@
 # CPR Project Constitution
 
-> **Version**: 1.0.0  
-> **Last Updated**: November 5, 2025  
+> **Version**: 1.1.0  
+> **Last Updated**: November 6, 2025  
 > **Status**: Active  
 > **Scope**: All CPR repositories (cpr-meta, cpr-api, cpr-ui)
 
@@ -24,8 +24,9 @@ This constitution defines the foundational principles, standards, and practices 
   - [Principle 10: Security & Data Privacy](#principle-10-security--data-privacy)
   - [Principle 11: Database Design Standards](#principle-11-database-design-standards)
 - [Principle Priority and Conflict Resolution](#principle-priority-and-conflict-resolution)
-- [Living Document](#living-document)
-- [Quick Reference](#quick-reference)
+- [Living Principles](#living-principles)
+- [AI & Documentation Maintenance Guidelines](#ai--documentation-maintenance-guidelines)
+- [Summary](#summary)
 
 ---
 
@@ -4735,5 +4736,66 @@ public async Task AllTables_HaveAuditColumns()
 | **9. Strict Naming Conventions** | I/T/E prefixes, consistent patterns | Instant recognition, maintainability | ESLint rules, I prefix for interfaces |
 | **10. Security & Data Privacy** | Protect secrets, PII, implement RBAC | Compliance, trust, legal protection | Azure Key Vault, audit trail, soft delete |
 | **11. Database Design Standards** | UUID PKs, audit columns, soft delete | Data integrity, auditability, compliance | Migrations, strategic indexing, snake_case |
+| **AI & Documentation Maintenance** | Update meta-docs with code changes | Documentation accuracy, project consistency | Auto-update data.md for DB changes, architecture.md for design changes |
 
 **Remember**: These principles exist to make us deliver better software faster. They are guidelines, not obstacles. When in doubt, follow the spirit of the principle and discuss with the team.
+
+---
+
+## AI & Documentation Maintenance Guidelines
+
+### Statement
+**AI assistants (including GitHub Copilot) must maintain documentation consistency by updating meta-documentation files when making architectural or schema changes.**
+
+### Requirements
+
+When AI assistants make changes to the codebase, they must also update corresponding documentation files to maintain accuracy and consistency:
+
+#### Database Schema Changes
+- **When**: Any changes to database tables, columns, relationships, indexes, or constraints
+- **Action**: Update `data.md` in the `cpr-meta` repository with:
+  - New or modified table schemas
+  - Updated column definitions and data types
+  - New relationships and foreign keys
+  - Index changes and performance implications
+  - Migration version updates
+
+#### Architectural Changes
+- **When**: Changes to system architecture, design patterns, technology stack, or component structure
+- **Action**: Update `architecture.md` in the `cpr-meta` repository with:
+  - Modified system architecture diagrams
+  - Updated technology stack information
+  - New architectural patterns or principles
+  - Component relationship changes
+  - Infrastructure modifications
+
+#### Enforcement
+- AI assistants should proactively identify when changes require documentation updates
+- Documentation updates should be made in the same session as the code changes
+- Include rationale for architectural decisions in documentation updates
+- Maintain consistency with existing documentation structure and formatting
+
+### Example Scenarios
+
+**Scenario 1**: Adding a new table `performance_reviews`
+```
+✅ REQUIRED: Update data.md with:
+- New table schema definition
+- Relationships to existing tables (users, goals, etc.)
+- Audit columns and constraints
+- Indexes for performance
+```
+
+**Scenario 2**: Implementing caching layer with Redis
+```
+✅ REQUIRED: Update architecture.md with:
+- Updated system architecture diagram
+- Caching strategy documentation
+- Technology stack updates
+- Performance implications
+```
+
+**Scenario 3**: Refactoring internal methods (no schema/architecture change)
+```
+⚠️ OPTIONAL: No documentation update required
+```
