@@ -16,35 +16,64 @@ This repository contains:
 ```
 cpr-meta/
 ├── constitution.md              # Core principles and standards
-├── specs/                       # Feature specifications
-│   ├── [spec-001]-feature-name/
-│   │   ├── description.md       # Feature overview & acceptance criteria
-│   │   ├── implementation-plan.md   # Technical approach & phases
-│   │   ├── tasks.md             # Task breakdown
-│   │   ├── endpoints.md         # API contracts (JSON format)
-│   │   ├── analysis-report.md   # Quality analysis (≥90/100 to proceed)
-│   │   └── progress.md          # Current status
-│   └── ...
-├── bugfixes/                    # Bug fix specifications
-│   ├── [bug-001]-short-description/
-│   │   ├── description.md
-│   │   ├── endpoints.md
-│   │   └── progress.md
-│   └── ...
-├── docs/                        # Process documentation
-│   ├── specification-analysis-guide.md
-│   └── specification-analysis-example.md
-├── prompts/                     # AI prompt templates
-│   └── specification-analysis.md
-└── templates/                   # Document templates
-    ├── spec-description-template.md
-    ├── spec-implementation-plan-template.md
-    ├── spec-tasks-template.md
-    ├── spec-endpoints-template.md
-    ├── spec-progress-template.md
-    ├── spec-analysis-report-template.md
-    └── bugfix-template.md
+├── architecture.md              # System architecture decisions
+├── data.md                      # Data models and database design
+├── features-list.md             # Current feature scope
+├── personas.md                  # User personas
+├── project-idea.md              # Original project concept
+├── framework/                   # CPR custom development framework
+│   ├── README.md                # Framework documentation
+│   ├── tools/                   # Analysis and validation scripts
+│   │   ├── analyze-spec.ps1     # Specification analysis tool
+│   │   └── check-prerequisites.ps1
+│   ├── templates/               # Specification templates
+│   │   ├── spec-description-template.md
+│   │   ├── spec-implementation-plan-template.md
+│   │   ├── spec-tasks-template.md
+│   │   ├── spec-endpoints-template.md
+│   │   ├── spec-progress-template.md
+│   │   ├── spec-analysis-report-template.md
+│   │   └── bugfix-template.md
+│   └── workflows/               # Development process definitions
+│       └── specification-analysis-process.md
+├── specifications/              # Feature specifications by lifecycle
+│   ├── README.md                # Specification management guide
+│   ├── active/                  # Currently implemented features
+│   ├── proposed/                # Features planned for future
+│   └── archived/                # Completed/deprecated features
+├── analysis/                    # Framework analysis output
+│   ├── README.md                # Analysis output documentation
+│   ├── compliance-reports/      # Constitution compliance reports
+│   └── gap-analysis/           # Specification coverage analysis
+└── prompts/                     # AI prompt templates
+    └── specification-analysis.md
 ```
+
+## Document Structure & Metadata
+
+All CPR documents use structured YAML front matter for enhanced AI integration and framework automation:
+
+```yaml
+---
+type: governance                    # Document category
+document_class: constitution       # Specific type
+version: 1.1.0                    # Semantic version
+status: active                     # Current status
+scope: [cpr-meta, cpr-api, cpr-ui] # Applicable repositories
+enforcement: mandatory             # Compliance level
+ai_instructions: |                 # AI guidance
+  Always validate against principles
+related_documents: [architecture.md] # Links
+---
+```
+
+**Benefits:**
+- **AI Context**: Copilot understands document purpose and usage
+- **Framework Integration**: Tools automatically discover and validate documents  
+- **Cross-Repository Linking**: Clear dependencies between documents
+- **Change Management**: Structured versioning and approval workflows
+
+See [framework/workflows/metadata-guide.md](framework/workflows/metadata-guide.md) for complete documentation.
 
 ## Core Principles
 
@@ -59,35 +88,38 @@ The CPR project follows these foundational principles (see [constitution.md](con
 
 ### Creating a New Feature Specification
 
-1. **Create spec folder**:
-   ```bash
-   mkdir -p specs/[spec-001]-feature-name
+1. **Create specification files**:
+   ```powershell
+   # Start in proposed/ directory
+   cd specifications/proposed
+   
+   # Copy templates
+   Copy-Item "../../framework/templates/spec-description-template.md" "./feat-feature-name.md"
    ```
 
-2. **Create required files**:
-   - `description.md` - Feature overview, user stories, acceptance criteria
-   - `implementation-plan.md` - Technical approach, phases
-   - `tasks.md` - Task breakdown
-   - `endpoints.md` - API contracts (if applicable)
-   - `progress.md` - Status tracking
+2. **Use framework templates**:
+   - `spec-description-template.md` - Feature overview, user stories, acceptance criteria
+   - `spec-implementation-plan-template.md` - Technical approach, phases
+   - `spec-tasks-template.md` - Task breakdown
+   - `spec-endpoints-template.md` - API contracts (if applicable)
 
 3. **Run automated analysis**:
-   - Use GitHub Copilot with `prompts/specification-analysis.md`
-   - AI generates `analysis-report.md` with quality score
-   - Must score ≥ 90/100 to proceed
+   ```powershell
+   # Validate against constitution
+   & "../../framework/tools/analyze-spec.ps1" -FeaturePath .
+   ```
 
 4. **Fix issues if needed**:
-   - Address all critical and major issues
-   - Re-run analysis until ≥ 90/100
+   - Address all CRITICAL and HIGH issues
+   - Re-run analysis until compliant
 
-5. **Get approval**:
-   - Tech lead reviews specification
-   - Signs off in `analysis-report.md`
-   - Marks as "Ready for Development" in `progress.md`
+5. **Move through lifecycle**:
+   - **Proposed** → **Active** (when approved for development)
+   - **Active** → **Archived** (when implementation complete)
 
 6. **Begin implementation**:
    - Reference spec in PRs to cpr-api or cpr-ui
-   - Update `progress.md` as work progresses
+   - Use framework tools to maintain alignment
 
 ### Standards at a Glance
 
@@ -107,9 +139,17 @@ The CPR project follows these foundational principles (see [constitution.md](con
 - **[Specification Analysis Guide](docs/specification-analysis-guide.md)** - How to analyze specifications
 - **[Specification Analysis Example](docs/specification-analysis-example.md)** - Real example walkthrough
 
-## Templates
+## Framework Integration
 
-The `templates/` folder provides ready-to-use templates:
+The CPR Framework (`framework/`) provides:
+- **Specification-First Development**: Automated validation and templates
+- **Constitutional Compliance**: Automatic checking against project principles  
+- **Quality Assurance**: Analysis tools that ensure specification completeness
+- **Cross-Repository Alignment**: Tools to keep API, UI, and docs synchronized
+
+### Templates
+
+The `framework/templates/` folder provides ready-to-use templates:
 
 ### Specification Templates
 - **spec-description-template.md** - Feature description (user stories, requirements, business rules)
@@ -122,23 +162,33 @@ The `templates/` folder provides ready-to-use templates:
 ### Bug Fix Template
 - **bugfix-template.md** - Bug documentation (root cause, solution, prevention)
 
-## Workflow Overview
+## Framework Workflow
 
 ```
-1. Create Specification (use templates/)
+1. Create Specification (specifications/proposed/)
+   │ - Use framework/templates/
+   │ - Follow constitutional principles
    ↓
-2. Analyze Specification (AI + Human Review)
-   │ - Must score ≥ 90/100
-   │ - Fix issues and re-analyze if needed
+2. Framework Analysis
+   │ - Run framework/tools/analyze-spec.ps1
+   │ - Generate compliance report in analysis/
+   │ - Fix CRITICAL/HIGH issues
    ↓
 3. Review & Approve
    │ - Tech lead approval
+   │ - Move to specifications/active/
    ↓
 4. Implementation (in cpr-api/cpr-ui)
+   │ - Maintain spec alignment
+   │ - Update progress regularly
    ↓
-5. Testing
+5. Testing & Validation
+   │ - Run framework gap analysis
+   │ - Ensure cross-repository consistency
    ↓
-6. Deployment
+6. Completion
+   │ - Move to specifications/archived/
+   │ - Generate final compliance report
 ```
 
 ## Contributing

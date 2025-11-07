@@ -1,3 +1,32 @@
+---
+type: business_documentation
+document_class: user_personas
+version: 1.0.0
+last_updated: 2025-11-06
+status: active
+scope: [cpr-meta, cpr-api, cpr-ui]
+enforcement: recommended
+validation_required: false
+framework_integration: true
+ai_instructions: |
+  Reference these personas when designing user interfaces and workflows.
+  Ensure feature implementations address specific persona needs and pain points.
+  Validate user stories against defined persona characteristics.
+related_documents:
+  - features-list.md
+  - constitution.md
+personas:
+  - jane_smith_senior_engineer
+  - michael_chen_engineering_manager
+  - sarah_johnson_solution_owner
+  - david_wilson_administrator
+user_roles:
+  - individual_contributor
+  - manager
+  - solution_owner
+  - administrator
+---
+
 # Personas — CPR (Continuous Performance Review Platform)
 
 This document defines the target user personas for the CPR platform. Each persona includes role overview, responsibilities, motivations, goals, pain points, platform usage patterns, and success metrics. These personas guide feature development and ensure the platform meets diverse stakeholder needs.

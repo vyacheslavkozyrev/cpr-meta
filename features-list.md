@@ -1,3 +1,31 @@
+---
+type: business_documentation
+document_class: feature_list
+version: 2.0.0
+last_updated: 2025-11-06
+status: active
+scope: [cpr-meta, cpr-api, cpr-ui]
+enforcement: informational
+validation_required: false
+framework_integration: true
+ai_instructions: |
+  Reference this feature list when implementing new functionality.
+  Ensure proposed features align with defined business objectives.
+  Check feature dependencies and implementation status.
+related_documents:
+  - constitution.md
+  - architecture.md
+  - personas.md
+feature_categories:
+  - user_management
+  - performance_reviews
+  - goal_tracking
+  - dashboard_analytics
+  - reporting
+  - administration
+current_iteration: 16
+---
+
 # CPR Platform - Business Features List
 
 **Last Updated**: November 6, 2025  

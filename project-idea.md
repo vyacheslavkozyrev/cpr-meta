@@ -1,3 +1,27 @@
+---
+type: business_documentation
+document_class: project_concept
+version: 1.0.0
+last_updated: 2025-11-06
+status: active
+scope: [cpr-meta, cpr-api, cpr-ui]
+enforcement: informational
+validation_required: false
+framework_integration: true
+ai_instructions: |
+  Reference this project concept when making high-level architectural decisions.
+  Ensure all feature implementations align with the core project vision.
+  Use business objectives to validate feature prioritization.
+related_documents:
+  - features-list.md
+  - personas.md
+  - architecture.md
+  - constitution.md
+business_domain: performance_management
+project_type: full_stack_web_application
+target_market: enterprise_hr_solutions
+---
+
 # CPR — Continuous Performance Review Platform
 
 **A comprehensive employee performance management platform that transforms traditional annual reviews into continuous, data-driven performance conversations**

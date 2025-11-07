@@ -1,3 +1,33 @@
+---
+type: technical_documentation
+document_class: data_schema
+version: 1.0.0
+last_updated: 2025-11-06
+status: active
+scope: [cpr-meta, cpr-api]
+enforcement: mandatory
+validation_required: true
+framework_integration: true
+ai_instructions: |
+  Validate all database changes against this schema definition.
+  Ensure entity relationships match defined constraints.
+  Check naming conventions follow constitutional standards.
+  Require migration scripts for schema changes.
+related_documents:
+  - constitution.md
+  - architecture.md
+database_config:
+  engine: postgresql
+  version: "15+"
+  migration_version: "20250910193406"
+  entity_framework: dotnet9_ef_core
+naming_conventions:
+  tables: snake_case
+  columns: snake_case
+  indexes: snake_case_idx
+  constraints: snake_case_constraint
+---
+
 # CPR Database Schema & Data Specification
 
 **Last Updated**: November 6, 2025  

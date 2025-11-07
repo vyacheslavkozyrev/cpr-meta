@@ -1,3 +1,28 @@
+---
+type: technical_documentation
+document_class: architecture
+version: 1.0.0
+last_updated: 2025-11-06
+status: active
+scope: [cpr-meta, cpr-api, cpr-ui]
+enforcement: recommended
+validation_required: false
+framework_integration: true
+ai_instructions: |
+  Reference this architecture when suggesting technical implementations.
+  Ensure all code changes align with defined architectural patterns.
+  Validate technology stack choices against approved components.
+related_documents:
+  - constitution.md
+  - data.md
+  - features-list.md
+technology_stack:
+  backend: [dotnet8, csharp, postgresql, entityframework]
+  frontend: [react18, typescript, vite]
+  authentication: [azure_ad_b2c, entra_external_id]
+  deployment: [azure, docker]
+---
+
 # CPR Platform Architecture
 
 **Continuous Performance Review Platform - Technical Architecture Specification**

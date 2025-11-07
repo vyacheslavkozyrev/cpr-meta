@@ -1,7 +1,32 @@
+---
+type: governance
+document_class: constitution
+version: 1.2.0
+last_updated: 2025-11-07
+status: active
+scope: [cpr-meta, cpr-api, cpr-ui]
+enforcement: mandatory
+validation_required: true
+framework_integration: true
+ai_instructions: |
+  Always validate code changes against these principles. 
+  Treat MUST/SHALL requirements as non-negotiable.
+  Reference specific principle numbers in validation reports.
+  Block implementation if CRITICAL constitutional violations exist.
+related_documents:
+  - architecture.md
+  - framework/workflows/specification-analysis-process.md
+  - framework/templates/spec-description-template.md
+change_control:
+  approval_required: 2_tech_leads
+  impact_assessment: required
+  notification: all_team_members
+---
+
 # CPR Project Constitution
 
-> **Version**: 1.1.0  
-> **Last Updated**: November 6, 2025  
+> **Version**: 1.2.0  
+> **Last Updated**: November 7, 2025  
 > **Status**: Active  
 > **Scope**: All CPR repositories (cpr-meta, cpr-api, cpr-ui)
 
@@ -46,7 +71,7 @@ All code changes that affect API contracts, UI behavior, or system functionality
 
 ### Scope
 
-**Requires Full Specification**:
+**Requires Full Specification** (in `cpr-meta/specifications/`):
 - ✅ New features (API endpoints, UI components, business logic)
 - ✅ Changes to existing API contracts (DTOs, request/response shapes)
 - ✅ Changes to business rules or validation logic
@@ -68,14 +93,14 @@ All code changes that affect API contracts, UI behavior, or system functionality
 
 ```
 cpr-meta/
-├── specs/
-│   ├── [spec-001]-user-authentication/
+├── specifications/
+│   ├── 0001-user-authentication/
 │   │   ├── description.md           # Feature description & acceptance criteria
 │   │   ├── implementation-plan.md   # Implementation phases and approach
 │   │   ├── tasks.md                 # Task breakdown and checklist
 │   │   ├── endpoints.md             # API endpoints (URLs, JSON request/response, errors)
 │   │   └── progress.md              # Current implementation status
-│   ├── [spec-002]-goal-management/
+│   ├── 0002-goal-management/
 │   │   ├── description.md
 │   │   ├── implementation-plan.md
 │   │   ├── tasks.md
@@ -83,7 +108,7 @@ cpr-meta/
 │   │   └── progress.md
 │   └── ...
 └── bugfixes/
-    ├── [bug-001]-login-redirect-issue/
+    ├── 0001-login-redirect-issue/
     │   ├── description.md           # Bug description, root cause, impact
     │   ├── endpoints.md             # Affected endpoints (if applicable)
     │   └── progress.md              # Fix status
@@ -101,12 +126,18 @@ Each feature specification is a self-contained folder with:
    - Business rules
    - Non-functional requirements
 
-2. **`implementation-plan.md`** (REQUIRED)
-   - Technical approach
+2. **`implementation-plan.md`** (REQUIRED - Phase 3)
+   - Created during Phase 3 (Plan Implementation)
+   - Technical approach and architecture patterns
    - Implementation phases (Phase 1, Phase 2, etc.)
    - Dependencies and prerequisites
    - Risk assessment
    - Rollout strategy
+   - **Constitutional Compliance Check** (MANDATORY)
+     - Review against all 11 CPR Constitutional Principles
+     - For each principle: checklist items, status (PASS/FAIL/NEEDS REVIEW), and notes
+     - All principles must be addressed before proceeding to Phase 4
+     - Document compliance approach for each applicable principle
 
 3. **`tasks.md`** (REQUIRED)
    - Checklist of implementation tasks
@@ -128,7 +159,23 @@ Each feature specification is a self-contained folder with:
    - Blockers and issues
    - Change log
 
-6. **`analysis-report.md`** (REQUIRED before development)
+6. **`data-model.md`** (OPTIONAL - Phase 3)
+   - Created during Phase 3 (Plan Implementation) if database changes required
+   - Database schema with SQL DDL
+   - Entity relationship diagrams
+   - Domain model definitions
+   - Column specifications and constraints
+   - Indexes and performance considerations
+
+7. **`research.md`** (OPTIONAL - Phase 3)
+   - Created during Phase 3 (Plan Implementation) if new technologies or patterns used
+   - Technical decision log
+   - Architecture decision records (ADRs)
+   - Alternatives considered and rationale
+   - Technology evaluation and selection
+   - Performance benchmarks or proof-of-concepts
+
+8. **`analysis-report.md`** (REQUIRED - Phase 4, before development)
    - Specification quality analysis
    - Gaps identification
    - Conflicts with existing features
@@ -136,79 +183,13 @@ Each feature specification is a self-contained folder with:
    - Overall quality rating (0-100)
 
 **Naming Convention**:
-- Spec number: `[spec-###]` - sequential, zero-padded (001, 002, etc.)
+- Spec number: `####` - sequential, zero-padded (0001, 0002, etc.)
 - Short description: kebab-case, concise (e.g., `user-authentication`, `goal-management`)
-- Full folder name: `[spec-###]-short-description`
+- Full folder name: `####-short-description`
 
 ### Workflow
 
-```
-1. Create Specification
-   │ Create all required files in cpr-meta/specs/[spec-###]-feature-name/
-   │ - description.md (feature, acceptance criteria)
-   │ - implementation-plan.md (phases, approach)
-   │ - tasks.md (task breakdown)
-   │ - endpoints.md (API contracts, if applicable)
-   │ - progress.md (initial status)
-   ↓
-2. Analyze Specification (AUTOMATED + HUMAN REVIEW)
-   │ 
-   │ A. Run Automated Analysis
-   │    Use AI with specification-analysis.md prompt:
-   │    - Provide all spec files to AI
-   │    - AI generates analysis-report.md using template
-   │    - AI identifies: Gaps, Conflicts, Duplications, Quality Issues
-   │    - AI assigns severity: Critical (0 pts), Major (-20 pts), Minor (-5 pts)
-   │    - AI calculates overall rating: 100 - (sum of deductions)
-   │    
-   │    Tools:
-   │    - Prompt: `prompts/specification-analysis.md`
-   │    - Template: `templates/spec-analysis-report-template.md`
-   │ 
-   │ B. Review AI Analysis Results
-   │    Human reviewer validates AI findings:
-   │    - Verify identified issues are accurate
-   │    - Add any missed issues
-   │    - Adjust severity if needed
-   │    - Update analysis-report.md with final assessment
-   │
-   │ C. If rating < 90/100: FIX SPECIFICATION
-   │    - AI provides specific questions to guide fixes
-   │    - Update description.md, endpoints.md, etc.
-   │    - Re-run analysis until rating ≥ 90/100
-   │    - Iterate until specification quality threshold met
-   ↓
-3. Review & Approve Specification
-   │ Manual review by tech lead or architect
-   │ Verify:
-   │ - All required files present
-   │ - analysis-report.md shows rating ≥ 90/100
-   │ - No critical or unresolved major issues
-   │ - Acceptance criteria are testable
-   │ - Implementation plan is feasible
-   │
-   │ If approved: Mark in progress.md as "Ready for Development"
-   ↓
-4. Implementation
-   │ Implement in cpr-api and/or cpr-ui
-   │ Link specification in implementation PR
-   │ Update tasks.md as tasks complete
-   │ Update progress.md with completion percentage
-   ↓
-5. Testing
-   │ Write and run tests per Principle 4 (Comprehensive Testing)
-   │ - Unit tests (business logic)
-   │ - Contract tests (API compliance with endpoints.md)
-   │ - Integration tests (cross-component)
-   │ - E2E tests (critical user flows)
-   │
-   │ Validate implementation matches specification
-   ↓
-6. Deployment
-   │ Deploy to environments per deployment standards
-   │ Update progress.md to "Completed"
-   │ Document any deviations from spec in progress.md
-```
+Follow [workflow.md](framework/workflow.md) description.
 
 ### Specification Analysis Format
 
@@ -332,8 +313,10 @@ No significant duplication with existing functionality.
 ### Enforcement
 
 **Specification Approval Requirements**:
-- [ ] All required files present (description, implementation-plan, tasks, endpoints, progress, analysis-report)
-- [ ] `analysis-report.md` exists with rating ≥ 90/100
+- [ ] All required files present (description, implementation-plan, tasks, endpoints, progress)
+- [ ] Optional files created as needed (data-model, research - Phase 3; analysis-report - Phase 4)
+- [ ] `implementation-plan.md` contains Constitutional Compliance Check for all 11 principles
+- [ ] `analysis-report.md` exists with rating ≥ 90/100 (Phase 4)
 - [ ] No unresolved critical issues
 - [ ] No unresolved major issues (or explicitly accepted as risks)
 - [ ] Tech lead or architect approval signature
