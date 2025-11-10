@@ -31,6 +31,8 @@ You are helping to create a comprehensive implementation plan for the CPR (Caree
 
 **Your Mission**: Fill in the Phase 3 planning documents with comprehensive, actionable content that enables smooth implementation.
 
+**🚨 CRITICAL REQUIREMENT**: You MUST generate actual content based on the specification, NOT copy template placeholders. Every endpoint, entity, DTO, and task must be specific to this feature. If you find yourself leaving `[placeholder text]` unchanged, you are doing it wrong.
+
 ---
 
 ## IMPORTANT: Run Phase 3 Tool First
@@ -57,17 +59,39 @@ You are helping to create a comprehensive implementation plan for the CPR (Caree
 
 ---
 
+## ⚠️ CRITICAL: NO TEMPLATE PLACEHOLDERS ALLOWED
+
+**You MUST generate actual content, not leave template placeholders unchanged.**
+
+This is NOT acceptable:
+- ❌ `[Feature Name]` - Must be replaced with actual feature name
+- ❌ `[resource]` - Must be replaced with actual resource name (e.g., `goals`)
+- ❌ `[ENTITY_NAME]` - Must be replaced with actual entity name (e.g., `Goal`)
+- ❌ `[table_name]` - Must be replaced with actual table name (e.g., `goals`)
+- ❌ Generic template examples that don't match the feature
+
+**Before completing Phase 3, verify that all planning documents contain:**
+- ✅ Real endpoint paths (e.g., `POST /api/v1/goals`, not `POST /api/v1/[resource]`)
+- ✅ Actual DTO properties based on feature requirements
+- ✅ Concrete SQL schemas with real column names
+- ✅ Specific task descriptions with exact file paths
+- ✅ Complete C# and TypeScript code that matches the feature
+
+**If you find yourself copying template text unchanged, STOP and generate actual content based on the specification.**
+
+---
+
 ## Planning Documents Overview
 
 ### Mandatory Documents
 
 1. **implementation-plan.md** - Overall technical strategy, architecture, phases
 2. **tasks.md** - Detailed task checklist with dependencies and priorities
-3. **endpoints.md** - Complete API endpoint specifications
+3. **endpoints.md** - Complete API endpoint specifications (**MUST contain real endpoints**)
 
 ### Optional Documents
 
-4. **data-model.md** - Database schema and entity definitions (if database changes needed)
+4. **data-model.md** - Database schema and entity definitions (**MUST contain real entities if created**)
 5. **research.md** - Technical decisions and alternatives (if new technologies or patterns)
 
 ---
@@ -306,7 +330,9 @@ src/CPR.Infrastructure/Repositories/Implementations/GoalsRepository.cs
 
 **Document**: `endpoints.md`
 
-For **each user story**, identify the required API endpoints:
+**CRITICAL**: You MUST generate complete, real API endpoint specifications. DO NOT leave templates unchanged. DO NOT use placeholder text like `[resource]`, `[Feature Name]`, or `[ENTITY_NAME]`. If specification describes only front-end REMOVE endpoint specification.
+
+For **each user story**, identify and **GENERATE** the required API endpoints:
 
 ### Endpoint Design Process
 
@@ -318,6 +344,14 @@ For **each user story**, identify the required API endpoints:
    - Delete → DELETE
 3. **Define URL Structure**: `/api/v1/[resource]` (kebab-case)
 4. **Specify Request/Response**: DTOs for both C# and TypeScript
+
+### MANDATORY: Replace Template Content
+
+You MUST replace ALL template placeholders in `endpoints.md`:
+- Replace `[Feature Name]` with actual feature name
+- Replace `[resource]` with actual resource name (e.g., `goals`, `user-profiles`)
+- Replace template endpoint table with ACTUAL endpoints for this feature
+- Generate COMPLETE endpoint specifications (not template examples)
 
 ### For Each Endpoint, Document:
 
@@ -392,6 +426,52 @@ export interface CreateGoalDto {
 - Batch operations: `POST /api/v1/[resource]/batch`
 - Related resources: `GET /api/v1/[resource]/{id}/[subresource]`
 
+### Generation Instructions
+
+**You MUST generate actual endpoints based on the user stories in description.md**:
+
+1. **Read each user story** from description.md
+2. **Identify what API calls are needed** for that user story
+3. **Write the complete endpoint specification** following the template structure
+4. **Generate real DTOs** with actual properties from the feature requirements
+5. **Include concrete examples** with actual data (not placeholder data)
+
+Example of what you should generate:
+```markdown
+### 1. Create Personal Goal
+
+**Endpoint**: `POST /api/v1/goals`
+
+**Description**: Create a new personal goal for the authenticated user
+
+**Request Body**:
+```json
+{
+  "title": "Learn TypeScript",
+  "description": "Master TypeScript fundamentals",
+  "target_date": "2025-12-31"
+}
+```
+
+**C# DTO**:
+```csharp
+public class CreateGoalDto
+{
+    [JsonPropertyName("title")]
+    [Required]
+    [StringLength(200, MinimumLength = 1)]
+    public string Title { get; set; } = string.Empty;
+    
+    [JsonPropertyName("description")]
+    [StringLength(1000)]
+    public string? Description { get; set; }
+    
+    [JsonPropertyName("target_date")]
+    public DateTime? TargetDate { get; set; }
+}
+```
+```
+
 ### Offline Mode Considerations
 
 Document caching strategy for each endpoint:
@@ -400,16 +480,67 @@ Document caching strategy for each endpoint:
 - Invalidation triggers
 - Sync mechanism
 
+### ✅ ACTION REQUIRED
+
+**NOW generate the complete `endpoints.md` file:**
+
+1. Open `specifications/[####]-<feature-name>/endpoints.md`
+2. Read the current template content
+3. **REPLACE all template content** with actual endpoint specifications
+4. For each user story in description.md, generate the corresponding endpoints
+5. Ensure NO placeholders like `[resource]` or `[Feature Name]` remain
+6. Verify DTOs have real properties from the feature requirements
+
 ---
 
 ## Step 6: Design Data Model (if applicable)
 
 **Document**: `data-model.md` (only if database changes needed)
 
+**CRITICAL**: If you determine that database changes are needed, you MUST generate complete, real data model specifications. DO NOT leave templates unchanged. DO NOT use placeholder text like `[ENTITY_NAME]`, `[table_name]`, or `[Feature Name]`. If database changes not needed, remove data-model specification.
+
 **When to create data-model.md**:
 - Feature requires new database tables
 - Feature modifies existing entities
 - Feature adds new relationships
+
+### MANDATORY: Replace Template Content
+
+If data-model.md is needed, you MUST replace ALL template placeholders:
+- Replace `[Feature Name]` with actual feature name
+- Replace `[ENTITY_NAME]` and `[table_name]` with actual entity/table names
+- Generate COMPLETE entity definitions (not template examples)
+- Create REAL SQL schema based on feature requirements
+- Generate ACTUAL C# domain models with real properties
+
+### Generation Instructions
+
+**You MUST analyze the feature requirements and generate actual database entities**:
+
+1. **Identify what data needs to be stored** based on user stories
+2. **Design the entity structure** with real columns and relationships
+3. **Write complete SQL CREATE TABLE statements** with actual constraints
+4. **Generate C# domain models** with real properties
+5. **Include EF Core configurations** with actual mappings
+
+Example of what you should generate:
+```sql
+CREATE TABLE goals (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    status VARCHAR(20) NOT NULL DEFAULT 'active',
+    target_date TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    user_id UUID NOT NULL,
+    
+    CONSTRAINT fk_goals_user FOREIGN KEY (user_id) 
+        REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT chk_goals_status 
+        CHECK (status IN ('active', 'completed', 'abandoned'))
+);
+```
 
 ### For Each Entity, Document:
 
@@ -468,6 +599,23 @@ Document caching strategy for each endpoint:
 - Index strategy
 - Expected query performance
 - Scaling considerations
+
+### ✅ ACTION REQUIRED (if data-model.md is needed)
+
+**If database changes are required, NOW generate the complete `data-model.md` file:**
+
+1. Open `specifications/[####]-<feature-name>/data-model.md`
+2. Read the current template content
+3. **REPLACE all template content** with actual entity specifications
+4. Analyze user stories and endpoints to determine what entities are needed
+5. Generate real SQL schemas with actual table/column names
+6. Create complete C# domain models with actual properties
+7. Ensure NO placeholders like `[ENTITY_NAME]` or `[table_name]` remain
+8. Verify entity relationships match the feature requirements
+
+**If NO database changes are needed:**
+- Delete the `data-model.md` file
+- Note in `implementation-plan.md` that no database changes are required
 
 ---
 
@@ -771,6 +919,15 @@ For each phase and task, be clear about what "complete" means.
 
 Before finishing Phase 3, verify:
 
+### ⚠️ TEMPLATE VERIFICATION (MUST CHECK FIRST)
+- [ ] **NO placeholders** like `[Feature Name]`, `[resource]`, `[ENTITY_NAME]` remain in ANY document
+- [ ] **ALL endpoints** use actual resource names (e.g., `POST /api/v1/goals`, not `POST /api/v1/[resource]`)
+- [ ] **ALL DTOs** have real properties based on feature requirements (not generic examples)
+- [ ] **ALL SQL schemas** have actual table/column names (not template placeholders)
+- [ ] **ALL entities** are specific to this feature (not generic template examples)
+- [ ] Endpoints Summary table shows REAL endpoints for this feature
+- [ ] Entity Relationship Diagram shows REAL entities (not `[ENTITY_NAME]`)
+
 ### implementation-plan.md
 - [ ] Executive summary completed
 - [ ] All 11 constitutional principles assessed
@@ -795,23 +952,25 @@ Before finishing Phase 3, verify:
 - [ ] Task validation checklist included
 
 ### endpoints.md
-- [ ] All endpoints from user stories defined
+- [ ] **CRITICAL**: All template placeholders removed (no `[resource]`, `[Feature Name]`)
+- [ ] All endpoints from user stories defined with REAL paths
 - [ ] Each endpoint has: method, URL, description, auth
 - [ ] Request specifications (params, body, headers)
 - [ ] Response specifications (success, errors)
-- [ ] C# DTOs with validation attributes
+- [ ] C# DTOs with validation attributes and REAL properties
 - [ ] TypeScript interfaces matching C# DTOs
 - [ ] Validation rules documented
-- [ ] Examples provided (request/response)
+- [ ] Examples provided with REAL data (not placeholder examples)
 - [ ] Error responses standardized
 - [ ] Offline caching strategy defined
 
 ### data-model.md (if created)
-- [ ] Entity relationship diagram
-- [ ] SQL schema for each entity
+- [ ] **CRITICAL**: All template placeholders removed (no `[ENTITY_NAME]`, `[table_name]`)
+- [ ] Entity relationship diagram with REAL entity names
+- [ ] SQL schema for each entity with ACTUAL table/column names
 - [ ] Column details table
 - [ ] Constraints and indexes
-- [ ] C# domain models
+- [ ] C# domain models with REAL properties
 - [ ] EF Core configurations
 - [ ] Migration code
 - [ ] Repository interfaces
@@ -858,6 +1017,19 @@ After completing all planning documents:
 ---
 
 ## Common Mistakes to Avoid
+
+### 🚨 MOST CRITICAL MISTAKE: Leaving Templates Unchanged
+
+❌ **BIGGEST ERROR**: Copying template files without replacing placeholders
+- **Wrong**: `POST /api/v1/[resource]` in endpoints.md
+- **Wrong**: `[ENTITY_NAME]` in data-model.md
+- **Wrong**: Generic DTO examples that don't match the feature
+- ✅ **Right**: Generate actual content based on specification
+
+❌ **Not analyzing requirements**: Skipping description.md analysis and just copying templates
+- ✅ **Right**: Read user stories, extract requirements, then generate specific artifacts
+
+### Other Important Mistakes
 
 ❌ **Vague tasks**: "Implement goals" → ✅ "Implement POST /api/v1/goals endpoint in src/CPR.Api/Controllers/GoalsController.cs"
 

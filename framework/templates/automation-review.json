@@ -1,0 +1,311 @@
+{
+    "metadata": {
+        "feature_number": "####",
+        "feature_name": "feature-name",
+        "review_date": "YYYY-MM-DD",
+        "tool_version": "1.0.0",
+        "repositories": {
+            "cpr_api_branch": "feature/####-feature-name",
+            "cpr_ui_branch": "feature/####-feature-name"
+        }
+    },
+    "validation_summary": {
+        "phase_5_complete": true,
+        "all_required_files_exist": true,
+        "tasks_completion_percentage": 100,
+        "total_tasks": 0,
+        "completed_tasks": 0,
+        "remaining_tasks": 0
+    },
+    "build_status": {
+        "cpr_api": {
+            "status": "PASS",
+            "compilation_errors": 0,
+            "compilation_warnings": 0,
+            "build_time_seconds": 0,
+            "target_framework": ".NET 8.0",
+            "configuration": "Debug",
+            "errors": []
+        },
+        "cpr_ui": {
+            "status": "PASS",
+            "build_errors": 0,
+            "build_warnings": 0,
+            "build_time_seconds": 0,
+            "bundle_size_kb": 0,
+            "configuration": "development",
+            "errors": []
+        }
+    },
+    "test_results": {
+        "cpr_api": {
+            "status": "PASS",
+            "total_tests": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "duration_seconds": 0,
+            "coverage": {
+                "line_coverage_percent": 0,
+                "branch_coverage_percent": 0,
+                "method_coverage_percent": 0,
+                "meets_threshold": false,
+                "threshold_percent": 80
+            },
+            "test_suites": {
+                "unit_tests": {
+                    "total": 0,
+                    "passed": 0,
+                    "failed": 0,
+                    "skipped": 0
+                },
+                "integration_tests": {
+                    "total": 0,
+                    "passed": 0,
+                    "failed": 0,
+                    "skipped": 0
+                }
+            },
+            "failed_tests": []
+        },
+        "cpr_ui": {
+            "status": "PASS",
+            "total_tests": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "duration_seconds": 0,
+            "coverage": {
+                "line_coverage_percent": 0,
+                "branch_coverage_percent": 0,
+                "function_coverage_percent": 0,
+                "statement_coverage_percent": 0,
+                "meets_threshold": false,
+                "threshold_percent": 80
+            },
+            "test_suites": {
+                "component_tests": {
+                    "total": 0,
+                    "passed": 0,
+                    "failed": 0,
+                    "skipped": 0
+                },
+                "hook_tests": {
+                    "total": 0,
+                    "passed": 0,
+                    "failed": 0,
+                    "skipped": 0
+                },
+                "integration_tests": {
+                    "total": 0,
+                    "passed": 0,
+                    "failed": 0,
+                    "skipped": 0
+                }
+            },
+            "failed_tests": []
+        }
+    },
+    "linting_analysis": {
+        "cpr_api": {
+            "status": "PASS",
+            "total_issues": 0,
+            "errors": 0,
+            "warnings": 0,
+            "info": 0,
+            "tool": "dotnet format",
+            "issues": []
+        },
+        "cpr_ui": {
+            "status": "PASS",
+            "total_issues": 0,
+            "errors": 0,
+            "warnings": 0,
+            "tool": "ESLint",
+            "issues": []
+        }
+    },
+    "complexity_metrics": {
+        "cpr_api": {
+            "total_files_analyzed": 0,
+            "average_cyclomatic_complexity": 0,
+            "max_cyclomatic_complexity": 0,
+            "files_above_threshold": [],
+            "threshold": 15,
+            "methods_above_threshold": []
+        },
+        "cpr_ui": {
+            "total_files_analyzed": 0,
+            "average_cyclomatic_complexity": 0,
+            "max_cyclomatic_complexity": 0,
+            "files_above_threshold": [],
+            "threshold": 15,
+            "functions_above_threshold": []
+        }
+    },
+    "git_analysis": {
+        "cpr_api": {
+            "branch_name": "feature/####-feature-name",
+            "total_commits": 0,
+            "conventional_commits": 0,
+            "non_conventional_commits": 0,
+            "conventional_commit_percentage": 0,
+            "commits_behind_main": 0,
+            "has_merge_conflicts": false,
+            "uncommitted_changes": false,
+            "commit_quality_issues": []
+        },
+        "cpr_ui": {
+            "branch_name": "feature/####-feature-name",
+            "total_commits": 0,
+            "conventional_commits": 0,
+            "non_conventional_commits": 0,
+            "conventional_commit_percentage": 0,
+            "commits_behind_main": 0,
+            "has_merge_conflicts": false,
+            "uncommitted_changes": false,
+            "commit_quality_issues": []
+        }
+    },
+    "file_statistics": {
+        "cpr_api": {
+            "files_added": 0,
+            "files_modified": 0,
+            "files_deleted": 0,
+            "total_lines_added": 0,
+            "total_lines_deleted": 0,
+            "net_lines_changed": 0,
+            "file_types": {
+                "cs": 0,
+                "json": 0,
+                "sql": 0,
+                "other": 0
+            }
+        },
+        "cpr_ui": {
+            "files_added": 0,
+            "files_modified": 0,
+            "files_deleted": 0,
+            "total_lines_added": 0,
+            "total_lines_deleted": 0,
+            "net_lines_changed": 0,
+            "file_types": {
+                "tsx": 0,
+                "ts": 0,
+                "css": 0,
+                "json": 0,
+                "other": 0
+            }
+        }
+    },
+    "automated_findings": [
+        {
+            "id": "AUTO-001",
+            "severity": "CRITICAL",
+            "category": "Build",
+            "title": "Example: Build Failure",
+            "description": "Backend compilation failed with errors",
+            "location": "cpr-api/src/CPR.Api/Controllers/ExampleController.cs",
+            "details": "Compilation error details here",
+            "remediation": "Fix compilation errors before proceeding"
+        },
+        {
+            "id": "AUTO-002",
+            "severity": "HIGH",
+            "category": "Testing",
+            "title": "Example: Test Failures",
+            "description": "X unit tests failing in backend",
+            "location": "cpr-api/tests/",
+            "details": "List of failing tests",
+            "remediation": "Fix failing tests to ensure code quality"
+        },
+        {
+            "id": "AUTO-003",
+            "severity": "MEDIUM",
+            "category": "Coverage",
+            "title": "Example: Low Test Coverage",
+            "description": "Test coverage below 80% threshold (current: X%)",
+            "location": "cpr-api/src/",
+            "details": "Coverage breakdown by module",
+            "remediation": "Add tests to critical modules to reach 80% coverage"
+        },
+        {
+            "id": "AUTO-004",
+            "severity": "MEDIUM",
+            "category": "Complexity",
+            "title": "Example: High Cyclomatic Complexity",
+            "description": "X methods exceed complexity threshold of 15",
+            "location": "Multiple files",
+            "details": "List of complex methods with their complexity scores",
+            "remediation": "Refactor complex methods into smaller functions"
+        },
+        {
+            "id": "AUTO-005",
+            "severity": "LOW",
+            "category": "Git",
+            "title": "Example: Non-Conventional Commits",
+            "description": "X% of commits don't follow conventional commit format",
+            "location": "Git history",
+            "details": "Examples of non-conventional commits",
+            "remediation": "Use format: feat(####): Description"
+        }
+    ],
+    "automated_score": {
+        "total_points": 100,
+        "deductions": [
+            {
+                "category": "Build",
+                "severity": "CRITICAL",
+                "points": 0,
+                "reason": "No build failures"
+            },
+            {
+                "category": "Tests",
+                "severity": "HIGH",
+                "points": 0,
+                "reason": "All tests passing"
+            },
+            {
+                "category": "Coverage",
+                "severity": "MEDIUM",
+                "points": 0,
+                "reason": "Coverage above 80%"
+            },
+            {
+                "category": "Linting",
+                "severity": "MEDIUM",
+                "points": 0,
+                "reason": "No linting errors"
+            },
+            {
+                "category": "Complexity",
+                "severity": "LOW",
+                "points": 0,
+                "reason": "Acceptable complexity levels"
+            },
+            {
+                "category": "Git",
+                "severity": "LOW",
+                "points": 0,
+                "reason": "Good commit quality"
+            }
+        ],
+        "final_score": 100,
+        "status": "PASS"
+    },
+    "summary": {
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "total_issues": 0,
+        "automated_quality_score": 100,
+        "ready_for_ai_review": true,
+        "blocking_issues": []
+    },
+    "recommendations": [
+        "Proceed with AI-assisted semantic code review using phase-6-review.md prompt",
+        "Focus AI review on architecture, business logic, and constitutional compliance",
+        "All automated checks passed successfully"
+    ]
+}
