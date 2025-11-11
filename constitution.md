@@ -4333,18 +4333,20 @@ fi
 ## Principle 11: Database Design Standards
 
 ### Statement
-**All database tables must use UUID primary keys, include audit columns (created_at, updated_at, deleted_at), implement soft delete semantics, and follow indexing best practices.**
+**All database tables must use UUID primary keys, include audit columns (created_by, created_at, modified_by, modified_at, deleted_by, deleted_at), implement soft delete semantics, and follow indexing best practices. Always refer to data.md as the authoritative schema definition.**
 
 ### Definition
 
-Database design impacts performance, data integrity, and compliance. The CPR project enforces strict database standards:
+Database design impacts performance, data integrity, and compliance. The CPR project enforces strict database standards. **The authoritative schema definition is maintained in `data.md` in the cpr-meta repository.**
 
 - **UUID Primary Keys**: Globally unique, no auto-increment race conditions
-- **Audit Columns**: Track creation, updates, and deletions
+- **Audit Columns**: Track creation (created_by, created_at), modifications (modified_by, modified_at), and deletions (deleted_by, deleted_at)
 - **Soft Delete**: Retention policies require reversible deletes
 - **Indexing**: Strategic indexes for query performance
 - **Migrations**: All schema changes versioned and tested
 - **Naming**: snake_case for tables and columns
+
+**IMPORTANT**: Before generating any database schema, migration, or entity model, always consult `data.md` for the current schema definition, naming conventions, and audit column standards.
 
 ### Core Requirements
 
@@ -4364,13 +4366,14 @@ CREATE TABLE table_name (
   -- Foreign Keys (UUID)
   user_id UUID NOT NULL REFERENCES users(id),
   
-  -- Audit Columns (required)
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  created_by UUID NOT NULL REFERENCES users(id),
-  updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  updated_by UUID NOT NULL REFERENCES users(id),
-  deleted_at TIMESTAMP NULL,
+  -- Audit Columns (required - must match data.md)
+  created_by UUID NULL REFERENCES users(id),
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  modified_by UUID NULL REFERENCES users(id),
+  modified_at TIMESTAMPTZ NULL,
+  is_deleted BOOLEAN DEFAULT FALSE,
   deleted_by UUID NULL REFERENCES users(id),
+  deleted_at TIMESTAMPTZ NULL,
   
   -- Constraints
   CONSTRAINT uk_table_name_unique_column UNIQUE (unique_column),
@@ -4408,34 +4411,35 @@ CREATE TABLE goals (
 
 #### 3. Audit Columns
 
-**Track all changes**:
+**Track all changes** (must match data.md specification):
 
 ```sql
--- Required columns for all tables
-created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-created_by UUID NOT NULL REFERENCES users(id),
-updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-updated_by UUID NOT NULL REFERENCES users(id),
-deleted_at TIMESTAMP NULL,
-deleted_by UUID NULL REFERENCES users(id)
+-- Required columns for all tables (from data.md)
+created_by UUID NULL REFERENCES users(id),
+created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+modified_by UUID NULL REFERENCES users(id),
+modified_at TIMESTAMPTZ NULL,
+is_deleted BOOLEAN DEFAULT FALSE,
+deleted_by UUID NULL REFERENCES users(id),
+deleted_at TIMESTAMPTZ NULL
 ```
 
 **Auto-update trigger**:
 ```sql
--- Function to auto-update updated_at
-CREATE OR REPLACE FUNCTION update_updated_at_column()
+-- Function to auto-update modified_at
+CREATE OR REPLACE FUNCTION update_modified_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
-  NEW.updated_at = NOW();
+  NEW.modified_at = CURRENT_TIMESTAMP;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
 -- Apply to all tables
-CREATE TRIGGER trg_goals_updated_at
+CREATE TRIGGER trg_goals_modified_at
 BEFORE UPDATE ON goals
 FOR EACH ROW
-EXECUTE FUNCTION update_updated_at_column();
+EXECUTE FUNCTION update_modified_at_column();
 ```
 
 #### 4. Soft Delete Semantics
@@ -4443,20 +4447,22 @@ EXECUTE FUNCTION update_updated_at_column();
 **Implement soft delete for all user data**:
 
 ```sql
--- Soft delete: Set deleted_at timestamp
+-- Soft delete: Set is_deleted flag and timestamp
 UPDATE goals 
-SET deleted_at = NOW(), deleted_by = 'user-id'
+SET is_deleted = TRUE, 
+    deleted_at = CURRENT_TIMESTAMP, 
+    deleted_by = 'user-id'
 WHERE id = 'goal-id';
 
 -- Query only non-deleted records
-SELECT * FROM goals WHERE deleted_at IS NULL;
+SELECT * FROM goals WHERE is_deleted = FALSE;
 
 -- Include deleted records (admin view)
 SELECT * FROM goals; -- No filter
 
 -- Permanently delete after retention period (compliance job)
 DELETE FROM goals 
-WHERE deleted_at < NOW() - INTERVAL '7 years';
+WHERE deleted_at < CURRENT_TIMESTAMP - INTERVAL '7 years';
 ```
 
 **Entity Framework global filter**:
@@ -4465,7 +4471,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     // Global query filter: exclude soft-deleted records
     modelBuilder.Entity<Goal>()
-        .HasQueryFilter(g => g.DeletedAt == null);
+        .HasQueryFilter(g => !g.IsDeleted);
     
     // To include deleted records explicitly
     var allGoals = await _context.Goals
@@ -4580,7 +4586,7 @@ public partial class AddGoalStatusColumn : Migration
 ### Real-World Example
 
 ```sql
--- Complete table with all standards
+-- Complete table with all standards (matching data.md specification)
 CREATE TABLE goals (
   -- Primary Key
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -4596,35 +4602,37 @@ CREATE TABLE goals (
   user_id UUID NOT NULL REFERENCES users(id),
   manager_id UUID NULL REFERENCES users(id),
   
-  -- Audit Columns
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  created_by UUID NOT NULL REFERENCES users(id),
-  updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  updated_by UUID NOT NULL REFERENCES users(id),
-  deleted_at TIMESTAMP NULL,
+  -- Audit Columns (must match data.md)
+  created_by UUID NULL REFERENCES users(id),
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  modified_by UUID NULL REFERENCES users(id),
+  modified_at TIMESTAMPTZ NULL,
+  is_deleted BOOLEAN DEFAULT FALSE,
   deleted_by UUID NULL REFERENCES users(id),
+  deleted_at TIMESTAMPTZ NULL,
   
   -- Constraints
   CONSTRAINT ck_goals_status CHECK (status IN ('active', 'completed', 'archived', 'cancelled')),
   CONSTRAINT ck_goals_completion_date CHECK (completion_date IS NULL OR completion_date >= target_date)
 );
 
--- Indexes
-CREATE INDEX idx_goals_user_id ON goals(user_id) WHERE deleted_at IS NULL;
-CREATE INDEX idx_goals_status ON goals(status) WHERE deleted_at IS NULL;
-CREATE INDEX idx_goals_target_date ON goals(target_date DESC) WHERE deleted_at IS NULL AND status = 'active';
+-- Indexes (use is_deleted instead of deleted_at for filtering)
+CREATE INDEX idx_goals_user_id ON goals(user_id) WHERE is_deleted = FALSE;
+CREATE INDEX idx_goals_status ON goals(status) WHERE is_deleted = FALSE;
+CREATE INDEX idx_goals_target_date ON goals(target_date DESC) WHERE is_deleted = FALSE AND status = 'active';
 CREATE INDEX idx_goals_deleted_at ON goals(deleted_at) WHERE deleted_at IS NOT NULL;
 CREATE INDEX idx_goals_title_fts ON goals USING GIN(to_tsvector('english', title));
 
 -- Triggers
-CREATE TRIGGER trg_goals_updated_at
+CREATE TRIGGER trg_goals_modified_at
 BEFORE UPDATE ON goals
 FOR EACH ROW
-EXECUTE FUNCTION update_updated_at_column();
+EXECUTE FUNCTION update_modified_at_column();
 
 -- Comments (documentation)
 COMMENT ON TABLE goals IS 'Career goals set by employees and managers';
 COMMENT ON COLUMN goals.status IS 'Goal lifecycle status: active, completed, archived, cancelled';
+COMMENT ON COLUMN goals.is_deleted IS 'Soft delete flag (FALSE = active, TRUE = deleted)';
 COMMENT ON COLUMN goals.deleted_at IS 'Soft delete timestamp (NULL = not deleted)';
 ```
 
@@ -4634,15 +4642,16 @@ COMMENT ON COLUMN goals.deleted_at IS 'Soft delete timestamp (NULL = not deleted
 
 Migration Review Checklist:
 - [ ] UUID primary key (not SERIAL)
-- [ ] All audit columns included (created_at, updated_at, etc.)
-- [ ] Soft delete columns included (deleted_at, deleted_by)
+- [ ] All audit columns included matching data.md (created_by, created_at, modified_by, modified_at, is_deleted, deleted_by, deleted_at)
+- [ ] Soft delete columns included (is_deleted, deleted_by, deleted_at)
 - [ ] Foreign keys reference UUID columns
 - [ ] Indexes created for foreign keys
-- [ ] Partial indexes use WHERE deleted_at IS NULL
+- [ ] Partial indexes use WHERE is_deleted = FALSE (not deleted_at IS NULL)
 - [ ] Column names use snake_case
 - [ ] Constraints named consistently (ck_*, uk_*, fk_*)
 - [ ] Up and Down methods both implemented
 - [ ] Migration tested on staging database
+- [ ] Schema matches data.md specification
 
 #### 2. Database Code Review
 
@@ -4651,7 +4660,7 @@ Migration Review Checklist:
 EXPLAIN ANALYZE
 SELECT * FROM goals 
 WHERE user_id = '123e4567-e89b-12d3-a456-426614174000' 
-AND deleted_at IS NULL;
+AND is_deleted = FALSE;
 
 -- Check for missing indexes
 SELECT schemaname, tablename, attname
@@ -4673,7 +4682,7 @@ ORDER BY pg_total_relation_size(schemaname||'.'||tablename) DESC;
 [Fact]
 public async Task AllTables_HaveAuditColumns()
 {
-    // Verify all tables have required audit columns
+    // Verify all tables have required audit columns (matching data.md)
     var tables = await _dbContext.Database.SqlQuery<string>(
         "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
         .ToListAsync();
@@ -4684,10 +4693,13 @@ public async Task AllTables_HaveAuditColumns()
             $"SELECT column_name FROM information_schema.columns WHERE table_name = '{table}'")
             .ToListAsync();
         
-        Assert.Contains("created_at", columns);
-        Assert.Contains("updated_at", columns);
-        Assert.Contains("deleted_at", columns);
         Assert.Contains("created_by", columns);
+        Assert.Contains("created_at", columns);
+        Assert.Contains("modified_by", columns);
+        Assert.Contains("modified_at", columns);
+        Assert.Contains("is_deleted", columns);
+        Assert.Contains("deleted_by", columns);
+        Assert.Contains("deleted_at", columns);
     }
 }
 ```

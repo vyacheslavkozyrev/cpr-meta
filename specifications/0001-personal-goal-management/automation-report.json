@@ -1,0 +1,32 @@
+﻿{
+    "metrics":  {
+                    "totalEndpoints":  5,
+                    "totalUserStories":  5,
+                    "totalTasks":  63,
+                    "placeholderCount":  0,
+                    "namingViolations":  0
+                },
+    "automatedScore":  100,
+    "findings":  [
+
+                 ],
+    "metadata":  {
+                     "toolVersion":  "1.0.0",
+                     "featureName":  "personal-goal-management",
+                     "analysisType":  "automated",
+                     "analysisDate":  "2025-11-11",
+                     "featureNumber":  "0001"
+                 },
+    "summary":  {
+                    "mediumIssues":  0,
+                    "lowIssues":  0,
+                    "criticalIssues":  0,
+                    "highIssues":  0,
+                    "totalFindings":  0
+                },
+    "recommendations":  {
+                            "useAI":  true,
+                            "aiPrompt":  "framework/prompts/phase-4-analyze.md",
+                            "nextStep":  "READY_FOR_AI_ANALYSIS - Proceed with deep analysis"
+                        }
+}

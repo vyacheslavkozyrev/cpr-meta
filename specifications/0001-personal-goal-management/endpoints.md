@@ -1,15 +1,15 @@
-﻿# API Endpoints - Personal Goal Creation Management
+﻿# API Endpoints - Personal Goal Management
 
-> **Feature**: 0001 - personal-goal-creation-management  
+> **Feature**: 0001 - personal-goal-management  
 > **Status**: Planning  
-> **Created**: 2025-11-07  
-> **Last Updated**: 2025-11-07
+> **Created**: 2025-11-11  
+> **Last Updated**: 2025-11-11
 
 ---
 
 ## Overview
 
-This document defines all API endpoints for the Personal Goal Creation Management feature, including request/response contracts, validation rules, and authorization requirements.
+This document defines all API endpoints for the Personal Goal Management feature, including request/response contracts, validation rules, and authorization requirements.
 
 **Base URL**: `/api/v1`
 
@@ -21,16 +21,27 @@ This document defines all API endpoints for the Personal Goal Creation Managemen
 
 ## Endpoints Summary
 
+### Existing Endpoints (Already Implemented)
+
 | Method | Endpoint | Description | Auth | Role |
 |--------|----------|-------------|------|------|
-| GET | `/goals` | List goals (all for admin, own for others) | ✅ | Any authenticated user |
-| GET | `/goals/{id}` | Get single goal | ✅ | Owner/Manager/Admin |
-| POST | `/goals` | Create new goal | ✅ | Any authenticated user |
-| PATCH | `/goals/{id}` | Update existing goal | ✅ | Owner/Admin |
-| DELETE | `/goals/{id}` | Soft delete goal | ✅ | Owner/Manager/Admin |
-| GET | `/me/goals` | Get current user's goals (convenience) | ✅ | Any authenticated user |
-| GET | `/users/{userId}/goals` | Get goals for specific user | ✅ | Manager/Admin |
-| GET | `/me/available-skills` | Get skills for goal creation (next level) | ✅ | Any authenticated user |
+| POST | `/goals` | Create new goal | ✅ | Employee |
+| GET | `/me/goals` | List user's goals | ✅ | Employee |
+| GET | `/goals/{id}` | Get goal with tasks | ✅ | Owner/Manager/Admin |
+| PATCH | `/goals/{id}` | Update goal | ✅ | Owner |
+| DELETE | `/goals/{id}` | Delete goal | ✅ | Admin only |
+| POST | `/goals/{id}/tasks` | Add task to goal | ✅ | Owner |
+| PATCH | `/goals/{id}/tasks/{taskId}` | Update task | ✅ | Owner |
+| DELETE | `/goals/{id}/tasks/{taskId}` | Delete task | ✅ | Owner |
+
+### New Endpoints (To Be Implemented)
+
+| Method | Endpoint | Description | Auth | Role |
+|--------|----------|-------------|------|------|
+| GET | `/skills` | Search skills (autocomplete) | ✅ | Employee |
+| GET | `/user-preferences` | Get user preferences | ✅ | Employee |
+| PUT | `/user-preferences` | Save user preferences | ✅ | Employee |
+| PATCH | `/goals/{id}/tasks/reorder` | Batch update task order | ✅ | Owner |
 
 ---
 
@@ -85,9 +96,29 @@ All error responses follow this structure:
 
 ## Endpoint Details
 
-### 1. List [Resources]
+**Note**: See `endpoints-detailed.md` for complete specifications with full C# DTOs, TypeScript interfaces, and request/response examples.
 
-**Endpoint**: `GET /api/v1/[resource]`
+### Summary
+
+**Existing Endpoints** (8 total - already implemented):
+1. `POST /api/goals` - Create goal
+2. `GET /api/me/goals` - List user's goals with filtering
+3. `GET /api/goals/{id}` - Get goal with tasks
+4. `PATCH /api/goals/{id}` - Update goal
+5. `DELETE /api/goals/{id}` - Delete goal (admin only)
+6. `POST /api/goals/{id}/tasks` - Add task
+7. `PATCH /api/goals/{id}/tasks/{taskId}` - Update task
+8. `DELETE /api/goals/{id}/tasks/{taskId}` - Delete task
+
+**New Endpoints** (4 total - to be implemented in Phase 2):
+9. `GET /api/skills?search={query}&limit={limit}` - Skills autocomplete
+10. `GET /api/user-preferences` - Get user preferences
+11. `PUT /api/user-preferences` - Save user preferences
+12. `PATCH /api/goals/{id}/tasks/reorder` - Batch update task order
+
+---
+
+### 1. List [Resources] (TEMPLATE - Replace with actual endpoints)
 
 **Description**: Retrieve a paginated list of [resources] for the authenticated user
 
@@ -122,7 +153,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
       "description": "Resource description",
       "status": "active",
       "created_at": "2025-11-07T10:30:00Z",
-      "updated_at": "2025-11-07T10:30:00Z",
+      "modified_at": "2025-11-07T10:30:00Z",
       "user_id": "123e4567-e89b-12d3-a456-426614174000"
     }
   ],
@@ -178,8 +209,8 @@ public class [Resource]Dto
     [JsonPropertyName("created_at")]
     public DateTime CreatedAt { get; set; }
     
-    [JsonPropertyName("updated_at")]
-    public DateTime UpdatedAt { get; set; }
+    [JsonPropertyName("modified_at")]
+    public DateTime ModifiedAt { get; set; }
     
     [JsonPropertyName("user_id")]
     public Guid UserId { get; set; }
@@ -225,7 +256,7 @@ export interface ResourceDto {
   description: string | null;
   status: string;
   created_at: string; // ISO 8601
-  updated_at: string; // ISO 8601
+  modified_at: string; // ISO 8601
   user_id: string;
 }
 
@@ -273,7 +304,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
   "description": "Detailed resource description",
   "status": "active",
   "created_at": "2025-11-07T10:30:00Z",
-  "updated_at": "2025-11-07T10:30:00Z",
+  "modified_at": "2025-11-07T10:30:00Z",
   "user_id": "123e4567-e89b-12d3-a456-426614174000"
 }
 ```
@@ -330,7 +361,7 @@ Content-Type: application/json
   "description": "Resource description",
   "status": "active",
   "created_at": "2025-11-07T10:30:00Z",
-  "updated_at": "2025-11-07T10:30:00Z",
+  "modified_at": "2025-11-07T10:30:00Z",
   "user_id": "123e4567-e89b-12d3-a456-426614174000"
 }
 ```
@@ -447,7 +478,7 @@ Content-Type: application/json
   "description": "Updated description",
   "status": "inactive",
   "created_at": "2025-11-07T10:30:00Z",
-  "updated_at": "2025-11-07T12:45:00Z",
+  "modified_at": "2025-11-07T12:45:00Z",
   "user_id": "123e4567-e89b-12d3-a456-426614174000"
 }
 ```
@@ -629,7 +660,7 @@ When offline:
 ```yaml
 openapi: 3.0.0
 info:
-  title: CPR API - Personal Goal Creation Management
+  title: CPR API - Personal Goal Management
   version: 1.0.0
 paths:
   /api/v1/[resource]:
@@ -644,4 +675,4 @@ paths:
 
 | Date | Author | Changes |
 |------|--------|---------|
-| 2025-11-07 | [Name] | Initial endpoint definitions |
+| 2025-11-11 | [Name] | Initial endpoint definitions |
