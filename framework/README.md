@@ -1,8 +1,8 @@
 # CPR Feature Development Framework
 
 > **Version**: 1.0  
-> **Status**: Phases 1-6 Complete  
-> **Last Updated**: 2025-11-10
+> **Status**: Phases 1-8 Complete - Framework Complete  
+> **Last Updated**: 2025-11-11
 
 ---
 
@@ -24,7 +24,9 @@ framework/
 │   ├── phase-3-plan.md         # Implementation planning
 │   ├── phase-4-analyze.md      # Quality analysis
 │   ├── phase-5-implement.md    # Code implementation
-│   └── phase-6-review.md       # Code review
+│   ├── phase-6-review.md       # Code review
+│   ├── phase-7-test.md         # Comprehensive testing
+│   └── phase-8-deploy.md       # Production deployment
 ├── templates/                   # Document templates
 │   ├── description.md          # Feature specification template
 │   ├── implementation-plan.md  # Technical planning template
@@ -33,15 +35,25 @@ framework/
 │   ├── data-model.md           # Database schema template
 │   ├── research.md             # Technical decisions template
 │   ├── progress.md             # Progress tracking template
+│   ├── analysis-report.md      # Quality analysis report template
+│   ├── automation-report.json  # Automated analysis results template
+│   ├── review-report.md        # Code review report template
 │   ├── automation-review.json  # Automated review results template
-│   └── review-report.md        # Code review report template
+│   ├── test-plan.md            # Test planning template
+│   ├── test-report.md          # Test results report template
+│   ├── automation-test.json    # Automated test results template
+│   ├── deployment-plan.md      # Deployment planning template
+│   ├── deployment-report.md    # Deployment results template
+│   └── automation-deploy.json  # Automated deployment validation template
 └── tools/                       # PowerShell automation scripts
     ├── phase-1-specify.ps1     # Initialize feature specification
     ├── phase-2-refine.ps1      # Prepare for refinement
     ├── phase-3-plan.ps1        # Setup planning artifacts
     ├── phase-4-analyze.ps1     # Automated quality analysis
     ├── phase-5-implement.ps1   # Prepare for implementation
-    └── phase-6-review.ps1      # (To be created) Automated code review
+    ├── phase-6-review.ps1      # Automated code review
+    ├── phase-7-test.ps1        # Automated test execution
+    └── phase-8-deploy.ps1      # Automated deployment validation
 ```
 
 ---
@@ -80,15 +92,21 @@ framework/
 
 ### Phase 6: Code Review
 **Purpose**: Comprehensive quality and compliance review  
-**Tool**: `phase-6-review.ps1` (to be created)  
+**Tool**: `phase-6-review.ps1`  
 **Prompt**: `phase-6-review.md`  
 **Outputs**: `automation-review.json`, `review-report.md`, approval decision
 
 ### Phase 7: Test
-**Status**: To be defined
+**Purpose**: Comprehensive testing for production readiness  
+**Tool**: `phase-7-test.ps1`  
+**Prompt**: `phase-7-test.md`  
+**Outputs**: `test-plan.md`, `automation-test.json`, `test-report.md`, production readiness decision
 
 ### Phase 8: Deploy
-**Status**: To be defined
+**Purpose**: Production deployment with zero-downtime strategies  
+**Tool**: `phase-8-deploy.ps1`  
+**Prompt**: `phase-8-deploy.md`  
+**Outputs**: `deployment-plan.md`, `automation-deploy.json`, `deployment-report.md`, deployment validation
 
 ---
 
@@ -142,6 +160,20 @@ framework/
    
    Use Copilot with `phase-6-review.md` to conduct code review
 
+8. **Phase 7 - Test**:
+   ```powershell
+   .\framework\tools\phase-7-test.ps1 -FeatureNumber "0001" -FeatureName "feature-name"
+   ```
+   
+   Use Copilot with `phase-7-test.md` for comprehensive testing
+
+9. **Phase 8 - Deploy**:
+   ```powershell
+   .\framework\tools\phase-8-deploy.ps1 -FeatureNumber "0001" -FeatureName "feature-name" -Environment "staging"
+   ```
+   
+   Use Copilot with `phase-8-deploy.md` to execute deployment
+
 ---
 
 ## Templates Reference
@@ -167,10 +199,16 @@ framework/
 
 | Template | Phase | Purpose |
 |----------|-------|---------|
-| `automation-report.json` | 4 | Automated quality analysis results |
-| `analysis-report.md` | 4 | Comprehensive quality findings |
+| `automation-report.json` | 4 | Automated specification analysis results |
+| `analysis-report.md` | 4 | Comprehensive quality findings and score |
 | `automation-review.json` | 6 | Automated code review results |
 | `review-report.md` | 6 | Comprehensive code review findings |
+| `test-plan.md` | 7 | Comprehensive test scenarios and checklists |
+| `automation-test.json` | 7 | Automated test execution results |
+| `test-report.md` | 7 | Test results and production readiness decision |
+| `deployment-plan.md` | 8 | Deployment strategy and validation checklists |
+| `automation-deploy.json` | 8 | Automated deployment validation results |
+| `deployment-report.md` | 8 | Deployment results and post-deployment analysis |
 
 ---
 
@@ -256,6 +294,15 @@ All features must comply with the 11 CPR Constitutional Principles:
 - 70-84/100: Conditional approval
 - <70/100: Rejected
 
+**Phase 7 (Test)**:
+- ≥90/100: READY for production deployment
+- 75-89/100: CONDITIONAL (staging deployment only, must reach READY for production)
+- <75/100: NOT READY (blocked)
+
+**Phase 8 (Deploy)**:
+- 0 CRITICAL issues: Deployment approved
+- Any CRITICAL issues: Deployment blocked
+
 ---
 
 ## Naming Conventions
@@ -301,7 +348,13 @@ specifications/####-<feature-name>/
 ├── automation-report.json      # Phase 4: Automated analysis results
 ├── analysis-report.md          # Phase 4: Quality analysis
 ├── automation-review.json      # Phase 6: Automated review results
-└── review-report.md            # Phase 6: Code review report
+├── review-report.md            # Phase 6: Code review report
+├── test-plan.md                # Phase 7: Test planning and scenarios
+├── automation-test.json        # Phase 7: Automated test results
+├── test-report.md              # Phase 7: Production readiness report
+├── deployment-plan.md          # Phase 8: Deployment strategy and checklists
+├── automation-deploy.json      # Phase 8: Deployment validation results
+└── deployment-report.md        # Phase 8: Deployment results and analysis
 ```
 
 ---
@@ -391,11 +444,11 @@ When Phase 7+ are defined:
 
 ## Version History
 
-### v1.0 - 2025-11-10
-- ✅ Phase 1-6 prompts complete
-- ✅ Phase 1-5 automation tools complete
+### v1.0 - 2025-01-16
+- ✅ Phase 1-8 prompts complete
+- ✅ Phase 1-8 automation tools complete
 - ✅ All templates created
-- ⏳ Phase 6 automation tool pending
+- ✅ Framework complete - covers full feature lifecycle: Specify → Refine → Plan → Analyze → Implement → Review → Test → Deploy
 - ⏳ Phase 7-8 to be defined
 
 ---

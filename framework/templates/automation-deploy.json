@@ -1,0 +1,332 @@
+{
+    "metadata": {
+        "phase": "8-deploy",
+        "feature_id": "####-feature-name",
+        "deployment_date": "YYYY-MM-DDTHH:mm:ss.sssZ",
+        "framework_version": "1.0.0",
+        "deployment_lead": "",
+        "target_environment": "staging|production"
+    },
+    "deployment_readiness": {
+        "phase_7_status": "READY|CONDITIONAL|NOT_READY",
+        "production_readiness_score": 0,
+        "prerequisites_met": true,
+        "all_validations_passed": true
+    },
+    "prerequisite_validation": {
+        "phase_7_complete": {
+            "test_report_exists": false,
+            "status": "READY|CONDITIONAL|NOT_READY",
+            "score": 0,
+            "critical_issues": 0,
+            "high_issues": 0,
+            "uat_approved": false
+        },
+        "code_readiness": {
+            "feature_branch_exists": false,
+            "merged_to_main": false,
+            "ci_cd_passing": false,
+            "code_review_approved": false,
+            "release_tagged": false,
+            "tag_version": ""
+        },
+        "database_readiness": {
+            "migrations_reviewed": false,
+            "rollback_scripts_prepared": false,
+            "backup_verified": false,
+            "migration_tested_staging": false,
+            "migration_required": false
+        },
+        "infrastructure_readiness": {
+            "staging_healthy": false,
+            "production_healthy": false,
+            "capacity_verified": false,
+            "load_balancers_configured": false,
+            "ssl_certificates_valid": false,
+            "dns_correct": false
+        },
+        "configuration_readiness": {
+            "environment_variables_configured": false,
+            "secrets_configured": false,
+            "feature_flags_configured": false,
+            "cors_settings_correct": false,
+            "connection_strings_validated": false
+        },
+        "monitoring_readiness": {
+            "logs_accessible": false,
+            "error_tracking_configured": false,
+            "performance_monitoring_active": false,
+            "alert_rules_configured": false,
+            "dashboard_prepared": false
+        }
+    },
+    "merge_conflict_check": {
+        "conflicts_detected": false,
+        "conflicting_files": [],
+        "merge_possible": true
+    },
+    "ci_cd_status": {
+        "pipeline_name": "",
+        "last_run_status": "SUCCESS|FAILURE|PENDING",
+        "last_run_date": "YYYY-MM-DDTHH:mm:ss.sssZ",
+        "all_checks_passing": false,
+        "checks": {
+            "build": "PASS|FAIL|PENDING",
+            "unit_tests": "PASS|FAIL|PENDING",
+            "integration_tests": "PASS|FAIL|PENDING",
+            "linting": "PASS|FAIL|PENDING",
+            "security_scan": "PASS|FAIL|PENDING"
+        }
+    },
+    "deployment_strategy": {
+        "method": "blue-green|rolling|canary|feature-flag",
+        "downtime_expected": false,
+        "rollback_method": "slot-swap|redeploy|feature-flag-disable",
+        "rollback_time_estimate_minutes": 5
+    },
+    "staging_deployment": {
+        "backend": {
+            "deployment_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED",
+            "deployment_start": "",
+            "deployment_end": "",
+            "duration_seconds": 0,
+            "version_deployed": "",
+            "health_check_url": "",
+            "health_check_status": "PASS|FAIL",
+            "issues": []
+        },
+        "frontend": {
+            "deployment_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED",
+            "deployment_start": "",
+            "deployment_end": "",
+            "duration_seconds": 0,
+            "version_deployed": "",
+            "url": "",
+            "bundle_size_kb": 0,
+            "health_check_status": "PASS|FAIL",
+            "issues": []
+        },
+        "database": {
+            "migration_required": false,
+            "migration_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED|N/A",
+            "migrations_applied": [],
+            "migration_duration_seconds": 0,
+            "data_integrity_verified": false,
+            "issues": []
+        },
+        "overall_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED"
+    },
+    "staging_validation": {
+        "smoke_tests": {
+            "health_check": "PASS|FAIL",
+            "authentication": "PASS|FAIL",
+            "authorization": "PASS|FAIL",
+            "api_endpoints": "PASS|FAIL",
+            "ui_loading": "PASS|FAIL",
+            "overall_status": "PASS|FAIL"
+        },
+        "critical_journeys": {
+            "total": 0,
+            "passed": 0,
+            "failed": 0,
+            "journeys": []
+        },
+        "performance": {
+            "api_p50_ms": 0,
+            "api_p95_ms": 0,
+            "ui_load_time_s": 0,
+            "error_rate_percent": 0,
+            "meets_targets": false
+        },
+        "log_analysis": {
+            "errors_found": 0,
+            "warnings_found": 0,
+            "critical_issues": [],
+            "status": "CLEAN|WARNINGS|ERRORS"
+        },
+        "overall_decision": "APPROVED|REJECTED",
+        "decision_time": "",
+        "decision_maker": ""
+    },
+    "production_deployment": {
+        "backend": {
+            "deployment_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED|ROLLED_BACK",
+            "deployment_method": "blue-green|rolling|direct",
+            "deployment_start": "",
+            "deployment_end": "",
+            "duration_seconds": 0,
+            "version_deployed": "",
+            "health_check_url": "",
+            "health_check_status": "PASS|FAIL",
+            "slot_used": "green|blue|N/A",
+            "traffic_switched": false,
+            "issues": []
+        },
+        "frontend": {
+            "deployment_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED|ROLLED_BACK",
+            "deployment_method": "cdn|static-web-app",
+            "deployment_start": "",
+            "deployment_end": "",
+            "duration_seconds": 0,
+            "version_deployed": "",
+            "url": "",
+            "cdn_cache_purged": false,
+            "health_check_status": "PASS|FAIL",
+            "issues": []
+        },
+        "database": {
+            "migration_required": false,
+            "backup_taken": false,
+            "backup_timestamp": "",
+            "migration_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED|ROLLED_BACK|N/A",
+            "migrations_applied": [],
+            "migration_duration_seconds": 0,
+            "data_integrity_verified": false,
+            "rollback_script_available": false,
+            "issues": []
+        },
+        "feature_flag": {
+            "used": false,
+            "flag_name": "",
+            "enabled": false,
+            "enabled_timestamp": ""
+        },
+        "overall_status": "NOT_STARTED|IN_PROGRESS|SUCCESS|FAILED|ROLLED_BACK"
+    },
+    "production_validation": {
+        "smoke_tests_immediate": {
+            "execution_time": "",
+            "health_check": "PASS|FAIL",
+            "application_loads": "PASS|FAIL",
+            "authentication": "PASS|FAIL",
+            "error_rate_acceptable": "PASS|FAIL",
+            "critical_path": "PASS|FAIL",
+            "overall_status": "PASS|FAIL",
+            "issues": []
+        },
+        "extended_validation": {
+            "execution_time": "",
+            "functional_tests": "PASS|FAIL",
+            "performance_tests": "PASS|FAIL",
+            "error_monitoring": "PASS|FAIL",
+            "infrastructure_health": "PASS|FAIL",
+            "overall_status": "PASS|FAIL",
+            "issues": []
+        },
+        "performance_metrics": {
+            "api_p50_ms": 0,
+            "api_p95_ms": 0,
+            "api_p99_ms": 0,
+            "ui_load_time_s": 0,
+            "ui_time_to_interactive_s": 0,
+            "error_rate_percent": 0,
+            "meets_targets": false
+        },
+        "user_journeys_tested": {
+            "total": 0,
+            "passed": 0,
+            "failed": 0,
+            "journeys": []
+        }
+    },
+    "monitoring": {
+        "first_hour": {
+            "error_rate_checks": [
+                {
+                    "timestamp": "",
+                    "error_rate_percent": 0,
+                    "threshold_percent": 1,
+                    "status": "PASS|FAIL"
+                }
+            ],
+            "performance_checks": [
+                {
+                    "timestamp": "",
+                    "avg_response_ms": 0,
+                    "p95_response_ms": 0,
+                    "threshold_ms": 200,
+                    "status": "PASS|FAIL"
+                }
+            ],
+            "infrastructure_checks": [
+                {
+                    "timestamp": "",
+                    "cpu_percent": 0,
+                    "memory_percent": 0,
+                    "status": "HEALTHY|WARNING|CRITICAL"
+                }
+            ],
+            "overall_status": "STABLE|MONITORING|ISSUES"
+        },
+        "first_24_hours": {
+            "error_rate_stable": true,
+            "performance_stable": true,
+            "user_activity_pattern": "increasing|stable|decreasing",
+            "support_tickets": 0,
+            "feature_adoption_users": 0,
+            "issues_detected": [],
+            "overall_status": "STABLE|MONITORING|ISSUES"
+        }
+    },
+    "rollback": {
+        "executed": false,
+        "reason": "",
+        "trigger": "error-rate|performance|critical-failure|security|data-corruption",
+        "decision_time": "",
+        "decision_maker": "",
+        "rollback_method": "slot-swap|redeploy|feature-flag|database-rollback",
+        "rollback_start": "",
+        "rollback_end": "",
+        "rollback_duration_minutes": 0,
+        "post_rollback_status": {
+            "application_responding": false,
+            "error_rate_normal": false,
+            "performance_normal": false,
+            "no_data_corruption": false,
+            "users_can_work": false
+        },
+        "root_cause": "",
+        "next_steps": []
+    },
+    "issues": {
+        "by_severity": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+        },
+        "by_category": {
+            "deployment": 0,
+            "performance": 0,
+            "functional": 0,
+            "security": 0,
+            "infrastructure": 0
+        },
+        "details": []
+    },
+    "deployment_metrics": {
+        "total_duration_minutes": 0,
+        "downtime_seconds": 0,
+        "error_rate_impact_percent": 0,
+        "performance_impact_ms": 0,
+        "users_affected": 0,
+        "rollback_executed": false
+    },
+    "validation_summary": {
+        "prerequisites_met": true,
+        "staging_validated": false,
+        "production_deployed": false,
+        "production_validated": false,
+        "monitoring_active": false,
+        "stakeholders_notified": false,
+        "deployment_successful": false
+    },
+    "recommendations": {
+        "immediate_actions": [],
+        "monitoring_priorities": [],
+        "follow_up_tasks": [],
+        "process_improvements": []
+    },
+    "generated_by": "phase-8-deploy.ps1",
+    "generated_at": "YYYY-MM-DDTHH:mm:ss.sssZ"
+}

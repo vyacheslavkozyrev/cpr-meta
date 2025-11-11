@@ -1,0 +1,308 @@
+﻿{
+    "automated_findings":  [
+                               {
+                                   "id":  "AUTO-001",
+                                   "title":  "Incomplete Task List",
+                                   "details":  "134 tasks still marked as incomplete",
+                                   "category":  "Completeness",
+                                   "description":  "Only 0% of tasks marked complete (Expected: 100%)",
+                                   "severity":  "CRITICAL",
+                                   "location":  "tasks.md",
+                                   "remediation":  "Complete all remaining tasks before code review. Phase 5 must be 100% done."
+                               },
+                               {
+                                   "id":  "AUTO-002",
+                                   "title":  "Backend Build Failure",
+                                   "details":  "",
+                                   "category":  "Build",
+                                   "description":  "cpr-api solution failed to compile with 0 error(s)",
+                                   "severity":  "CRITICAL",
+                                   "location":  "cpr-api/src/CPR.sln",
+                                   "remediation":  "Fix all compilation errors. Run \u0027dotnet build\u0027 in cpr-api and resolve errors."
+                               },
+                               {
+                                   "id":  "AUTO-003",
+                                   "title":  "Frontend Build Failure",
+                                   "details":  "src/services/goalsService.ts(5,3): error TS2305: Module \u0027\"../dtos/GoalDto\"\u0027 has no exported member \u0027TGoalsSummaryDto\u0027.",
+                                   "category":  "Build",
+                                   "description":  "cpr-ui failed to build",
+                                   "severity":  "CRITICAL",
+                                   "location":  "cpr-ui/",
+                                   "remediation":  "Fix build errors. Run \u0027npm run build\u0027 in cpr-ui and resolve issues."
+                               }
+                           ],
+    "build_status":  {
+                         "cpr_api":  {
+                                         "errors":  [
+
+                                                    ],
+                                         "configuration":  "Debug",
+                                         "compilation_warnings":  0,
+                                         "status":  "FAIL",
+                                         "compilation_errors":  0,
+                                         "build_time_seconds":  27.92,
+                                         "target_framework":  ".NET 8.0"
+                                     },
+                         "cpr_ui":  {
+                                        "errors":  [
+                                                       "src/services/goalsService.ts(5,3): error TS2305: Module \u0027\"../dtos/GoalDto\"\u0027 has no exported member \u0027TGoalsSummaryDto\u0027."
+                                                   ],
+                                        "configuration":  "development",
+                                        "build_warnings":  0,
+                                        "build_errors":  1,
+                                        "status":  "FAIL",
+                                        "build_time_seconds":  6.79,
+                                        "bundle_size_kb":  0
+                                    }
+                     },
+    "metadata":  {
+                     "repositories":  {
+                                          "cpr_api_branch":  "feature/0001-personal-goal-creation-management",
+                                          "cpr_ui_branch":  "feature/0001-personal-goal-creation-management"
+                                      },
+                     "review_date":  "2025-11-10",
+                     "tool_version":  "1.0.0",
+                     "feature_number":  "0001",
+                     "feature_name":  "personal-goal-creation-management"
+                 },
+    "git_analysis":  {
+                         "cpr_api":  {
+                                         "commits_behind_main":  0,
+                                         "has_merge_conflicts":  false,
+                                         "non_conventional_commits":  5,
+                                         "commit_quality_issues":  [
+
+                                                                   ],
+                                         "conventional_commit_percentage":  0,
+                                         "uncommitted_changes":  false,
+                                         "total_commits":  5,
+                                         "conventional_commits":  0,
+                                         "branch_name":  "feature/0001-personal-goal-creation-management"
+                                     },
+                         "cpr_ui":  {
+                                        "commits_behind_main":  0,
+                                        "has_merge_conflicts":  false,
+                                        "non_conventional_commits":  5,
+                                        "commit_quality_issues":  [
+
+                                                                  ],
+                                        "conventional_commit_percentage":  0,
+                                        "uncommitted_changes":  false,
+                                        "total_commits":  5,
+                                        "conventional_commits":  0,
+                                        "branch_name":  "feature/0001-personal-goal-creation-management"
+                                    }
+                     },
+    "summary":  {
+                    "low_issues":  0,
+                    "medium_issues":  0,
+                    "critical_issues":  3,
+                    "blocking_issues":  [
+                                            "Incomplete Task List",
+                                            "Backend Build Failure",
+                                            "Frontend Build Failure"
+                                        ],
+                    "ready_for_ai_review":  false,
+                    "automated_quality_score":  0,
+                    "high_issues":  0,
+                    "total_issues":  3
+                },
+    "file_statistics":  {
+                            "cpr_api":  {
+                                            "file_types":  {
+                                                               "cs":  17,
+                                                               "sql":  0,
+                                                               "other":  0,
+                                                               "json":  5
+                                                           },
+                                            "total_lines_added":  4003,
+                                            "net_lines_changed":  3987,
+                                            "files_added":  0,
+                                            "total_lines_deleted":  16,
+                                            "files_modified":  22,
+                                            "files_deleted":  0
+                                        },
+                            "cpr_ui":  {
+                                           "file_types":  {
+                                                              "other":  0,
+                                                              "ts":  15,
+                                                              "css":  0,
+                                                              "json":  1,
+                                                              "tsx":  24
+                                                          },
+                                           "total_lines_added":  6715,
+                                           "net_lines_changed":  6062,
+                                           "files_added":  0,
+                                           "total_lines_deleted":  653,
+                                           "files_modified":  49,
+                                           "files_deleted":  0
+                                       }
+                        },
+    "linting_analysis":  {
+                             "cpr_api":  {
+                                             "issues":  [
+
+                                                        ],
+                                             "errors":  0,
+                                             "info":  0,
+                                             "warnings":  0,
+                                             "status":  "PASS",
+                                             "tool":  "dotnet format",
+                                             "total_issues":  0
+                                         },
+                             "cpr_ui":  {
+                                            "tool":  "ESLint",
+                                            "issues":  [
+
+                                                       ],
+                                            "errors":  0,
+                                            "warnings":  0,
+                                            "status":  "PASS",
+                                            "total_issues":  0
+                                        }
+                         },
+    "recommendations":  [
+                            "CRITICAL: Fix blocking issues before proceeding",
+                            "  - Incomplete Task List",
+                            "  - Backend Build Failure",
+                            "  - Frontend Build Failure"
+                        ],
+    "test_results":  {
+                         "cpr_api":  {
+                                         "failed_tests":  [
+
+                                                          ],
+                                         "coverage":  {
+                                                          "line_coverage_percent":  0,
+                                                          "meets_threshold":  false,
+                                                          "threshold_percent":  80,
+                                                          "branch_coverage_percent":  0,
+                                                          "method_coverage_percent":  0
+                                                      },
+                                         "test_suites":  {
+                                                             "integration_tests":  {
+                                                                                       "failed":  0,
+                                                                                       "skipped":  0,
+                                                                                       "total":  0,
+                                                                                       "passed":  0
+                                                                                   },
+                                                             "unit_tests":  {
+                                                                                "failed":  0,
+                                                                                "skipped":  0,
+                                                                                "total":  0,
+                                                                                "passed":  0
+                                                                            }
+                                                         },
+                                         "passed":  0,
+                                         "failed":  0,
+                                         "skipped":  0,
+                                         "duration_seconds":  1.01,
+                                         "total_tests":  0,
+                                         "status":  "NOT_RUN"
+                                     },
+                         "cpr_ui":  {
+                                        "failed_tests":  [
+
+                                                         ],
+                                        "coverage":  {
+                                                         "function_coverage_percent":  0,
+                                                         "statement_coverage_percent":  0,
+                                                         "threshold_percent":  80,
+                                                         "meets_threshold":  false,
+                                                         "line_coverage_percent":  0,
+                                                         "branch_coverage_percent":  0
+                                                     },
+                                        "test_suites":  {
+                                                            "component_tests":  {
+                                                                                    "failed":  0,
+                                                                                    "skipped":  0,
+                                                                                    "total":  0,
+                                                                                    "passed":  0
+                                                                                },
+                                                            "hook_tests":  {
+                                                                               "failed":  0,
+                                                                               "skipped":  0,
+                                                                               "total":  0,
+                                                                               "passed":  0
+                                                                           },
+                                                            "integration_tests":  {
+                                                                                      "failed":  0,
+                                                                                      "skipped":  0,
+                                                                                      "total":  0,
+                                                                                      "passed":  0
+                                                                                  }
+                                                        },
+                                        "passed":  0,
+                                        "failed":  0,
+                                        "skipped":  0,
+                                        "duration_seconds":  0,
+                                        "total_tests":  0,
+                                        "status":  "NOT_RUN"
+                                    }
+                     },
+    "automated_score":  {
+                            "total_points":  100,
+                            "status":  "FAIL",
+                            "final_score":  0,
+                            "deductions":  [
+                                               {
+                                                   "reason":  "Build failures detected",
+                                                   "category":  "Build",
+                                                   "points":  100,
+                                                   "severity":  "CRITICAL"
+                                               },
+                                               {
+                                                   "reason":  "All tests passing",
+                                                   "category":  "Tests",
+                                                   "points":  0,
+                                                   "severity":  "NONE"
+                                               },
+                                               {
+                                                   "reason":  "No linting errors",
+                                                   "category":  "Linting",
+                                                   "points":  0,
+                                                   "severity":  "NONE"
+                                               },
+                                               {
+                                                   "reason":  "Good commit quality",
+                                                   "category":  "Git",
+                                                   "points":  0,
+                                                   "severity":  "NONE"
+                                               }
+                                           ]
+                        },
+    "complexity_metrics":  {
+                               "cpr_api":  {
+                                               "max_cyclomatic_complexity":  0,
+                                               "files_above_threshold":  [
+
+                                                                         ],
+                                               "total_files_analyzed":  0,
+                                               "methods_above_threshold":  [
+
+                                                                           ],
+                                               "threshold":  15,
+                                               "average_cyclomatic_complexity":  0
+                                           },
+                               "cpr_ui":  {
+                                              "max_cyclomatic_complexity":  0,
+                                              "files_above_threshold":  [
+
+                                                                        ],
+                                              "total_files_analyzed":  0,
+                                              "functions_above_threshold":  [
+
+                                                                            ],
+                                              "threshold":  15,
+                                              "average_cyclomatic_complexity":  0
+                                          }
+                           },
+    "validation_summary":  {
+                               "all_required_files_exist":  true,
+                               "remaining_tasks":  134,
+                               "completed_tasks":  0,
+                               "total_tasks":  134,
+                               "phase_5_complete":  false,
+                               "tasks_completion_percentage":  0
+                           }
+}

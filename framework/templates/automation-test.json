@@ -1,0 +1,790 @@
+{
+    "metadata": {
+        "phase": "7-test",
+        "feature_id": "####-feature-name",
+        "test_date": "YYYY-MM-DDTHH:mm:ss.sssZ",
+        "framework_version": "1.0.0",
+        "test_lead": "",
+        "test_duration_minutes": 0
+    },
+    "test_environment": {
+        "backend": {
+            "repository": "cpr-api",
+            "branch": "feature/####-feature-name",
+            "commit": "",
+            "api_url": "http://localhost:5000",
+            "database": "postgresql://localhost:5432/cpr_test"
+        },
+        "frontend": {
+            "repository": "cpr-ui",
+            "branch": "feature/####-feature-name",
+            "commit": "",
+            "dev_server": "http://localhost:5173",
+            "api_endpoint": "http://localhost:5000"
+        }
+    },
+    "validation_summary": {
+        "prerequisites_met": true,
+        "phase_6_approved": true,
+        "environment_ready": true,
+        "test_data_prepared": true,
+        "all_validations_passed": true
+    },
+    "integration_tests": {
+        "backend": {
+            "total_tests": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "pass_rate": 0.0,
+            "duration_seconds": 0.0,
+            "coverage": {
+                "line_coverage": 0.0,
+                "branch_coverage": 0.0,
+                "method_coverage": 0.0
+            },
+            "endpoints_tested": [],
+            "failed_tests": []
+        },
+        "frontend": {
+            "total_tests": 0,
+            "passed": 0,
+            "failed": 0,
+            "skipped": 0,
+            "pass_rate": 0.0,
+            "duration_seconds": 0.0,
+            "coverage": {
+                "line_coverage": 0.0,
+                "branch_coverage": 0.0,
+                "function_coverage": 0.0,
+                "statement_coverage": 0.0
+            },
+            "components_tested": [],
+            "failed_tests": []
+        },
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "e2e_tests": {
+        "total_journeys": 0,
+        "passed": 0,
+        "failed": 0,
+        "pass_rate": 0.0,
+        "duration_seconds": 0.0,
+        "browser_compatibility": {
+            "chrome": {
+                "version": "",
+                "status": "PASS",
+                "issues": []
+            },
+            "firefox": {
+                "version": "",
+                "status": "PASS",
+                "issues": []
+            },
+            "edge": {
+                "version": "",
+                "status": "PASS",
+                "issues": []
+            },
+            "safari": {
+                "version": "",
+                "status": "N/A",
+                "issues": []
+            }
+        },
+        "responsive_testing": {
+            "desktop_1920x1080": {
+                "status": "PASS",
+                "issues": []
+            },
+            "laptop_1366x768": {
+                "status": "PASS",
+                "issues": []
+            },
+            "tablet_768x1024": {
+                "status": "PASS",
+                "issues": []
+            },
+            "mobile_375x667": {
+                "status": "PASS",
+                "issues": []
+            }
+        },
+        "user_journeys": [],
+        "failed_journeys": [],
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "performance_tests": {
+        "api_performance": {
+            "endpoints": [],
+            "overall_avg_ms": 0.0,
+            "target_ms": 200,
+            "meets_target": true,
+            "issues": []
+        },
+        "ui_performance": {
+            "metrics": {
+                "initial_page_load_ms": 0,
+                "time_to_interactive_ms": 0,
+                "first_contentful_paint_ms": 0,
+                "largest_contentful_paint_ms": 0,
+                "cumulative_layout_shift": 0.0,
+                "total_bundle_size_kb": 0
+            },
+            "targets": {
+                "initial_page_load_ms": 2000,
+                "time_to_interactive_ms": 3000,
+                "first_contentful_paint_ms": 1000,
+                "largest_contentful_paint_ms": 2500,
+                "cumulative_layout_shift": 0.1,
+                "total_bundle_size_kb": 500
+            },
+            "meets_targets": true,
+            "issues": []
+        },
+        "load_testing": {
+            "scenarios": [
+                {
+                    "name": "Light Load",
+                    "concurrent_users": 10,
+                    "avg_response_ms": 0,
+                    "success_rate": 0.0,
+                    "status": "PASS"
+                },
+                {
+                    "name": "Normal Load",
+                    "concurrent_users": 25,
+                    "avg_response_ms": 0,
+                    "success_rate": 0.0,
+                    "status": "PASS"
+                },
+                {
+                    "name": "Heavy Load",
+                    "concurrent_users": 50,
+                    "avg_response_ms": 0,
+                    "success_rate": 0.0,
+                    "status": "PASS"
+                }
+            ],
+            "overall_status": "PASS",
+            "issues": []
+        },
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "security_tests": {
+        "authentication": {
+            "tests": [
+                {
+                    "test_id": "SEC-001",
+                    "name": "Valid login succeeds",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-002",
+                    "name": "Invalid credentials fail",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-003",
+                    "name": "JWT claims correct",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-004",
+                    "name": "Token expiration enforced",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-005",
+                    "name": "Logout clears auth",
+                    "status": "PASS",
+                    "issues": []
+                }
+            ],
+            "pass_rate": 1.0,
+            "issues": []
+        },
+        "authorization": {
+            "tests": [
+                {
+                    "test_id": "SEC-101",
+                    "name": "Unauthenticated returns 401",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-102",
+                    "name": "Unauthorized returns 403",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-103",
+                    "name": "Role-based access enforced",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-104",
+                    "name": "Cross-user access blocked",
+                    "status": "PASS",
+                    "issues": []
+                }
+            ],
+            "pass_rate": 1.0,
+            "issues": []
+        },
+        "input_validation": {
+            "tests": [
+                {
+                    "test_id": "SEC-201",
+                    "name": "XSS injection blocked",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-202",
+                    "name": "SQL injection blocked",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-203",
+                    "name": "Path traversal blocked",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-204",
+                    "name": "Max length enforced",
+                    "status": "PASS",
+                    "issues": []
+                }
+            ],
+            "pass_rate": 1.0,
+            "issues": []
+        },
+        "data_protection": {
+            "tests": [
+                {
+                    "test_id": "SEC-301",
+                    "name": "No sensitive data in logs",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-302",
+                    "name": "No PII in URLs",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-303",
+                    "name": "No passwords in errors",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-304",
+                    "name": "CORS policy appropriate",
+                    "status": "PASS",
+                    "issues": []
+                },
+                {
+                    "test_id": "SEC-305",
+                    "name": "Security headers present",
+                    "status": "PASS",
+                    "issues": []
+                }
+            ],
+            "pass_rate": 1.0,
+            "issues": []
+        },
+        "vulnerability_scan": {
+            "tool": "OWASP ZAP / npm audit / dotnet list package --vulnerable",
+            "scan_date": "YYYY-MM-DDTHH:mm:ss.sssZ",
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0,
+            "info": 0,
+            "vulnerabilities": [],
+            "meets_threshold": true
+        },
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "offline_mode_tests": {
+        "applicable": true,
+        "tests": [
+            {
+                "test_id": "OFF-001",
+                "name": "Access cached data offline",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-002",
+                "name": "Offline indicator shown",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-003",
+                "name": "Read operations from cache",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-004",
+                "name": "Write operations queued",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-005",
+                "name": "Optimistic updates",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-006",
+                "name": "Data syncs on reconnect",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-007",
+                "name": "Conflict detection",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-008",
+                "name": "Conflict resolution",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-009",
+                "name": "IndexedDB caching",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "OFF-010",
+                "name": "React Query persistence",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "pass_rate": 1.0,
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "i18n_tests": {
+        "applicable": true,
+        "locales_tested": [
+            "en-US",
+            "es-ES",
+            "fr-FR"
+        ],
+        "locale_tests": [
+            {
+                "test_id": "I18N-001",
+                "name": "All UI text uses i18n keys",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-002",
+                "name": "Language switcher works",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-003",
+                "name": "Language persists",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-004",
+                "name": "Missing keys handled",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "date_time_tests": [
+            {
+                "test_id": "I18N-101",
+                "name": "Dates formatted per locale",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-102",
+                "name": "Time formatted per locale",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-103",
+                "name": "Timezone handling",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-104",
+                "name": "Relative dates localized",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "number_currency_tests": [
+            {
+                "test_id": "I18N-201",
+                "name": "Numbers formatted per locale",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-202",
+                "name": "Decimal separator correct",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-203",
+                "name": "Currency symbol correct",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "I18N-204",
+                "name": "Currency amounts correct",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "pass_rate": 1.0,
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "accessibility_tests": {
+        "wcag_level": "AA",
+        "keyboard_navigation": [
+            {
+                "test_id": "A11Y-001",
+                "name": "Tab access to all elements",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-002",
+                "name": "Logical tab order",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-003",
+                "name": "Enter/Space activate buttons",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-004",
+                "name": "Escape closes modals",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-005",
+                "name": "Arrow keys navigate lists",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-006",
+                "name": "No keyboard traps",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "screen_reader": [
+            {
+                "test_id": "A11Y-101",
+                "name": "All content readable",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-102",
+                "name": "Interactive elements announced",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-103",
+                "name": "Form labels associated",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-104",
+                "name": "Error messages announced",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-105",
+                "name": "Dynamic updates announced",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-106",
+                "name": "Skip links present",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "aria": [
+            {
+                "test_id": "A11Y-201",
+                "name": "ARIA labels on icon buttons",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-202",
+                "name": "ARIA roles appropriate",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-203",
+                "name": "ARIA live regions",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-204",
+                "name": "ARIA states correct",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-205",
+                "name": "ARIA invalid for errors",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "visual": [
+            {
+                "test_id": "A11Y-301",
+                "name": "Text contrast",
+                "status": "PASS",
+                "contrast_ratio": 0.0,
+                "target": 4.5,
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-302",
+                "name": "Large text contrast",
+                "status": "PASS",
+                "contrast_ratio": 0.0,
+                "target": 3.0,
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-303",
+                "name": "Interactive contrast",
+                "status": "PASS",
+                "contrast_ratio": 0.0,
+                "target": 3.0,
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-304",
+                "name": "No info by color alone",
+                "status": "PASS",
+                "issues": []
+            },
+            {
+                "test_id": "A11Y-305",
+                "name": "Focus visible indicator",
+                "status": "PASS",
+                "issues": []
+            }
+        ],
+        "compliance_level": "WCAG 2.1 AA",
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "uat": {
+        "session_date": "YYYY-MM-DD",
+        "duration_hours": 0,
+        "stakeholders": [],
+        "user_stories": [],
+        "approval_rate": 1.0,
+        "feedback": {
+            "positive": [],
+            "concerns": [],
+            "action_items": []
+        },
+        "sign_off": {
+            "product_owner_approved": false,
+            "stakeholders_approved": false,
+            "acceptance_criteria_met": false
+        },
+        "overall_status": "PASS",
+        "issues": []
+    },
+    "constitutional_compliance": [
+        {
+            "principle": 1,
+            "name": "Specification-Driven",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 2,
+            "name": "API Contract Consistency",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 3,
+            "name": "Type Safety",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 4,
+            "name": "Naming Conventions",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 5,
+            "name": "Offline-First",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 6,
+            "name": "Internationalization",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 7,
+            "name": "Testing",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 8,
+            "name": "Performance",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 9,
+            "name": "Security",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 10,
+            "name": "Accessibility",
+            "status": "PASS",
+            "evidence": ""
+        },
+        {
+            "principle": 11,
+            "name": "Framework Tools",
+            "status": "PASS",
+            "evidence": ""
+        }
+    ],
+    "issues": {
+        "by_severity": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+        },
+        "by_status": {
+            "open": 0,
+            "fixed": 0,
+            "deferred": 0
+        },
+        "details": []
+    },
+    "production_readiness_score": {
+        "test_execution": {
+            "integration_tests": 0,
+            "e2e_tests": 0,
+            "user_acceptance": 0,
+            "subtotal": 0,
+            "max_points": 40
+        },
+        "performance": {
+            "api_performance": 0,
+            "ui_performance": 0,
+            "subtotal": 0,
+            "max_points": 20
+        },
+        "security": {
+            "authentication_authorization": 0,
+            "input_validation": 0,
+            "vulnerability_scan": 0,
+            "subtotal": 0,
+            "max_points": 20
+        },
+        "non_functional": {
+            "offline_mode": 0,
+            "internationalization": 0,
+            "accessibility": 0,
+            "subtotal": 0,
+            "max_points": 20
+        },
+        "total_score": 0,
+        "max_score": 100,
+        "percentage": 0.0,
+        "threshold": {
+            "ready": 90,
+            "conditional": 75,
+            "not_ready": 0
+        },
+        "decision": "NOT_READY"
+    },
+    "summary": {
+        "test_execution_status": "PASS",
+        "production_readiness": "NOT_READY",
+        "total_issues": 0,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "blockers": [],
+        "conditions": [],
+        "deployment_approved": false,
+        "next_phase": "Phase 8 (Deploy) - if READY or CONDITIONAL"
+    },
+    "recommendations": {
+        "immediate_actions": [],
+        "post_deployment_monitoring": [],
+        "future_improvements": []
+    },
+    "generated_by": "phase-7-test.ps1",
+    "generated_at": "YYYY-MM-DDTHH:mm:ss.sssZ"
+}

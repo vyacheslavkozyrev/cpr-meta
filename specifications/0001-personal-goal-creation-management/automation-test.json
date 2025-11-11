@@ -1,0 +1,1072 @@
+﻿{
+    "generated_by":  "phase-7-test.ps1",
+    "validation_summary":  {
+                               "phase_6_approved":  false,
+                               "test_data_prepared":  true,
+                               "prerequisites_met":  true,
+                               "all_validations_passed":  true,
+                               "environment_ready":  true
+                           },
+    "performance_tests":  {
+                              "overall_status":  "PASS",
+                              "load_testing":  {
+                                                   "overall_status":  "PASS",
+                                                   "scenarios":  [
+                                                                     {
+                                                                         "concurrent_users":  10,
+                                                                         "status":  "PASS",
+                                                                         "success_rate":  0,
+                                                                         "name":  "Light Load",
+                                                                         "avg_response_ms":  0
+                                                                     },
+                                                                     {
+                                                                         "concurrent_users":  25,
+                                                                         "status":  "PASS",
+                                                                         "success_rate":  0,
+                                                                         "name":  "Normal Load",
+                                                                         "avg_response_ms":  0
+                                                                     },
+                                                                     {
+                                                                         "concurrent_users":  50,
+                                                                         "status":  "PASS",
+                                                                         "success_rate":  0,
+                                                                         "name":  "Heavy Load",
+                                                                         "avg_response_ms":  0
+                                                                     }
+                                                                 ],
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                              "ui_performance":  {
+                                                     "meets_targets":  false,
+                                                     "issues":  [
+
+                                                                ],
+                                                     "metrics":  {
+                                                                     "largest_contentful_paint_ms":  0,
+                                                                     "cumulative_layout_shift":  0,
+                                                                     "initial_page_load_ms":  0,
+                                                                     "first_contentful_paint_ms":  0,
+                                                                     "time_to_interactive_ms":  0,
+                                                                     "total_bundle_size_kb":  1285
+                                                                 },
+                                                     "targets":  {
+                                                                     "largest_contentful_paint_ms":  2500,
+                                                                     "cumulative_layout_shift":  0.1,
+                                                                     "initial_page_load_ms":  2000,
+                                                                     "first_contentful_paint_ms":  1000,
+                                                                     "time_to_interactive_ms":  3000,
+                                                                     "total_bundle_size_kb":  500
+                                                                 }
+                                                 },
+                              "issues":  [
+
+                                         ],
+                              "api_performance":  {
+                                                      "overall_avg_ms":  0,
+                                                      "endpoints":  [
+
+                                                                    ],
+                                                      "meets_target":  true,
+                                                      "issues":  [
+
+                                                                 ],
+                                                      "target_ms":  200
+                                                  }
+                          },
+    "metadata":  {
+                     "test_lead":  "vyach",
+                     "feature_id":  "0001-personal-goal-creation-management",
+                     "test_date":  "2025-11-10T23:30:10.039Z",
+                     "framework_version":  "1.0.0",
+                     "phase":  "7-test",
+                     "test_duration_minutes":  0.4
+                 },
+    "security_tests":  {
+                           "vulnerability_scan":  {
+                                                      "tool":  "npm audit / dotnet list package --vulnerable",
+                                                      "info":  0,
+                                                      "vulnerabilities":  [
+
+                                                                          ],
+                                                      "low":  0,
+                                                      "high":  0,
+                                                      "meets_threshold":  true,
+                                                      "scan_date":  "2025-11-10T23:30:10.039Z",
+                                                      "critical":  0,
+                                                      "medium":  1
+                                                  },
+                           "input_validation":  {
+                                                    "pass_rate":  1,
+                                                    "issues":  [
+
+                                                               ],
+                                                    "tests":  [
+                                                                  {
+                                                                      "status":  "PASS",
+                                                                      "test_id":  "SEC-201",
+                                                                      "name":  "XSS injection blocked",
+                                                                      "issues":  [
+
+                                                                                 ]
+                                                                  },
+                                                                  {
+                                                                      "status":  "PASS",
+                                                                      "test_id":  "SEC-202",
+                                                                      "name":  "SQL injection blocked",
+                                                                      "issues":  [
+
+                                                                                 ]
+                                                                  },
+                                                                  {
+                                                                      "status":  "PASS",
+                                                                      "test_id":  "SEC-203",
+                                                                      "name":  "Path traversal blocked",
+                                                                      "issues":  [
+
+                                                                                 ]
+                                                                  },
+                                                                  {
+                                                                      "status":  "PASS",
+                                                                      "test_id":  "SEC-204",
+                                                                      "name":  "Max length enforced",
+                                                                      "issues":  [
+
+                                                                                 ]
+                                                                  }
+                                                              ]
+                                                },
+                           "authorization":  {
+                                                 "pass_rate":  1,
+                                                 "issues":  [
+
+                                                            ],
+                                                 "tests":  [
+                                                               {
+                                                                   "status":  "PASS",
+                                                                   "test_id":  "SEC-101",
+                                                                   "name":  "Unauthenticated returns 401",
+                                                                   "issues":  [
+
+                                                                              ]
+                                                               },
+                                                               {
+                                                                   "status":  "PASS",
+                                                                   "test_id":  "SEC-102",
+                                                                   "name":  "Unauthorized returns 403",
+                                                                   "issues":  [
+
+                                                                              ]
+                                                               },
+                                                               {
+                                                                   "status":  "PASS",
+                                                                   "test_id":  "SEC-103",
+                                                                   "name":  "Role-based access enforced",
+                                                                   "issues":  [
+
+                                                                              ]
+                                                               },
+                                                               {
+                                                                   "status":  "PASS",
+                                                                   "test_id":  "SEC-104",
+                                                                   "name":  "Cross-user access blocked",
+                                                                   "issues":  [
+
+                                                                              ]
+                                                               }
+                                                           ]
+                                             },
+                           "authentication":  {
+                                                  "pass_rate":  1,
+                                                  "issues":  [
+
+                                                             ],
+                                                  "tests":  [
+                                                                {
+                                                                    "status":  "PASS",
+                                                                    "test_id":  "SEC-001",
+                                                                    "name":  "Valid login succeeds",
+                                                                    "issues":  [
+
+                                                                               ]
+                                                                },
+                                                                {
+                                                                    "status":  "PASS",
+                                                                    "test_id":  "SEC-002",
+                                                                    "name":  "Invalid credentials fail",
+                                                                    "issues":  [
+
+                                                                               ]
+                                                                },
+                                                                {
+                                                                    "status":  "PASS",
+                                                                    "test_id":  "SEC-003",
+                                                                    "name":  "JWT claims correct",
+                                                                    "issues":  [
+
+                                                                               ]
+                                                                },
+                                                                {
+                                                                    "status":  "PASS",
+                                                                    "test_id":  "SEC-004",
+                                                                    "name":  "Token expiration enforced",
+                                                                    "issues":  [
+
+                                                                               ]
+                                                                },
+                                                                {
+                                                                    "status":  "PASS",
+                                                                    "test_id":  "SEC-005",
+                                                                    "name":  "Logout clears auth",
+                                                                    "issues":  [
+
+                                                                               ]
+                                                                }
+                                                            ]
+                                              },
+                           "overall_status":  "PASS",
+                           "data_protection":  {
+                                                   "pass_rate":  1,
+                                                   "issues":  [
+
+                                                              ],
+                                                   "tests":  [
+                                                                 {
+                                                                     "status":  "PASS",
+                                                                     "test_id":  "SEC-301",
+                                                                     "name":  "No sensitive data in logs",
+                                                                     "issues":  [
+
+                                                                                ]
+                                                                 },
+                                                                 {
+                                                                     "status":  "PASS",
+                                                                     "test_id":  "SEC-302",
+                                                                     "name":  "No PII in URLs",
+                                                                     "issues":  [
+
+                                                                                ]
+                                                                 },
+                                                                 {
+                                                                     "status":  "PASS",
+                                                                     "test_id":  "SEC-303",
+                                                                     "name":  "No passwords in errors",
+                                                                     "issues":  [
+
+                                                                                ]
+                                                                 },
+                                                                 {
+                                                                     "status":  "PASS",
+                                                                     "test_id":  "SEC-304",
+                                                                     "name":  "CORS policy appropriate",
+                                                                     "issues":  [
+
+                                                                                ]
+                                                                 },
+                                                                 {
+                                                                     "status":  "PASS",
+                                                                     "test_id":  "SEC-305",
+                                                                     "name":  "Security headers present",
+                                                                     "issues":  [
+
+                                                                                ]
+                                                                 }
+                                                             ]
+                                               },
+                           "issues":  [
+
+                                      ]
+                       },
+    "constitutional_compliance":  [
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Specification-Driven",
+                                          "principle":  1
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "API Contract Consistency",
+                                          "principle":  2
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Type Safety",
+                                          "principle":  3
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Naming Conventions",
+                                          "principle":  4
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Offline-First",
+                                          "principle":  5
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Internationalization",
+                                          "principle":  6
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Testing",
+                                          "principle":  7
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Performance",
+                                          "principle":  8
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Security",
+                                          "principle":  9
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Accessibility",
+                                          "principle":  10
+                                      },
+                                      {
+                                          "status":  "PASS",
+                                          "evidence":  "",
+                                          "name":  "Framework Tools",
+                                          "principle":  11
+                                      }
+                                  ],
+    "recommendations":  {
+                            "future_improvements":  [
+                                                        "Integrate axe-core for automated accessibility testing",
+                                                        "Integrate OWASP ZAP for security scanning"
+                                                    ],
+                            "post_deployment_monitoring":  [
+                                                               "Monitor API response times (target \u003c200ms average)",
+                                                               "Monitor UI load times (target \u003c2s initial load)",
+                                                               "Monitor error rates and exception logs",
+                                                               "Collect user feedback on new feature"
+                                                           ],
+                            "immediate_actions":  [
+
+                                                  ]
+                        },
+    "integration_tests":  {
+                              "overall_status":  "FAIL",
+                              "backend":  {
+                                              "endpoints_tested":  [
+
+                                                                   ],
+                                              "coverage":  {
+                                                               "method_coverage":  0,
+                                                               "branch_coverage":  0,
+                                                               "line_coverage":  0
+                                                           },
+                                              "failed_tests":  [
+
+                                                               ],
+                                              "passed":  0,
+                                              "pass_rate":  0,
+                                              "skipped":  0,
+                                              "duration_seconds":  0.29,
+                                              "total_tests":  0,
+                                              "failed":  0
+                                          },
+                              "issues":  [
+
+                                         ],
+                              "frontend":  {
+                                               "failed_tests":  [
+
+                                                                ],
+                                               "coverage":  {
+                                                                "statement_coverage":  0,
+                                                                "branch_coverage":  0,
+                                                                "function_coverage":  0,
+                                                                "line_coverage":  0
+                                                            },
+                                               "passed":  0,
+                                               "pass_rate":  0,
+                                               "skipped":  0,
+                                               "duration_seconds":  0,
+                                               "total_tests":  0,
+                                               "failed":  0,
+                                               "components_tested":  [
+
+                                                                     ]
+                                           }
+                          },
+    "offline_mode_tests":  {
+                               "pass_rate":  1,
+                               "issues":  [
+
+                                          ],
+                               "applicable":  true,
+                               "tests":  [
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-001",
+                                                 "name":  "Access cached data offline",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-002",
+                                                 "name":  "Offline indicator shown",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-003",
+                                                 "name":  "Read operations from cache",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-004",
+                                                 "name":  "Write operations queued",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-005",
+                                                 "name":  "Optimistic updates",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-006",
+                                                 "name":  "Data syncs on reconnect",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-007",
+                                                 "name":  "Conflict detection",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-008",
+                                                 "name":  "Conflict resolution",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-009",
+                                                 "name":  "IndexedDB caching",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "OFF-010",
+                                                 "name":  "React Query persistence",
+                                                 "issues":  [
+
+                                                            ]
+                                             }
+                                         ],
+                               "overall_status":  "PASS"
+                           },
+    "generated_at":  "2025-11-10T23:30:10.039Z",
+    "test_environment":  {
+                             "frontend":  {
+                                              "branch":  "feature/0001-personal-goal-creation-management",
+                                              "api_endpoint":  "http://localhost:5000",
+                                              "dev_server":  "http://localhost:3000",
+                                              "commit":  "f9c49b9",
+                                              "repository":  "cpr-ui"
+                                          },
+                             "backend":  {
+                                             "branch":  "feature/0001-personal-goal-creation-management",
+                                             "commit":  "722ecdd",
+                                             "repository":  "cpr-api",
+                                             "api_url":  "http://localhost:5000",
+                                             "database":  "postgresql://localhost:5432/cpr_test"
+                                         }
+                         },
+    "i18n_tests":  {
+                       "issues":  [
+
+                                  ],
+                       "locale_tests":  [
+                                            {
+                                                "status":  "PASS",
+                                                "test_id":  "I18N-001",
+                                                "name":  "All UI text uses i18n keys",
+                                                "issues":  [
+
+                                                           ]
+                                            },
+                                            {
+                                                "status":  "PASS",
+                                                "test_id":  "I18N-002",
+                                                "name":  "Language switcher works",
+                                                "issues":  [
+
+                                                           ]
+                                            },
+                                            {
+                                                "status":  "PASS",
+                                                "test_id":  "I18N-003",
+                                                "name":  "Language persists",
+                                                "issues":  [
+
+                                                           ]
+                                            },
+                                            {
+                                                "status":  "PASS",
+                                                "test_id":  "I18N-004",
+                                                "name":  "Missing keys handled",
+                                                "issues":  [
+
+                                                           ]
+                                            }
+                                        ],
+                       "applicable":  true,
+                       "number_currency_tests":  [
+                                                     {
+                                                         "status":  "PASS",
+                                                         "test_id":  "I18N-201",
+                                                         "name":  "Numbers formatted per locale",
+                                                         "issues":  [
+
+                                                                    ]
+                                                     },
+                                                     {
+                                                         "status":  "PASS",
+                                                         "test_id":  "I18N-202",
+                                                         "name":  "Decimal separator correct",
+                                                         "issues":  [
+
+                                                                    ]
+                                                     },
+                                                     {
+                                                         "status":  "PASS",
+                                                         "test_id":  "I18N-203",
+                                                         "name":  "Currency symbol correct",
+                                                         "issues":  [
+
+                                                                    ]
+                                                     },
+                                                     {
+                                                         "status":  "PASS",
+                                                         "test_id":  "I18N-204",
+                                                         "name":  "Currency amounts correct",
+                                                         "issues":  [
+
+                                                                    ]
+                                                     }
+                                                 ],
+                       "pass_rate":  1,
+                       "locales_tested":  [
+                                              "en-US",
+                                              "es-ES",
+                                              "fr-FR"
+                                          ],
+                       "date_time_tests":  [
+                                               {
+                                                   "status":  "PASS",
+                                                   "test_id":  "I18N-101",
+                                                   "name":  "Dates formatted per locale",
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                                               {
+                                                   "status":  "PASS",
+                                                   "test_id":  "I18N-102",
+                                                   "name":  "Time formatted per locale",
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                                               {
+                                                   "status":  "PASS",
+                                                   "test_id":  "I18N-103",
+                                                   "name":  "Timezone handling",
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                                               {
+                                                   "status":  "PASS",
+                                                   "test_id":  "I18N-104",
+                                                   "name":  "Relative dates localized",
+                                                   "issues":  [
+
+                                                              ]
+                                               }
+                                           ],
+                       "overall_status":  "PASS"
+                   },
+    "uat":  {
+                "user_stories":  [
+
+                                 ],
+                "approval_rate":  1,
+                "stakeholders":  [
+
+                                 ],
+                "sign_off":  {
+                                 "product_owner_approved":  false,
+                                 "acceptance_criteria_met":  false,
+                                 "stakeholders_approved":  false
+                             },
+                "duration_hours":  0,
+                "session_date":  "2025-11-10T23:30:10.039Z",
+                "feedback":  {
+                                 "concerns":  [
+
+                                              ],
+                                 "positive":  [
+
+                                              ],
+                                 "action_items":  [
+
+                                                  ]
+                             },
+                "overall_status":  "PASS",
+                "issues":  [
+
+                           ]
+            },
+    "summary":  {
+                    "test_execution_status":  "PASS",
+                    "total_issues":  7,
+                    "production_readiness":  "NOT_READY",
+                    "critical_issues":  1,
+                    "blockers":  [
+                                     "CRITICAL issues must be resolved",
+                                     "Production readiness score below threshold (need â‰¥75)"
+                                 ],
+                    "next_phase":  "Phase 8 (Deploy) - if READY or CONDITIONAL",
+                    "deployment_approved":  false,
+                    "conditions":  [
+
+                                   ],
+                    "high_issues":  0
+                },
+    "e2e_tests":  {
+                      "duration_seconds":  0,
+                      "responsive_testing":  {
+                                                 "laptop_1366x768":  {
+                                                                         "status":  "PASS",
+                                                                         "issues":  [
+
+                                                                                    ]
+                                                                     },
+                                                 "mobile_375x667":  {
+                                                                        "status":  "PASS",
+                                                                        "issues":  [
+
+                                                                                   ]
+                                                                    },
+                                                 "tablet_768x1024":  {
+                                                                         "status":  "PASS",
+                                                                         "issues":  [
+
+                                                                                    ]
+                                                                     },
+                                                 "desktop_1920x1080":  {
+                                                                           "status":  "PASS",
+                                                                           "issues":  [
+
+                                                                                      ]
+                                                                       }
+                                             },
+                      "passed":  0,
+                      "pass_rate":  0,
+                      "total_journeys":  0,
+                      "user_journeys":  [
+
+                                        ],
+                      "overall_status":  "PASS",
+                      "failed_journeys":  [
+
+                                          ],
+                      "failed":  0,
+                      "browser_compatibility":  {
+                                                    "edge":  {
+                                                                 "status":  "PASS",
+                                                                 "issues":  [
+
+                                                                            ],
+                                                                 "version":  ""
+                                                             },
+                                                    "firefox":  {
+                                                                    "status":  "PASS",
+                                                                    "issues":  [
+
+                                                                               ],
+                                                                    "version":  ""
+                                                                },
+                                                    "safari":  {
+                                                                   "status":  "N/A",
+                                                                   "issues":  [
+
+                                                                              ],
+                                                                   "version":  ""
+                                                               },
+                                                    "chrome":  {
+                                                                   "status":  "PASS",
+                                                                   "issues":  [
+
+                                                                              ],
+                                                                   "version":  ""
+                                                               }
+                                                },
+                      "issues":  [
+
+                                 ]
+                  },
+    "production_readiness_score":  {
+                                       "decision":  "NOT_READY",
+                                       "non_functional":  {
+                                                              "accessibility":  10,
+                                                              "subtotal":  20,
+                                                              "internationalization":  5,
+                                                              "max_points":  20,
+                                                              "offline_mode":  5
+                                                          },
+                                       "performance":  {
+                                                           "subtotal":  10,
+                                                           "max_points":  20,
+                                                           "ui_performance":  5,
+                                                           "api_performance":  5
+                                                       },
+                                       "security":  {
+                                                        "input_validation":  5,
+                                                        "authentication_authorization":  10,
+                                                        "subtotal":  20,
+                                                        "max_points":  20,
+                                                        "vulnerability_scan":  5
+                                                    },
+                                       "max_score":  100,
+                                       "total_score":  55,
+                                       "percentage":  55,
+                                       "threshold":  {
+                                                         "conditional":  75,
+                                                         "not_ready":  0,
+                                                         "ready":  90
+                                                     },
+                                       "test_execution":  {
+                                                              "integration_tests":  0,
+                                                              "subtotal":  5,
+                                                              "user_acceptance":  0,
+                                                              "max_points":  40,
+                                                              "e2e_tests":  5
+                                                          }
+                                   },
+    "accessibility_tests":  {
+                                "issues":  [
+
+                                           ],
+                                "overall_status":  "PASS",
+                                "keyboard_navigation":  [
+                                                            {
+                                                                "status":  "PASS",
+                                                                "test_id":  "A11Y-001",
+                                                                "name":  "Tab access to all elements",
+                                                                "issues":  [
+
+                                                                           ]
+                                                            },
+                                                            {
+                                                                "status":  "PASS",
+                                                                "test_id":  "A11Y-002",
+                                                                "name":  "Logical tab order",
+                                                                "issues":  [
+
+                                                                           ]
+                                                            },
+                                                            {
+                                                                "status":  "PASS",
+                                                                "test_id":  "A11Y-003",
+                                                                "name":  "Enter/Space activate buttons",
+                                                                "issues":  [
+
+                                                                           ]
+                                                            },
+                                                            {
+                                                                "status":  "PASS",
+                                                                "test_id":  "A11Y-004",
+                                                                "name":  "Escape closes modals",
+                                                                "issues":  [
+
+                                                                           ]
+                                                            },
+                                                            {
+                                                                "status":  "PASS",
+                                                                "test_id":  "A11Y-005",
+                                                                "name":  "Arrow keys navigate lists",
+                                                                "issues":  [
+
+                                                                           ]
+                                                            },
+                                                            {
+                                                                "status":  "PASS",
+                                                                "test_id":  "A11Y-006",
+                                                                "name":  "No keyboard traps",
+                                                                "issues":  [
+
+                                                                           ]
+                                                            }
+                                                        ],
+                                "aria":  [
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "A11Y-201",
+                                                 "name":  "ARIA labels on icon buttons",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "A11Y-202",
+                                                 "name":  "ARIA roles appropriate",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "A11Y-203",
+                                                 "name":  "ARIA live regions",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "A11Y-204",
+                                                 "name":  "ARIA states correct",
+                                                 "issues":  [
+
+                                                            ]
+                                             },
+                                             {
+                                                 "status":  "PASS",
+                                                 "test_id":  "A11Y-205",
+                                                 "name":  "ARIA invalid for errors",
+                                                 "issues":  [
+
+                                                            ]
+                                             }
+                                         ],
+                                "wcag_level":  "AA",
+                                "screen_reader":  [
+                                                      {
+                                                          "status":  "PASS",
+                                                          "test_id":  "A11Y-101",
+                                                          "name":  "All content readable",
+                                                          "issues":  [
+
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "status":  "PASS",
+                                                          "test_id":  "A11Y-102",
+                                                          "name":  "Interactive elements announced",
+                                                          "issues":  [
+
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "status":  "PASS",
+                                                          "test_id":  "A11Y-103",
+                                                          "name":  "Form labels associated",
+                                                          "issues":  [
+
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "status":  "PASS",
+                                                          "test_id":  "A11Y-104",
+                                                          "name":  "Error messages announced",
+                                                          "issues":  [
+
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "status":  "PASS",
+                                                          "test_id":  "A11Y-105",
+                                                          "name":  "Dynamic updates announced",
+                                                          "issues":  [
+
+                                                                     ]
+                                                      },
+                                                      {
+                                                          "status":  "PASS",
+                                                          "test_id":  "A11Y-106",
+                                                          "name":  "Skip links present",
+                                                          "issues":  [
+
+                                                                     ]
+                                                      }
+                                                  ],
+                                "visual":  [
+                                               {
+                                                   "test_id":  "A11Y-301",
+                                                   "name":  "Text contrast",
+                                                   "target":  4.5,
+                                                   "contrast_ratio":  0,
+                                                   "status":  "PASS",
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                                               {
+                                                   "test_id":  "A11Y-302",
+                                                   "name":  "Large text contrast",
+                                                   "target":  3,
+                                                   "contrast_ratio":  0,
+                                                   "status":  "PASS",
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                                               {
+                                                   "test_id":  "A11Y-303",
+                                                   "name":  "Interactive contrast",
+                                                   "target":  3,
+                                                   "contrast_ratio":  0,
+                                                   "status":  "PASS",
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                                               {
+                                                   "status":  "PASS",
+                                                   "test_id":  "A11Y-304",
+                                                   "name":  "No info by color alone",
+                                                   "issues":  [
+
+                                                              ]
+                                               },
+                                               {
+                                                   "status":  "PASS",
+                                                   "test_id":  "A11Y-305",
+                                                   "name":  "Focus visible indicator",
+                                                   "issues":  [
+
+                                                              ]
+                                               }
+                                           ],
+                                "compliance_level":  "WCAG 2.1 AA"
+                            },
+    "issues":  {
+                   "by_status":  {
+                                     "deferred":  0,
+                                     "fixed":  0,
+                                     "open":  7
+                                 },
+                   "by_severity":  {
+                                       "low":  5,
+                                       "critical":  1,
+                                       "medium":  1,
+                                       "high":  0
+                                   },
+                   "details":  [
+                                   {
+                                       "recommendation":  "Fix build/test infrastructure",
+                                       "impact":  "Cannot validate UI functionality",
+                                       "title":  "Frontend test execution failed",
+                                       "category":  "Integration",
+                                       "description":  "Could not run frontend integration tests",
+                                       "status":  "OPEN",
+                                       "severity":  "CRITICAL",
+                                       "location":  ""
+                                   },
+                                   {
+                                       "recommendation":  "Configure Playwright for automated E2E testing",
+                                       "impact":  "Manual E2E testing required",
+                                       "title":  "E2E tests not automated",
+                                       "category":  "E2E",
+                                       "description":  "E2E testing framework not configured",
+                                       "status":  "OPEN",
+                                       "severity":  "LOW",
+                                       "location":  ""
+                                   },
+                                   {
+                                       "recommendation":  "Optimize bundle with code splitting and tree shaking",
+                                       "impact":  "Slower initial page load",
+                                       "title":  "UI bundle size exceeds target",
+                                       "category":  "Performance",
+                                       "description":  "Bundle size 1285 KB exceeds 500 KB target",
+                                       "status":  "OPEN",
+                                       "severity":  "MEDIUM",
+                                       "location":  ""
+                                   },
+                                   {
+                                       "recommendation":  "Configure k6 or Artillery for automated load testing",
+                                       "impact":  "Manual performance testing required",
+                                       "title":  "Performance tests not automated",
+                                       "category":  "Performance",
+                                       "description":  "Load testing framework not configured",
+                                       "status":  "OPEN",
+                                       "severity":  "LOW",
+                                       "location":  ""
+                                   },
+                                   {
+                                       "recommendation":  "Test offline functionality manually or configure automated offline tests",
+                                       "impact":  "Manual validation needed",
+                                       "title":  "Offline mode tests not automated",
+                                       "category":  "Offline",
+                                       "description":  "Offline mode requires manual testing",
+                                       "status":  "OPEN",
+                                       "severity":  "LOW",
+                                       "location":  ""
+                                   },
+                                   {
+                                       "recommendation":  "Test multiple locales manually",
+                                       "impact":  "Manual validation needed",
+                                       "title":  "i18n tests not automated",
+                                       "category":  "i18n",
+                                       "description":  "Internationalization requires manual testing",
+                                       "status":  "OPEN",
+                                       "severity":  "LOW",
+                                       "location":  ""
+                                   },
+                                   {
+                                       "recommendation":  "Run Lighthouse audit and test with screen reader",
+                                       "impact":  "Manual validation needed",
+                                       "title":  "Accessibility tests not automated",
+                                       "category":  "Accessibility",
+                                       "description":  "Accessibility requires manual testing or axe-core integration",
+                                       "status":  "OPEN",
+                                       "severity":  "LOW",
+                                       "location":  ""
+                                   }
+                               ]
+               }
+}
