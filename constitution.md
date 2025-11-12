@@ -3130,6 +3130,42 @@ public async Task GetGoalByIdAsync_NonExistentId_ReturnsNull()
 public async Task UpdateGoalAsync_ValidData_UpdatesSuccessfully()
 ```
 
+### Build Commands
+
+**MUST**: Always use package manager scripts defined in `package.json` (frontend) or project files (backend). Never use direct tool commands that bypass project configuration.
+
+**Frontend** (`cpr-ui`):
+```bash
+# Development build with type checking
+yarn build
+
+# Environment-specific builds
+yarn build:dev
+yarn build:prod
+
+# Type checking only (no build)
+npx tsc --noEmit  # Only for quick validation, prefer yarn build
+```
+
+**Backend** (`cpr-api`):
+```bash
+# Build solution
+dotnet build
+
+# Build specific project
+dotnet build src/CPR.Api/
+
+# Release build
+dotnet build --configuration Release
+```
+
+**Why This Matters**:
+- ✅ Ensures TypeScript strict mode checks are applied (`tsc -b` in package.json)
+- ✅ Respects project configuration (tsconfig.json, vite.config.ts)
+- ✅ Runs pre-build scripts and validations
+- ✅ Consistent across all development environments
+- ✅ CI/CD uses same commands as local development
+
 ### Running Tests
 
 **Backend** (`cpr-api`):

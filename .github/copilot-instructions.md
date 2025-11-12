@@ -47,6 +47,21 @@ Suggest these CPR framework commands when appropriate:
 - `cpr-new-spec <name> -Type <feature|api|ui>` - Create new specification
 - `cpr-constitution` - Show constitutional principles
 
+## Build & Test Commands (ALWAYS USE)
+
+### Frontend (cpr-ui)
+- **Build**: `yarn build` (NEVER use `npx tsc --noEmit` alone)
+- **Test**: `yarn test`, `yarn test:coverage`, `yarn test:ui`
+- **Dev**: `yarn dev`, `yarn start:mock`, `yarn start:local`
+- **Lint**: `yarn lint`, `yarn lint:fix`
+
+### Backend (cpr-api)
+- **Build**: `dotnet build`, `dotnet build --configuration Release`
+- **Test**: `dotnet test`, `dotnet test /p:CollectCoverage=true`
+- **Run**: `dotnet run --project src/CPR.Api`
+
+**Why**: Package.json scripts include TypeScript strict checking (`tsc -b`), configuration, and validations that direct commands bypass.
+
 ## Quality Gates
 Before suggesting implementation:
 1. Verify specification exists in cpr-meta
@@ -54,6 +69,7 @@ Before suggesting implementation:
 3. Validate naming conventions
 4. Ensure type safety
 5. Confirm API contract alignment
+6. **Run `yarn build` to verify TypeScript compilation**
 
 ## Common Responses
 When asked about implementation without specification:
