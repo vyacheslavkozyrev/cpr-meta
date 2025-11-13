@@ -1,0 +1,276 @@
+﻿{
+    "automated_findings":  [
+
+                           ],
+    "build_status":  {
+                         "cpr_api":  {
+                                         "errors":  [
+
+                                                    ],
+                                         "configuration":  "Debug",
+                                         "compilation_warnings":  0,
+                                         "status":  "PASS",
+                                         "compilation_errors":  0,
+                                         "build_time_seconds":  1.27,
+                                         "target_framework":  ".NET 8.0"
+                                     },
+                         "cpr_ui":  {
+                                        "errors":  [
+
+                                                   ],
+                                        "configuration":  "development",
+                                        "build_warnings":  0,
+                                        "build_errors":  0,
+                                        "status":  "ERROR",
+                                        "build_time_seconds":  0,
+                                        "bundle_size_kb":  0
+                                    }
+                     },
+    "metadata":  {
+                     "repositories":  {
+                                          "cpr_api_branch":  "feature/0001-personal-goal-management",
+                                          "cpr_ui_branch":  "feature/0001-personal-goal-management"
+                                      },
+                     "review_date":  "2025-11-13",
+                     "tool_version":  "1.0.0",
+                     "feature_number":  "0001",
+                     "feature_name":  "personal-goal-management"
+                 },
+    "git_analysis":  {
+                         "cpr_api":  {
+                                         "commits_behind_main":  0,
+                                         "has_merge_conflicts":  false,
+                                         "non_conventional_commits":  0,
+                                         "commit_quality_issues":  [
+
+                                                                   ],
+                                         "conventional_commit_percentage":  0,
+                                         "uncommitted_changes":  false,
+                                         "total_commits":  0,
+                                         "conventional_commits":  0,
+                                         "branch_name":  "feature/0001-personal-goal-management"
+                                     },
+                         "cpr_ui":  {
+                                        "commits_behind_main":  0,
+                                        "has_merge_conflicts":  false,
+                                        "non_conventional_commits":  0,
+                                        "commit_quality_issues":  [
+
+                                                                  ],
+                                        "conventional_commit_percentage":  0,
+                                        "uncommitted_changes":  false,
+                                        "total_commits":  0,
+                                        "conventional_commits":  0,
+                                        "branch_name":  "feature/0001-personal-goal-management"
+                                    }
+                     },
+    "summary":  {
+                    "low_issues":  0,
+                    "medium_issues":  0,
+                    "critical_issues":  0,
+                    "blocking_issues":  [
+
+                                        ],
+                    "ready_for_ai_review":  true,
+                    "automated_quality_score":  100,
+                    "high_issues":  0,
+                    "total_issues":  0
+                },
+    "file_statistics":  {
+                            "cpr_api":  {
+                                            "files_added":  0,
+                                            "total_lines_deleted":  0,
+                                            "file_types":  {
+                                                               "cs":  0,
+                                                               "sql":  0,
+                                                               "other":  0,
+                                                               "json":  0
+                                                           },
+                                            "files_deleted":  0,
+                                            "files_modified":  0,
+                                            "net_lines_changed":  0,
+                                            "total_lines_added":  0
+                                        },
+                            "cpr_ui":  {
+                                           "files_added":  0,
+                                           "total_lines_deleted":  0,
+                                           "file_types":  {
+                                                              "other":  0,
+                                                              "json":  0,
+                                                              "tsx":  0,
+                                                              "css":  0,
+                                                              "ts":  0
+                                                          },
+                                           "files_deleted":  0,
+                                           "files_modified":  0,
+                                           "net_lines_changed":  0,
+                                           "total_lines_added":  0
+                                       }
+                        },
+    "linting_analysis":  {
+                             "cpr_api":  {
+                                             "issues":  [
+
+                                                        ],
+                                             "errors":  0,
+                                             "info":  0,
+                                             "warnings":  0,
+                                             "status":  "PASS",
+                                             "tool":  "dotnet format",
+                                             "total_issues":  0
+                                         },
+                             "cpr_ui":  {
+                                            "tool":  "ESLint",
+                                            "issues":  [
+
+                                                       ],
+                                            "errors":  0,
+                                            "warnings":  0,
+                                            "status":  "NOT_RUN",
+                                            "total_issues":  0
+                                        }
+                         },
+    "recommendations":  [
+                            "Proceed with AI-assisted semantic code review using phase-6-review.md prompt",
+                            "Focus AI review on architecture, business logic, and constitutional compliance",
+                            "Automated checks show good baseline quality"
+                        ],
+    "test_results":  {
+                         "cpr_api":  {
+                                         "failed_tests":  [
+
+                                                          ],
+                                         "coverage":  {
+                                                          "line_coverage_percent":  0,
+                                                          "meets_threshold":  false,
+                                                          "threshold_percent":  80,
+                                                          "branch_coverage_percent":  0,
+                                                          "method_coverage_percent":  0
+                                                      },
+                                         "test_suites":  {
+                                                             "integration_tests":  {
+                                                                                       "failed":  0,
+                                                                                       "skipped":  0,
+                                                                                       "total":  0,
+                                                                                       "passed":  0
+                                                                                   },
+                                                             "unit_tests":  {
+                                                                                "failed":  0,
+                                                                                "skipped":  0,
+                                                                                "total":  0,
+                                                                                "passed":  0
+                                                                            }
+                                                         },
+                                         "passed":  0,
+                                         "failed":  0,
+                                         "skipped":  0,
+                                         "duration_seconds":  1.02,
+                                         "total_tests":  0,
+                                         "status":  "NOT_RUN"
+                                     },
+                         "cpr_ui":  {
+                                        "failed_tests":  [
+
+                                                         ],
+                                        "coverage":  {
+                                                         "function_coverage_percent":  0,
+                                                         "statement_coverage_percent":  0,
+                                                         "threshold_percent":  80,
+                                                         "meets_threshold":  false,
+                                                         "line_coverage_percent":  0,
+                                                         "branch_coverage_percent":  0
+                                                     },
+                                        "test_suites":  {
+                                                            "component_tests":  {
+                                                                                    "failed":  0,
+                                                                                    "skipped":  0,
+                                                                                    "total":  0,
+                                                                                    "passed":  0
+                                                                                },
+                                                            "hook_tests":  {
+                                                                               "failed":  0,
+                                                                               "skipped":  0,
+                                                                               "total":  0,
+                                                                               "passed":  0
+                                                                           },
+                                                            "integration_tests":  {
+                                                                                      "failed":  0,
+                                                                                      "skipped":  0,
+                                                                                      "total":  0,
+                                                                                      "passed":  0
+                                                                                  }
+                                                        },
+                                        "passed":  0,
+                                        "failed":  0,
+                                        "skipped":  0,
+                                        "duration_seconds":  0,
+                                        "total_tests":  0,
+                                        "status":  "NOT_RUN"
+                                    }
+                     },
+    "automated_score":  {
+                            "total_points":  100,
+                            "status":  "PASS",
+                            "final_score":  100,
+                            "deductions":  [
+                                               {
+                                                   "reason":  "All builds passing",
+                                                   "category":  "Build",
+                                                   "points":  0,
+                                                   "severity":  "NONE"
+                                               },
+                                               {
+                                                   "reason":  "All tests passing",
+                                                   "category":  "Tests",
+                                                   "points":  0,
+                                                   "severity":  "NONE"
+                                               },
+                                               {
+                                                   "reason":  "No linting errors",
+                                                   "category":  "Linting",
+                                                   "points":  0,
+                                                   "severity":  "NONE"
+                                               },
+                                               {
+                                                   "reason":  "Good commit quality",
+                                                   "category":  "Git",
+                                                   "points":  0,
+                                                   "severity":  "NONE"
+                                               }
+                                           ]
+                        },
+    "complexity_metrics":  {
+                               "cpr_api":  {
+                                               "max_cyclomatic_complexity":  0,
+                                               "files_above_threshold":  [
+
+                                                                         ],
+                                               "total_files_analyzed":  0,
+                                               "methods_above_threshold":  [
+
+                                                                           ],
+                                               "threshold":  15,
+                                               "average_cyclomatic_complexity":  0
+                                           },
+                               "cpr_ui":  {
+                                              "max_cyclomatic_complexity":  0,
+                                              "files_above_threshold":  [
+
+                                                                        ],
+                                              "total_files_analyzed":  0,
+                                              "functions_above_threshold":  [
+
+                                                                            ],
+                                              "threshold":  15,
+                                              "average_cyclomatic_complexity":  0
+                                          }
+                           },
+    "validation_summary":  {
+                               "all_required_files_exist":  true,
+                               "remaining_tasks":  0,
+                               "completed_tasks":  112,
+                               "total_tasks":  112,
+                               "phase_5_complete":  true,
+                               "tasks_completion_percentage":  100
+                           }
+}
