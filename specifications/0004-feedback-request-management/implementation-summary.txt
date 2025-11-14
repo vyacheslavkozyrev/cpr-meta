@@ -1,0 +1,76 @@
+﻿=== CPR Phase 5: Implementation Guide ===
+Feature: 0004-feedback-request-management
+Date: 2025-11-13
+
+REPOSITORIES:
+- cpr-api: D:\projects\CPR\source\cpr-api
+- cpr-ui: D:\projects\CPR\source\cpr-ui
+
+FEATURE BRANCHES:
+- Branch: feature/0004-feedback-request-management
+- Created in both repositories
+
+TASK BREAKDOWN:
+- Total Tasks: 105
+- Completed: 0
+- Remaining: 105
+- Parallel Opportunities: 51
+- Phases: 9
+
+IMPLEMENTATION APPROACH:
+1. Use GitHub Copilot Chat with phase-5-implement.md prompt
+2. Follow task-driven development (tasks.md)
+3. Implement in phases (Setup â†’ Foundational â†’ User Stories â†’ Polish)
+4. Mark tasks complete as you go: [ ] â†’ [x]
+5. Commit after each phase completion
+6. Run tests frequently
+
+GITHUB COPILOT COMMAND:
+@workspace Use framework/prompts/phase-5-implement.md to implement feature 0004
+
+CONSTITUTIONAL COMPLIANCE CHECKLIST:
+- [ ] Principle 2: DTOs use snake_case JSON with [JsonPropertyName]
+- [ ] Principle 4: Strong typing, no 'any' in TypeScript
+- [ ] Principle 5: Offline mode with IndexedDB caching
+- [ ] Principle 6: All UI text uses i18n keys
+- [ ] Principle 7: Tests written (unit, integration, E2E)
+- [ ] Principle 9: Naming conventions followed everywhere
+- [ ] Principle 11: Database uses UUID PKs, proper indexes
+
+KEY FILES:
+- Specification: D:\projects\CPR\source\cpr-meta\specifications\0004-feedback-request-management\description.md
+- Implementation Plan: D:\projects\CPR\source\cpr-meta\specifications\0004-feedback-request-management\implementation-plan.md
+- Task List: D:\projects\CPR\source\cpr-meta\specifications\0004-feedback-request-management\tasks.md
+- API Contracts: D:\projects\CPR\source\cpr-meta\specifications\0004-feedback-request-management\endpoints.md
+- Analysis Report: D:\projects\CPR\source\cpr-meta\specifications\0004-feedback-request-management\analysis-report.md
+
+QUALITY GATES:
+- Code must compile/build successfully
+- All tests must pass
+- No linting errors
+- Constitutional compliance maintained
+- All tasks marked complete before Phase 5 done
+
+NEXT ACTIONS:
+1. Open GitHub Copilot Chat in VS Code
+2. Navigate to cpr-api or cpr-ui in terminal
+3. Use prompt: @workspace Use framework/prompts/phase-5-implement.md to implement feature 0004
+4. Follow task breakdown in tasks.md
+5. Update progress.md regularly
+6. Commit and push frequently
+
+IMPLEMENTATION ORDER:
+Phase 1: Setup & Project Structure (backend entities, DTOs, types)
+Phase 2: Foundational (repositories, services, base components)
+Phase 3+: User Stories (one at a time, backend + frontend)
+Final: Polish (error handling, i18n, tests, documentation)
+
+TIPS:
+- Start with backend (API provides contract for frontend)
+- Write tests before implementation (TDD)
+- Use parallel tasks to speed up development
+- Reference existing code for patterns
+- Ask Copilot for help with boilerplate
+- Test frequently, commit often
+
+=== Ready to Begin Implementation ===

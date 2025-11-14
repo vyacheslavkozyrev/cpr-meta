@@ -158,16 +158,22 @@ if (-not $SkipBranchCreation) {
     
     # Create branch in cpr-api
     Push-Location $apiRoot
-    $apiBranchExists = git rev-parse --verify $branchName 2>$null
+    # Use show-ref to reliably check for local branch existence without printing errors
+    git show-ref --verify --quiet "refs/heads/$branchName"
     if ($LASTEXITCODE -eq 0) {
         Write-Host "  cpr-api: Branch '$branchName' already exists" -ForegroundColor Yellow
-        git checkout $branchName 2>$null
+        cmd /c "git checkout $branchName >nul 2>&1"
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  cpr-api: Checked out existing branch" -ForegroundColor Gray
         }
+        else {
+            Write-Host "  ERROR: Failed to checkout existing branch '$branchName' in cpr-api" -ForegroundColor Red
+            Pop-Location
+            exit 1
+        }
     }
     else {
-        git checkout -b $branchName 2>$null
+        cmd /c "git checkout -b $branchName >nul 2>&1"
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  cpr-api: Created and checked out branch '$branchName'" -ForegroundColor Green
         }
@@ -181,16 +187,22 @@ if (-not $SkipBranchCreation) {
     
     # Create branch in cpr-ui
     Push-Location $uiRoot
-    $uiBranchExists = git rev-parse --verify $branchName 2>$null
+    # Use show-ref to reliably check for local branch existence without printing errors
+    git show-ref --verify --quiet "refs/heads/$branchName"
     if ($LASTEXITCODE -eq 0) {
         Write-Host "  cpr-ui: Branch '$branchName' already exists" -ForegroundColor Yellow
-        git checkout $branchName 2>$null
+        cmd /c "git checkout $branchName >nul 2>&1"
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  cpr-ui: Checked out existing branch" -ForegroundColor Gray
         }
+        else {
+            Write-Host "  ERROR: Failed to checkout existing branch '$branchName' in cpr-ui" -ForegroundColor Red
+            Pop-Location
+            exit 1
+        }
     }
     else {
-        git checkout -b $branchName 2>$null
+        cmd /c "git checkout -b $branchName >nul 2>&1"
         if ($LASTEXITCODE -eq 0) {
             Write-Host "  cpr-ui: Created and checked out branch '$branchName'" -ForegroundColor Green
         }

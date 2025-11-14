@@ -92,21 +92,21 @@ Tasks marked with `[P]` can run in parallel within the same phase:
 
 ### Backend Setup (cpr-api)
 
-- [ ] T001 Create database migration `AddFeedbackRequestManagement` in `src/CPR.Infrastructure/Data/Migrations/` with CREATE TABLE feedback_requests (11 columns + audit)
-- [ ] T002 Add CREATE TABLE feedback_request_recipients to same migration (8 columns, junction table with unique constraint)
-- [ ] T003 Add ALTER TABLE feedback ADD COLUMN feedback_request_id to same migration (foreign key link)
-- [ ] T004 [P] Create domain entity `FeedbackRequest.cs` in `src/CPR.Domain/Entities/` with navigation properties (Recipients, Project, Goal, Requestor)
-- [ ] T005 [P] Create domain entity `FeedbackRequestRecipient.cs` in `src/CPR.Domain/Entities/` with navigation properties (FeedbackRequest, Employee, Feedback)
-- [ ] T006 [P] Create EF Core configuration `FeedbackRequestConfiguration.cs` in `src/CPR.Infrastructure/Data/Configurations/` with Fluent API (indexes, constraints, mappings)
-- [ ] T007 [P] Create EF Core configuration `FeedbackRequestRecipientConfiguration.cs` with unique constraint configuration
-- [ ] T009 [P] Create C# DTOs in `src/CPR.Application/Contracts/FeedbackRequestDtos.cs`: CreateFeedbackRequestDto, FeedbackRequestDto, FeedbackRequestRecipientDto, UpdateFeedbackRequestDto, FeedbackRequestListDto, PaginationDto, SummaryDto (8 DTOs total)
+- [x] T001 Create database migration `AddFeedbackRequestManagement` in `src/CPR.Infrastructure/Data/Migrations/` with CREATE TABLE feedback_requests (11 columns + audit)
+- [x] T002 Add CREATE TABLE feedback_request_recipients to same migration (8 columns, junction table with unique constraint)
+- [x] T003 Add ALTER TABLE feedback ADD COLUMN feedback_request_id to same migration (foreign key link)
+- [x] T004 [P] Create domain entity `FeedbackRequest.cs` in `src/CPR.Domain/Entities/` with navigation properties (Recipients, Project, Goal, Requestor)
+- [x] T005 [P] Create domain entity `FeedbackRequestRecipient.cs` in `src/CPR.Domain/Entities/` with navigation properties (FeedbackRequest, Employee, Feedback)
+- [x] T006 [P] Create EF Core configuration `FeedbackRequestConfiguration.cs` in `src/CPR.Infrastructure/Data/Configurations/` with Fluent API (indexes, constraints, mappings)
+- [x] T007 [P] Create EF Core configuration `FeedbackRequestRecipientConfiguration.cs` with unique constraint configuration
+- [x] T009 [P] Create C# DTOs in `src/CPR.Application/Contracts/FeedbackRequestDtos.cs`: CreateFeedbackRequestDto, FeedbackRequestDto, FeedbackRequestRecipientDto, UpdateFeedbackRequestDto, FeedbackRequestListDto, PaginationDto, SummaryDto (8 DTOs total)
 - [ ] T010 [P] Create repository interface `IFeedbackRequestRepository.cs` in `src/CPR.Application/Interfaces/Repositories/` with methods: CreateAsync, GetByIdAsync, GetSentRequestsAsync, GetTodoRequestsAsync, UpdateAsync, DeleteAsync, GetTeamSentAsync, GetTeamReceivedAsync
 
 ### Frontend Setup (cpr-ui)
 
-- [ ] T011 [P] Create TypeScript types in `src/types/feedbackRequest.ts` matching C# DTOs with snake_case (FeedbackRequestDto, FeedbackRequestRecipientDto, etc.)
-- [ ] T012 [P] Create component folder structure `src/components/FeedbackRequest/` with subfolders for form, lists, cards
-- [ ] T008 [P] Create i18n files: `src/locales/en/feedbackRequest.json` and `src/locales/es/feedbackRequest.json` with initial keys (form labels, buttons, errors, toasts)
+- [x] T011 [P] Create TypeScript types in `src/types/feedbackRequest.ts` matching C# DTOs with snake_case (FeedbackRequestDto, FeedbackRequestRecipientDto, etc.)
+- [x] T012 [P] Create component folder structure `src/components/FeedbackRequest/` with subfolders for form, lists, cards
+- [x] T008 [P] Create i18n files: `src/locales/en/feedbackRequest.json` and `src/locales/es/feedbackRequest.json` with initial keys (form labels, buttons, errors, toasts)
 
 ---
 
