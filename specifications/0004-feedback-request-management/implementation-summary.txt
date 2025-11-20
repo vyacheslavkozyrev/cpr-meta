@@ -1,6 +1,40 @@
 ﻿=== CPR Phase 5: Implementation Guide ===
 Feature: 0004-feedback-request-management
-Date: 2025-11-13
+Created: 2025-11-13
+Last Updated: 2025-11-20
+
+=== RECENT PROGRESS (2025-11-20) ===
+
+✅ US-004: REMINDER FUNCTIONALITY - 100% COMPLETE
+Backend Achievements:
+- Manual reminder endpoints (POST /remind, POST /remind-all) with 48h cooldown
+- Hangfire background job integration with daily recurring tasks
+- FeedbackRequestReminderJob: upcoming (9 AM UTC) and overdue (10 AM UTC) reminders
+- CalendarService with Ical.Net for RFC 5545 compliant .ics generation
+- EmailService with MailKit/MimeKit for HTML + plain text emails
+- Calendar attachments in all email notifications
+- Email templates: new requests, reminders, overdue notifications
+- smtp4dev Docker container for local testing (port 3333)
+
+Frontend Achievements:
+- useSendReminder and useSendAllReminders React Query mutation hooks
+- Type-safe error handling with 429 cooldown detection
+- Send Reminder and Remind All buttons in SentRequestsList
+- Toast notifications with full EN/BE translations
+- Integrated with existing FeedbackRequestCard component
+
+Technical Infrastructure:
+- Docker Compose configuration for smtp4dev
+- Email configuration in appsettings.Development.json
+- Comprehensive docker/README.md for service documentation
+- status.ps1 PowerShell script for quick service checks
+
+Next Priorities:
+1. Complete US-001 (4 tasks): offline queue, auto-save drafts, duplicate detection UI
+2. Implement US-002B (8 tasks): Manager team view
+3. Testing Phase (12 tasks): Unit, integration, E2E tests
+
+=== ORIGINAL SETUP ===
 
 REPOSITORIES:
 - cpr-api: D:\projects\CPR\source\cpr-api
@@ -11,11 +45,19 @@ FEATURE BRANCHES:
 - Created in both repositories
 
 TASK BREAKDOWN:
-- Total Tasks: 105
-- Completed: 0
-- Remaining: 105
-- Parallel Opportunities: 51
+- Total Tasks: 100
+- Completed: 61
+- Remaining: 39
+- Progress: 61%
 - Phases: 9
+
+COMPLETED USER STORIES:
+✅ US-002: View Sent Feedback Requests (100%)
+✅ US-003: View Todo Requests (100%)
+✅ US-004: Reminder Functionality (100%)
+
+IN PROGRESS:
+🔄 US-001: Create Feedback Request (78% - 4 tasks remaining)
 
 IMPLEMENTATION APPROACH:
 1. Use GitHub Copilot Chat with phase-5-implement.md prompt
@@ -29,13 +71,13 @@ GITHUB COPILOT COMMAND:
 @workspace Use framework/prompts/phase-5-implement.md to implement feature 0004
 
 CONSTITUTIONAL COMPLIANCE CHECKLIST:
-- [ ] Principle 2: DTOs use snake_case JSON with [JsonPropertyName]
-- [ ] Principle 4: Strong typing, no 'any' in TypeScript
-- [ ] Principle 5: Offline mode with IndexedDB caching
-- [ ] Principle 6: All UI text uses i18n keys
-- [ ] Principle 7: Tests written (unit, integration, E2E)
-- [ ] Principle 9: Naming conventions followed everywhere
-- [ ] Principle 11: Database uses UUID PKs, proper indexes
+- [x] Principle 2: DTOs use snake_case JSON with [JsonPropertyName]
+- [x] Principle 4: Strong typing, no 'any' in TypeScript
+- [ ] Principle 5: Offline mode with IndexedDB caching (in progress)
+- [x] Principle 6: All UI text uses i18n keys (EN + BE translations)
+- [ ] Principle 7: Tests written (unit, integration, E2E) (pending)
+- [x] Principle 9: Naming conventions followed everywhere
+- [x] Principle 11: Database uses UUID PKs, proper indexes
 
 KEY FILES:
 - Specification: D:\projects\CPR\source\cpr-meta\specifications\0004-feedback-request-management\description.md
