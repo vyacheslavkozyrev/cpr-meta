@@ -18,6 +18,7 @@
 Review against all 11 CPR Constitutional Principles:
 
 ### ✅ Principle 1: Specification-First Development
+
 - [ ] Complete specification exists in `description.md`
 - [ ] All requirements clearly documented
 - [ ] Stakeholder approval obtained
@@ -26,6 +27,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 2: API Contract Consistency
+
 - [ ] C# DTOs defined and match specification
 - [ ] TypeScript interfaces defined and match C# DTOs
 - [ ] JSON naming uses snake_case
@@ -35,6 +37,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 3: API Standards & Security
+
 - [ ] RESTful endpoints follow conventions
 - [ ] HTTP methods used correctly (GET, POST, PUT, DELETE)
 - [ ] Standard status codes defined (200, 201, 400, 401, 404, 500)
@@ -45,6 +48,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 4: Type Safety Everywhere
+
 - [ ] C# DTOs use strong typing with validation attributes
 - [ ] TypeScript interfaces use strict types (no `any`)
 - [ ] Enums defined where applicable
@@ -54,6 +58,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 5: Offline Mode
+
 - [ ] Offline capabilities identified
 - [ ] Data caching strategy defined
 - [ ] Sync mechanism specified
@@ -63,6 +68,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 6: Internationalization
+
 - [ ] All UI text externalizable
 - [ ] i18n keys defined in translation files
 - [ ] Locale-specific formatting identified (dates, numbers)
@@ -72,6 +78,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 7: Comprehensive Testing
+
 - [ ] Unit test strategy defined
 - [ ] Integration test scenarios identified
 - [ ] Performance test requirements specified
@@ -81,6 +88,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 8: Performance-First React Development
+
 - [ ] Performance targets defined (load time, response time)
 - [ ] React Query caching strategy specified
 - [ ] Component optimization approach documented
@@ -90,6 +98,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 9: Strict Naming Conventions
+
 - [ ] JSON/API: snake_case verified
 - [ ] C# Properties: PascalCase with `[JsonPropertyName]` attributes
 - [ ] TypeScript: camelCase in code, snake_case in API types
@@ -100,6 +109,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 10: Security & Data Privacy
+
 - [ ] Authentication requirements specified
 - [ ] Authorization rules defined (role-based, resource-based)
 - [ ] Data encryption approach documented
@@ -110,6 +120,7 @@ Review against all 11 CPR Constitutional Principles:
 **Notes**: [Any concerns or clarifications]
 
 ### ✅ Principle 11: Database Design Standards
+
 - [ ] Entities use UUIDs for primary keys
 - [ ] Proper foreign key constraints defined
 - [ ] Indexes identified for performance
@@ -126,14 +137,16 @@ Review against all 11 CPR Constitutional Principles:
 ### Technology Stack
 
 **Backend (cpr-api)**:
-- Framework: .NET 8 Web API
-- Language: C# 12
+
+- Framework: .NET 9.0 Web API
+- Language: C# 13
 - Database: PostgreSQL 16
-- ORM: Entity Framework Core 8
+- ORM: Entity Framework Core 9.0
 - Authentication: [Specify: JWT, OAuth, etc.]
 - Key Libraries: [List any additional libraries needed]
 
 **Frontend (cpr-ui)**:
+
 - Framework: React 18
 - Language: TypeScript 5
 - State Management: Zustand, React Query
@@ -145,6 +158,7 @@ Review against all 11 CPR Constitutional Principles:
 ### Architecture Patterns
 
 **Backend Patterns**:
+
 - [ ] Repository Pattern
 - [ ] Service Layer Pattern
 - [ ] Domain-Driven Design
@@ -152,6 +166,7 @@ Review against all 11 CPR Constitutional Principles:
 - [ ] Other: [Specify]
 
 **Frontend Patterns**:
+
 - [ ] Component Composition
 - [ ] Custom Hooks
 - [ ] Context API (if needed)
@@ -170,11 +185,13 @@ List existing features/systems this feature integrates with:
 ### Dependencies
 
 **External Dependencies**:
+
 - [ ] New NuGet packages: [List]
 - [ ] New npm packages: [List]
 - [ ] External APIs: [List]
 
 **Internal Dependencies**:
+
 - [ ] Other features that must be completed first: [List]
 - [ ] Shared components/services needed: [List]
 
@@ -187,12 +204,14 @@ List existing features/systems this feature integrates with:
 **Duration**: [X days/weeks]
 
 **Objectives**:
+
 - Set up project structure
 - Create base entities and DTOs
 - Implement database migrations
 - Create service scaffolding
 
 **Deliverables**:
+
 - [ ] Database schema created and migrated
 - [ ] Domain models implemented (cpr-api)
 - [ ] DTOs created (C# and TypeScript)
@@ -201,6 +220,7 @@ List existing features/systems this feature integrates with:
 - [ ] TypeScript types and interfaces (cpr-ui)
 
 **Key Files** (Backend):
+
 ```
 src/CPR.Domain/Entities/[FeatureName].cs
 src/CPR.Application/DTOs/[FeatureName]/
@@ -209,6 +229,7 @@ src/CPR.Application/Services/[FeatureName]Service.cs
 ```
 
 **Key Files** (Frontend):
+
 ```
 src/types/[featureName].ts
 src/dtos/[featureName].ts
@@ -221,12 +242,14 @@ src/dtos/[featureName].ts
 **Duration**: [X days/weeks]
 
 **Objectives**:
+
 - Implement API endpoints
 - Add business logic
 - Implement validation
 - Add authorization
 
 **Deliverables**:
+
 - [ ] API endpoints implemented and tested
 - [ ] Request validation added
 - [ ] Business rules enforced
@@ -235,6 +258,7 @@ src/dtos/[featureName].ts
 - [ ] API documentation updated
 
 **Key Files** (Backend):
+
 ```
 src/CPR.Api/Controllers/[FeatureName]Controller.cs
 src/CPR.Application/Services/Implementations/[FeatureName]Service.cs
@@ -248,12 +272,14 @@ src/CPR.Infrastructure/Repositories/Implementations/[FeatureName]Repository.cs
 **Duration**: [X days/weeks]
 
 **Objectives**:
+
 - Create UI components
 - Implement state management
 - Add API integration
 - Implement offline support
 
 **Deliverables**:
+
 - [ ] React components created
 - [ ] Zustand stores implemented
 - [ ] React Query hooks created
@@ -263,6 +289,7 @@ src/CPR.Infrastructure/Repositories/Implementations/[FeatureName]Repository.cs
 - [ ] Internationalization added
 
 **Key Files** (Frontend):
+
 ```
 src/components/[FeatureName]/
 src/stores/[featureName]Store.ts
@@ -279,12 +306,14 @@ src/locales/en/[featureName].json
 **Duration**: [X days/weeks]
 
 **Objectives**:
+
 - Write unit tests
 - Write integration tests
 - Perform performance testing
 - Conduct security review
 
 **Deliverables**:
+
 - [ ] Backend unit tests (>80% coverage)
 - [ ] Frontend unit tests (>80% coverage)
 - [ ] Integration tests
@@ -293,6 +322,7 @@ src/locales/en/[featureName].json
 - [ ] Accessibility audit passed
 
 **Key Files** (Testing):
+
 ```
 tests/CPR.Tests/[FeatureName]/
 src/components/[FeatureName]/__tests__/
@@ -305,12 +335,14 @@ src/components/[FeatureName]/__tests__/
 **Duration**: [X days/weeks]
 
 **Objectives**:
+
 - Complete API documentation
 - Update user documentation
 - Prepare deployment
 - Create migration guides
 
 **Deliverables**:
+
 - [ ] API endpoints documented
 - [ ] User guide updated
 - [ ] Migration scripts tested
@@ -336,12 +368,15 @@ src/components/[FeatureName]/__tests__/
 | `[field_name]` | [TYPE] | [CONSTRAINTS] | [Description] |
 
 **Indexes**:
+
 - `idx_[table]_[column]` on `[column_name]`
 
 **Foreign Keys**:
+
 - `[fk_column]` → `[referenced_table].[referenced_column]`
 
 **C# Domain Model**:
+
 ```csharp
 // Location: src/CPR.Domain/Entities/[EntityName].cs
 public class [EntityName]
@@ -362,6 +397,7 @@ List any existing entities that will be modified, with details of changes.
 **Migration Name**: `Add[FeatureName]Tables`
 
 **Changes**:
+
 1. Create `[table_name]` table
 2. Add indexes
 3. Add foreign key constraints
@@ -377,6 +413,7 @@ List any existing entities that will be modified, with details of changes.
 See `endpoints.md` for complete endpoint specifications.
 
 **Quick Reference**:
+
 - `GET /api/v1/[resource]` - List all items
 - `GET /api/v1/[resource]/{id}` - Get single item
 - `POST /api/v1/[resource]` - Create new item
@@ -389,9 +426,9 @@ See `endpoints.md` for complete endpoint specifications.
 
 ### Technical Risks
 
-| Risk | Probability | Impact | Mitigation Strategy |
-|------|-------------|--------|---------------------|
-| [Risk description] | [Low/Med/High] | [Low/Med/High] | [How to mitigate] |
+| Risk               | Probability    | Impact         | Mitigation Strategy |
+| ------------------ | -------------- | -------------- | ------------------- |
+| [Risk description] | [Low/Med/High] | [Low/Med/High] | [How to mitigate]   |
 
 ### Dependencies & Blockers
 
@@ -416,12 +453,14 @@ List any dependencies on external teams, services, or features:
 ### Optimization Strategies
 
 **Backend**:
+
 - [ ] Database query optimization
 - [ ] Caching strategy (Redis, in-memory)
 - [ ] Pagination for large datasets
 - [ ] Async operations where appropriate
 
 **Frontend**:
+
 - [ ] React Query caching
 - [ ] Component lazy loading
 - [ ] Memoization of expensive computations
@@ -434,11 +473,13 @@ List any dependencies on external teams, services, or features:
 ### Authentication & Authorization
 
 **Authentication**:
+
 - Method: [JWT/OAuth/etc.]
 - Token storage: [HttpOnly cookies/localStorage/etc.]
 - Token expiration: [Duration]
 
 **Authorization**:
+
 - Role-based access control (RBAC)
 - Resource-based permissions
 - Policy requirements
@@ -458,21 +499,21 @@ List any dependencies on external teams, services, or features:
 
 ### Backend (cpr-api)
 
-| Phase | Estimated Hours | Actual Hours | Notes |
-|-------|----------------|--------------|-------|
-| Phase 1: Foundation | [X] | - | |
-| Phase 2: API Implementation | [X] | - | |
-| Phase 4: Testing | [X] | - | |
-| **Total Backend** | **[X]** | - | |
+| Phase                       | Estimated Hours | Actual Hours | Notes |
+| --------------------------- | --------------- | ------------ | ----- |
+| Phase 1: Foundation         | [X]             | -            |       |
+| Phase 2: API Implementation | [X]             | -            |       |
+| Phase 4: Testing            | [X]             | -            |       |
+| **Total Backend**           | **[X]**         | -            |       |
 
 ### Frontend (cpr-ui)
 
-| Phase | Estimated Hours | Actual Hours | Notes |
-|-------|----------------|--------------|-------|
-| Phase 1: Foundation | [X] | - | |
-| Phase 3: UI Implementation | [X] | - | |
-| Phase 4: Testing | [X] | - | |
-| **Total Frontend** | **[X]** | - | |
+| Phase                      | Estimated Hours | Actual Hours | Notes |
+| -------------------------- | --------------- | ------------ | ----- |
+| Phase 1: Foundation        | [X]             | -            |       |
+| Phase 3: UI Implementation | [X]             | -            |       |
+| Phase 4: Testing           | [X]             | -            |       |
+| **Total Frontend**         | **[X]**         | -            |       |
 
 ### Overall Estimate
 
@@ -483,17 +524,20 @@ List any dependencies on external teams, services, or features:
 ## Success Metrics
 
 ### Functional Metrics
+
 - [ ] All acceptance criteria met
 - [ ] All user stories implemented
 - [ ] Zero critical bugs in production
 
 ### Quality Metrics
+
 - [ ] Code coverage > 80%
 - [ ] All tests passing
 - [ ] Zero security vulnerabilities
 - [ ] Accessibility score > 95
 
 ### Performance Metrics
+
 - [ ] API response time targets met
 - [ ] Page load time targets met
 - [ ] No performance regressions
@@ -526,6 +570,6 @@ List any unresolved questions or decisions needed before implementation:
 
 ## Change Log
 
-| Date | Author | Changes |
-|------|--------|---------|
+| Date   | Author | Changes              |
+| ------ | ------ | -------------------- |
 | [Date] | [Name] | Initial plan created |

@@ -25,6 +25,7 @@ You **MUST** consider user input before proceeding (if not empty).
 You are helping to analyze a feature specification for the CPR (Career Progress Registry) project. This is **Phase 4: Analyze**, where we perform comprehensive quality analysis of all specification artifacts to ensure they are complete, consistent, and ready for implementation.
 
 **Prerequisites**:
+
 - Phase 1 (Specify) created the initial specification
 - Phase 2 (Refine) clarified all ambiguities
 - Phase 3 (Plan) created implementation planning documents
@@ -33,12 +34,14 @@ You are helping to analyze a feature specification for the CPR (Career Progress 
 
 **Your Mission**: Review automated findings, perform semantic analysis, and produce an `analysis-report.md` with final quality score and actionable findings.
 
-**Automation Tool**: Before using this prompt, the user should run:
+**Automation Tool**: Before using this prompt you **MUST** run automation tool
+
 ```powershell
 .\framework\tools\phase-4-analyze.ps1 -FeatureNumber "XXXX" -FeatureName "feature-name"
 ```
 
 This tool validates file structure, naming conventions, placeholders, constitutional compliance, and generates `automation-report.json` with:
+
 - File existence/completeness checks (PASS/FAIL)
 - Placeholder detection (TODO, TBD, etc.)
 - Naming convention violations (camelCase in JSON, etc.)
@@ -64,15 +67,14 @@ This tool validates file structure, naming conventions, placeholders, constituti
 ### Artifacts to Analyze
 
 **Mandatory Artifacts**:
+
 1. `description.md` - Feature specification
 2. `implementation-plan.md` - Technical design and phases
 3. `tasks.md` - Task breakdown and dependencies
 4. `endpoints.md` - API contracts (if applicable)
 5. `progress.md` - Current status
 
-**Optional Artifacts** (if present):
-6. `data-model.md` - Database schema
-7. `research.md` - Technical decisions
+**Optional Artifacts** (if present): 6. `data-model.md` - Database schema 7. `research.md` - Technical decisions
 
 ### Cross-Reference Documents
 
@@ -87,12 +89,14 @@ This tool validates file structure, naming conventions, placeholders, constituti
 ### Step 1: Load Automated Findings
 
 **First, read `automation-report.json`**:
+
 - Review all automated validation results (PASS/FAIL)
 - Review all automated findings with severity levels
 - Note automated quality score
 - Check metrics (user stories, tasks, endpoints, placeholders)
 
 **The automation tool has already checked**:
+
 - ✅ File existence and completeness (all required files present and > 100 bytes)
 - ✅ Placeholder detection (TODO, TBD, FILL IN patterns)
 - ✅ Naming conventions (camelCase in JSON = violation)
@@ -112,6 +116,7 @@ This tool validates file structure, naming conventions, placeholders, constituti
 **Check for Missing Elements**:
 
 **In `description.md`**:
+
 - [ ] Executive summary present and clear
 - [ ] All user stories have 3-5 acceptance criteria
 - [ ] Business rules defined (at least 3-5 rules)
@@ -125,6 +130,7 @@ This tool validates file structure, naming conventions, placeholders, constituti
 - [ ] Dependencies and assumptions documented
 
 **In `implementation-plan.md`**:
+
 - [ ] Executive summary present
 - [ ] Constitutional Compliance Check for all 11 principles
 - [ ] All principles have status: PASS/FAIL/NEEDS REVIEW
@@ -134,6 +140,7 @@ This tool validates file structure, naming conventions, placeholders, constituti
 - [ ] Timeline estimates
 
 **In `tasks.md`**:
+
 - [ ] Tasks organized by phase
 - [ ] Each task has ID, priority, file path
 - [ ] Dependencies identified
@@ -142,6 +149,7 @@ This tool validates file structure, naming conventions, placeholders, constituti
 - [ ] Critical path documented
 
 **In `endpoints.md`**:
+
 - [ ] All endpoints from description.md included
 - [ ] Request/response schemas in JSON format
 - [ ] Error responses with status codes
@@ -159,30 +167,35 @@ This tool validates file structure, naming conventions, placeholders, constituti
 **Cross-Artifact Consistency**:
 
 **DTOs Alignment**:
+
 - [ ] C# DTOs in `description.md` match TypeScript interfaces
 - [ ] JSON property names use snake_case in all places
 - [ ] Field types consistent (string, number, boolean, etc.)
 - [ ] Required vs optional fields match across C# and TypeScript
 
 **Endpoints Alignment**:
+
 - [ ] Endpoints in `description.md` match `endpoints.md`
 - [ ] HTTP methods consistent (GET, POST, PATCH, DELETE)
 - [ ] URL paths match (kebab-case)
 - [ ] Request/response structures identical
 
 **Database Schema Alignment** (if `data-model.md` exists):
+
 - [ ] Tables in `data-model.md` match entities in `description.md`
 - [ ] Column names use snake_case
 - [ ] Constraints match business rules
 - [ ] Foreign keys match relationships described
 
 **Task Coverage**:
+
 - [ ] Every user story has corresponding tasks
 - [ ] Every endpoint has implementation tasks
 - [ ] Database migrations have tasks (if schema changes)
 - [ ] Testing tasks cover all test strategies
 
 **Terminology Consistency**:
+
 - [ ] Same concepts use same names across all files
 - [ ] No conflicting definitions
 - [ ] Acronyms defined consistently
@@ -194,18 +207,21 @@ This tool validates file structure, naming conventions, placeholders, constituti
 ### 3. Conflict Detection
 
 **Internal Conflicts** (within specification):
+
 - Contradictory requirements (e.g., "must be real-time" vs "batch processing")
 - Conflicting business rules
 - Incompatible technical choices
 - Authorization conflicts (who can do what)
 
 **External Conflicts** (with other features):
+
 - API endpoint path collisions
 - Database table/column name conflicts
 - Shared component incompatibilities
 - Authentication/authorization inconsistencies
 
 **Constitution Conflicts**:
+
 - Violations of any of the 11 CPR Constitutional Principles
 - Naming convention violations (snake_case, PascalCase, kebab-case)
 - Missing offline mode support (if required)
@@ -218,24 +234,28 @@ This tool validates file structure, naming conventions, placeholders, constituti
 ### 4. Gap Analysis
 
 **Requirement Gaps**:
+
 - User stories without acceptance criteria
 - Business rules without validation tasks
 - Non-functional requirements without test tasks
 - Error scenarios not covered in endpoints
 
 **Implementation Gaps**:
+
 - Requirements with no associated tasks
 - Tasks referencing undefined files/components
 - Missing integration tasks
 - Missing test coverage tasks
 
 **Security Gaps**:
+
 - Endpoints without authentication specified
 - Authorization rules not defined
 - Input validation missing
 - XSS/SQL injection protection not mentioned
 
 **Performance Gaps**:
+
 - No performance requirements specified
 - No load testing tasks
 - No caching strategy
@@ -248,12 +268,14 @@ This tool validates file structure, naming conventions, placeholders, constituti
 ### 5. Ambiguity Detection
 
 **Vague Language**:
+
 - "Fast", "scalable", "secure", "intuitive" without metrics
 - "Should work well" instead of specific criteria
 - "As needed" without clear triggers
 - Unresolved placeholders (TODO, TBD, ???, <placeholder>)
 
 **Underspecification**:
+
 - Verbs without objects ("User can update" - update what?)
 - Missing measurable outcomes
 - Acceptance criteria not testable
@@ -266,11 +288,13 @@ This tool validates file structure, naming conventions, placeholders, constituti
 ### 6. Duplication Analysis
 
 **Duplicate Requirements**:
+
 - Near-identical user stories
 - Redundant business rules
 - Duplicate acceptance criteria
 
 **Duplicate Tasks**:
+
 - Same work described multiple times
 - Overlapping file paths
 
@@ -283,45 +307,55 @@ This tool validates file structure, naming conventions, placeholders, constituti
 **Review Against All 11 Principles**:
 
 1. **Principle 1: Specification-First Development**
+
    - [ ] Complete specification exists before implementation
    - [ ] All required artifacts present
 
 2. **Principle 2: API Contract Consistency**
+
    - [ ] C# DTOs match TypeScript interfaces
    - [ ] JSON uses snake_case
 
 3. **Principle 3: API Standards & Security**
+
    - [ ] RESTful conventions followed
    - [ ] Standard HTTP methods and status codes
    - [ ] Authentication/authorization specified
 
 4. **Principle 4: Type Safety Everywhere**
+
    - [ ] C# DTOs have validation attributes
    - [ ] TypeScript uses strict types (no `any`)
 
 5. **Principle 5: Offline Mode**
+
    - [ ] Offline capabilities identified
    - [ ] Sync mechanism specified
 
 6. **Principle 6: Internationalization**
+
    - [ ] UI text externalizable
    - [ ] Locale-specific formatting
 
 7. **Principle 7: Comprehensive Testing**
+
    - [ ] Unit, integration, performance tests defined
    - [ ] Coverage targets set
 
 8. **Principle 8: Performance-First React Development**
+
    - [ ] Performance targets specified
    - [ ] React Query caching strategy
 
 9. **Principle 9: Strict Naming Conventions**
+
    - [ ] JSON/API: snake_case
    - [ ] C#: PascalCase with [JsonPropertyName]
    - [ ] URLs: kebab-case
    - [ ] Database: snake_case
 
 10. **Principle 10: Security & Data Privacy**
+
     - [ ] Authentication requirements
     - [ ] Authorization rules
     - [ ] Data encryption
@@ -340,11 +374,13 @@ This tool validates file structure, naming conventions, placeholders, constituti
 **Identify Parallel Execution Opportunities**:
 
 **Phase-Level Parallelism**:
+
 - Which implementation phases can run in parallel?
 - Backend vs Frontend work separation
 - Independent feature components
 
 **Task-Level Parallelism**:
+
 - Review tasks marked with [P] in `tasks.md`
 - Identify additional parallel opportunities:
   - Independent services/repositories
@@ -353,16 +389,19 @@ This tool validates file structure, naming conventions, placeholders, constituti
   - Test suites
 
 **Dependency Chains**:
+
 - Map critical path (sequential dependencies)
 - Identify blocking tasks
 - Calculate parallel work capacity
 
 **Team Distribution**:
+
 - Suggest work packages for different developers
 - Backend team tasks vs Frontend team tasks
 - Database team vs API team vs UI team
 
 **Output**: Include parallel work analysis in report with:
+
 - Critical path diagram
 - Parallel work packages
 - Estimated time savings
@@ -375,6 +414,7 @@ This tool validates file structure, naming conventions, placeholders, constituti
 ### Step 1: Load All Artifacts
 
 Read all specification files:
+
 ```
 specifications/[####]-<feature-name>/
 ├── description.md
@@ -389,6 +429,7 @@ specifications/[####]-<feature-name>/
 ### Step 2: Build Semantic Models
 
 Create internal representations:
+
 - **Requirements inventory**: List all functional and non-functional requirements
 - **User stories inventory**: All user stories with acceptance criteria
 - **API endpoints inventory**: All endpoints with methods and contracts
@@ -398,6 +439,7 @@ Create internal representations:
 ### Step 3: Run Detection Passes
 
 Execute each analysis category:
+
 1. Completeness check
 2. Consistency check
 3. Conflict detection
@@ -410,6 +452,7 @@ Execute each analysis category:
 ### Step 4: Assign Severity Levels
 
 For each finding, assign severity:
+
 - **CRITICAL**: Blocks development, violates constitution, missing core requirement
 - **HIGH**: Significant gap, conflict, or ambiguity
 - **MEDIUM**: Moderate issue, terminology drift, minor gap
@@ -420,6 +463,7 @@ For each finding, assign severity:
 **Starting Score**: 100 points
 
 **Deductions**:
+
 - CRITICAL issue: Immediate fail (score = 0, must fix before proceeding)
 - HIGH issue: -20 points each
 - MEDIUM issue: -5 points each
@@ -428,6 +472,7 @@ For each finding, assign severity:
 **Minimum Score**: 0 (cannot go negative)
 
 **Quality Thresholds**:
+
 - **≥ 90/100**: ✅ Ready for Development
 - **70-89/100**: ⚠️ Needs Improvement (fix major issues)
 - **< 70/100**: ❌ Not Ready (significant rework required)
@@ -442,7 +487,7 @@ Create `analysis-report.md` with structure:
 
 **Analyzed By**: GitHub Copilot  
 **Analysis Date**: YYYY-MM-DD  
-**Specification Version**: [from description.md metadata]  
+**Specification Version**: [from description.md metadata]
 
 ## Analysis Summary
 
@@ -456,17 +501,18 @@ Create `analysis-report.md` with structure:
 
 ## Findings
 
-| ID | Category | Severity | Location | Summary | Recommendation |
-|----|----------|----------|----------|---------|----------------|
-| F001 | Completeness | CRITICAL | description.md | Missing ... | Add ... |
-| F002 | Consistency | HIGH | endpoints.md vs description.md | Mismatch ... | Align ... |
-| ... | ... | ... | ... | ... | ... |
+| ID   | Category     | Severity | Location                       | Summary      | Recommendation |
+| ---- | ------------ | -------- | ------------------------------ | ------------ | -------------- |
+| F001 | Completeness | CRITICAL | description.md                 | Missing ...  | Add ...        |
+| F002 | Consistency  | HIGH     | endpoints.md vs description.md | Mismatch ... | Align ...      |
+| ...  | ...          | ...      | ...                            | ...          | ...            |
 
 ---
 
 ## Detailed Findings
 
 ### F001: [Finding Title] [CRITICAL]
+
 **Category**: Completeness  
 **Location**: `description.md`, line XX  
 **Description**: [Detailed description of the issue]  
@@ -479,10 +525,12 @@ Create `analysis-report.md` with structure:
 ## Constitutional Compliance Review
 
 ### Principle 1: Specification-First Development
+
 - ✅ PASS - All required artifacts present
 - Notes: [Any relevant notes]
 
 ### Principle 2: API Contract Consistency
+
 - ❌ FAIL - C# and TypeScript DTOs mismatch
 - Notes: Field `user_id` present in C# but missing in TypeScript
 
@@ -493,21 +541,24 @@ Create `analysis-report.md` with structure:
 ## Coverage Analysis
 
 ### Requirements Coverage
-| Requirement ID | User Story | Has Tasks? | Task IDs | Status |
-|----------------|------------|------------|----------|--------|
-| US-001 | Create Goal | ✅ Yes | T010, T011, T012 | Covered |
-| US-002 | View Goals | ❌ No | - | **MISSING** |
+
+| Requirement ID | User Story  | Has Tasks? | Task IDs         | Status      |
+| -------------- | ----------- | ---------- | ---------------- | ----------- |
+| US-001         | Create Goal | ✅ Yes     | T010, T011, T012 | Covered     |
+| US-002         | View Goals  | ❌ No      | -                | **MISSING** |
 
 **Coverage Metrics**:
+
 - Total Requirements: XX
 - Requirements with Tasks: XX
 - Coverage Percentage: XX%
 
 ### Task Coverage
-| Task ID | Maps to Requirement | File Path | Status |
-|---------|---------------------|-----------|--------|
-| T001 | Setup | src/... | Mapped |
-| T050 | **ORPHAN** | src/... | **No requirement** |
+
+| Task ID | Maps to Requirement | File Path | Status             |
+| ------- | ------------------- | --------- | ------------------ |
+| T001    | Setup               | src/...   | Mapped             |
+| T050    | **ORPHAN**          | src/...   | **No requirement** |
 
 ---
 
@@ -515,10 +566,12 @@ Create `analysis-report.md` with structure:
 
 ### Critical Path
 ```
+
 Phase 1 → Phase 2 → Phase 3
-  |         |         |
-  └─ 5 days └─ 3 days └─ 4 days
+| | |
+└─ 5 days └─ 3 days └─ 4 days
 Total: 12 days (sequential)
+
 ```
 
 ### Parallel Opportunities
@@ -539,7 +592,7 @@ Total: 12 days (sequential)
 2. **Frontend Developer**: Tasks T020-T040 (4 days)
 3. **QA Engineer**: Tasks T050-T070 (3 days, starts after Phase 1)
 
-**Total Duration with Parallelism**: 8 days (vs 12 days sequential)  
+**Total Duration with Parallelism**: 8 days (vs 12 days sequential)
 **Time Savings**: 4 days (33% reduction)
 
 ---
@@ -650,7 +703,7 @@ Before generating `analysis-report.md`, ensure you have:
 - [ ] Overall rating ≥ 90/100
 - [ ] Specification approved for development
 
-**Approved By**: [Name]  
+**Approved By**: [Name]
 **Approval Date**: YYYY-MM-DD
 ```
 
@@ -659,44 +712,50 @@ Before generating `analysis-report.md`, ensure you have:
 ## Output Format
 
 Generate the `analysis-report.md` file with:
+
 1. **Summary section** (automated score + AI score + final score)
 2. **Automated Findings** (from `automation-report.json`)
 3. **AI Analysis Findings** (semantic analysis results)
 4. **Combined Findings table** (all issues in tabular format with source: AUTO/AI)
 5. **Detailed findings** (one section per finding with full context)
 6. **Constitutional compliance** (all 11 principles reviewed)
-5. **Coverage analysis** (requirements and tasks)
-6. **Parallel work analysis** (critical path and opportunities)
-7. **Metrics** (counts and percentages)
-8. **Score calculation** (transparent breakdown)
-9. **Recommendations** (prioritized actions)
-10. **Sign-off section** (approval checklist)
+7. **Coverage analysis** (requirements and tasks)
+8. **Parallel work analysis** (critical path and opportunities)
+9. **Metrics** (counts and percentages)
+10. **Score calculation** (transparent breakdown)
+11. **Recommendations** (prioritized actions)
+12. **Sign-off section** (approval checklist)
 
 ---
 
 ## Best Practices
 
 ### Be Specific
+
 - Cite exact file names and line numbers
 - Quote problematic text
 - Provide concrete examples
 
 ### Be Actionable
+
 - Every finding includes a recommendation
 - Recommendations are specific and implementable
 - Prioritize by severity and impact
 
 ### Be Objective
+
 - Base findings on constitutional principles and best practices
 - Don't introduce personal preferences
 - Focus on quality, completeness, and consistency
 
 ### Be Constructive
+
 - Frame findings as opportunities for improvement
 - Acknowledge what's done well
 - Provide context for why issues matter
 
 ### Be Efficient
+
 - Limit to 50 findings (aggregate overflow)
 - Focus on high-signal issues
 - Don't repeat similar findings
@@ -706,6 +765,7 @@ Generate the `analysis-report.md` file with:
 ## Success Criteria
 
 Analysis is complete when:
+
 - [ ] All mandatory artifacts analyzed
 - [ ] All 11 constitutional principles reviewed
 - [ ] All analysis categories executed
