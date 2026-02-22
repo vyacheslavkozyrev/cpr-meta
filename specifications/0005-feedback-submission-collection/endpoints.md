@@ -1619,6 +1619,6 @@ components:
 
 | Date       | Author                            | Changes                                                                                      |
 | ---------- | --------------------------------- | -------------------------------------------------------------------------------------------- |
-| 2025-11-24 | GitHub Copilot (Phase 3 Planning) | Initial endpoint definitions for Feature 0005                                                |
-| 2025-11-24 | GitHub Copilot (Phase 3 Planning) | Added full API specifications with C# DTOs and TypeScript interfaces                         |
-| 2025-11-24 | GitHub Copilot (Phase 3 Planning) | Documented backend implementation status (existing vs. to-be-verified vs. to-be-implemented) |
+| 2025-11-24 | Claude (Phase 3 Planning) | Initial endpoint definitions for Feature 0005                                                |
+| 2025-11-24 | Claude (Phase 3 Planning) | Added full API specifications with C# DTOs and TypeScript interfaces                         |
+| 2025-11-24 | Claude (Phase 3 Planning) | Documented backend implementation status (existing vs. to-be-verified vs. to-be-implemented) |

@@ -782,7 +782,7 @@ No deployment environment available yet. Feature is production-ready and can be 
 
 ### Next Steps
 
-Use GitHub Copilot with `framework/prompts/phase-2-refine.md` to:
+Use `framework/prompts/phase-2-refine.md` to:
 1. Analyze the specification for ambiguities
 2. Generate clarifying questions
 3. Document answers and update description.md
@@ -815,4 +815,4 @@ Use GitHub Copilot with `framework/prompts/phase-2-refine.md` to:
 
 ### Next Steps
 
-Use GitHub Copilot with ramework/prompts/phase-3-plan.md to populate the planning documents.
+Use `framework/prompts/phase-3-plan.md` to populate the planning documents.
