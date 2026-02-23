@@ -756,7 +756,7 @@ _None currently_
 - [Data Model](./data-model.md)
 - [Analysis Report](./analysis-report.md)
 - [Constitution](../../constitution.md)
-- [Architecture](../../architecture.md)
+- [Architecture](../../documents/architecture.md)
 - [Workflow](../../framework/workflow.md)
 
 ### Next Steps

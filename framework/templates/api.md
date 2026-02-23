@@ -17,7 +17,7 @@ The `detail` field always contains an **i18n key**, never hardcoded English text
 
 ---
 
-## [METHOD] /api/v1/[resource]
+## [METHOD] /api/[resource]
 
 **Auth**: Required
 **Role**: [role or "Any authenticated user"]
@@ -58,7 +58,7 @@ The `detail` field always contains an **i18n key**, never hardcoded English text
 
 ---
 
-## GET /api/v1/[resource] — Paginated List
+## GET /api/[resource] — Paginated List
 
 **Auth**: Required
 **Role**: [role or "Any authenticated user"]
@@ -102,7 +102,7 @@ The `detail` field always contains an **i18n key**, never hardcoded English text
 
 ---
 
-## GET /api/v1/[resource]/{id}
+## GET /api/[resource]/{id}
 
 **Auth**: Required
 **Role**: [role]
@@ -132,7 +132,7 @@ The `detail` field always contains an **i18n key**, never hardcoded English text
 
 ---
 
-## PATCH /api/v1/[resource]/{id}
+## PATCH /api/[resource]/{id}
 
 **Auth**: Required
 **Role**: [role]
@@ -179,7 +179,7 @@ All fields optional — only provided fields are updated.
 
 ---
 
-## DELETE /api/v1/[resource]/{id}
+## DELETE /api/[resource]/{id}
 
 **Auth**: Required
 **Role**: [role]

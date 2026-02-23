@@ -8,11 +8,11 @@ Documentation, specifications, and SDD framework for the CPR project.
 
 | File | Purpose |
 |------|---------|
-| `idea.md` | Project concept and key design decisions |
-| `architecture.md` | System architecture, patterns, and technology stack |
-| `data.md` | Database schema reference |
-| `features.md` | Feature list and implementation status |
-| `personas.md` | User personas and role access levels |
+| `documents/idea.md` | Project concept and key design decisions |
+| `documents/architecture.md` | System architecture, patterns, and technology stack |
+| `documents/data.md` | Database schema reference |
+| `documents/features.md` | Feature list and implementation status |
+| `documents/personas.md` | User personas and role access levels |
 
 ---
 
@@ -34,16 +34,34 @@ Features are developed through the **Spec-Driven Development (SDD)** framework i
 ### Framework Structure
 
 ```
+.claude/
+├── skills/                  # Slash command entry points (invoke the prompts below)
+│   ├── specify/SKILL.md
+│   ├── analyze/SKILL.md
+│   ├── plan/SKILL.md
+│   ├── implement/SKILL.md
+│   ├── review/SKILL.md
+│   └── test/SKILL.md
+├── agents/                  # Subagents delegated to by phase prompts
+│   ├── spec-reader.md       # Load and summarize spec docs (haiku)
+│   ├── codebase-scanner.md  # Scan backend/frontend patterns (haiku)
+│   ├── conflict-detector.md # Detect cross-feature conflicts (sonnet)
+│   ├── build-validator.md   # Run builds, return pass/fail (haiku)
+│   └── test-runner.md       # Run tests, return structured results (haiku)
+└── settings.json            # Auto-approves all project MCP servers
+
+.mcp.json                    # MCP server definitions (project-scoped)
+
 framework/
-├── workflow.md          # Phase reference
-├── prompts/             # Detailed phase instructions (read by skills)
+├── workflow.md              # Phase reference
+├── prompts/                 # Detailed phase instructions (read by skills)
 │   ├── specify.md
 │   ├── analyze.md
 │   ├── plan.md
 │   ├── implement.md
 │   ├── review.md
 │   └── test.md
-└── templates/           # Spec document templates
+└── templates/               # Spec document templates
     ├── stories.md
     ├── wireframes.md
     ├── api.md
@@ -52,9 +70,29 @@ framework/
     └── progress.md
 ```
 
+### MCP Servers
+
+Project-level servers defined in `.mcp.json` (shared with team):
+
+| Server | Package | Used in |
+|--------|---------|---------|
+| `git-meta` | `mcp-server-git` → cpr-meta repo | Plan, Implement, Review |
+| `git-api` | `mcp-server-git` → cpr-api repo | Plan, Implement, Review |
+| `git-ui` | `mcp-server-git` → cpr-ui repo | Plan, Implement, Review |
+| `postgres` | `@modelcontextprotocol/server-postgres` | Plan (schema discovery), Review |
+| `sequential-thinking` | `@modelcontextprotocol/server-sequential-thinking` | Analyze (conflict detection), Review (scoring) |
+
+User-level server configured via `claude mcp add -s user` (token stored in `~/.claude.json`, not committed):
+
+| Server | Package | Used in |
+|--------|---------|---------|
+| `github` | `@modelcontextprotocol/server-github` | Test (PR creation after PASS) |
+
+**Setup for new contributors**: `mcp-server-git` requires Python — install with `pip install mcp-server-git`. Then add your GitHub token: `claude mcp add -s user -e GITHUB_PERSONAL_ACCESS_TOKEN=<token> -- npx -y @modelcontextprotocol/server-github`.
+
 ### Skills
 
-Invoked as slash commands from Claude Code (defined in `.claude/skills/`):
+Invoked as slash commands from Claude Code:
 
 ```
 /specify 0008    # Run Specify phase for feature 0008
@@ -71,11 +109,11 @@ Invoked as slash commands from Claude Code (defined in `.claude/skills/`):
 
 ```
 specifications/
-├── registry.md              # Compact feature registry (used by Analyze phase)
-├── 0001-personal-goals/     # Spec folder per feature
-├── 0004-feedback-requests/
-├── 0005-feedback-submission/
-└── 0008-skills-taxonomy/
+├── registry.md                              # Compact feature registry (used by Analyze phase)
+├── 0001-personal-goal-management/           # Complete
+├── 0004-feedback-request-management/        # In Progress
+├── 0005-feedback-submission-collection/     # In Progress
+└── 0008-skills-taxonomy-career-framework/   # Not Started
 ```
 
 Each spec folder contains: `stories.md`, `wireframes.md`, `api.md` (if applicable), `schema.md` (if applicable), `plan.md`, `progress.md`.
@@ -84,6 +122,6 @@ Each spec folder contains: `stories.md`, `wireframes.md`, `api.md` (if applicabl
 
 ## Related
 
-- `cpr-api/` — .NET 8 Web API backend
+- `cpr-api/` — .NET 9 Web API backend
 - `cpr-ui/` — React 18 + TypeScript frontend
 - `CLAUDE.md` — Claude Code context (standards, rules, build commands)

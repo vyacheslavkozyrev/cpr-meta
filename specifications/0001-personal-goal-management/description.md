@@ -12,7 +12,7 @@ repositories:
   - cpr-ui
 related_documents:
   - ../../constitution.md
-  - ../../architecture.md
+  - ../../documents/architecture.md
 ---
 
 # Personal Goal Creation & Management

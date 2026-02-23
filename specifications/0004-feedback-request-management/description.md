@@ -14,7 +14,7 @@ repositories:
   - cpr-ui
 related_documents:
   - ../../constitution.md
-  - ../../architecture.md
+  - ../../documents/architecture.md
   - ../../features-list.md
 refinement_summary:
   questions_asked: 10

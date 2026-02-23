@@ -1,0 +1,56 @@
+{
+  "mcpServers": {
+    "git-meta": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_server_git",
+        "-r",
+        "D:/projects/CPR/source/cpr-meta"
+      ],
+      "env": {}
+    },
+    "git-api": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_server_git",
+        "-r",
+        "D:/projects/CPR/source/cpr-api"
+      ],
+      "env": {}
+    },
+    "git-ui": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "-m",
+        "mcp_server_git",
+        "-r",
+        "D:/projects/CPR/source/cpr-ui"
+      ],
+      "env": {}
+    },
+    "postgres": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://postgres:postgres@localhost:5432/cpr_dev"
+      ],
+      "env": {}
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {}
+    }
+  }
+}

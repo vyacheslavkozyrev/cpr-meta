@@ -5,7 +5,7 @@ Gate progression on full AC coverage, passing tests, and minimum code coverage.
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Review** shows ✅ Complete with score ≥ 80.
 If not, stop and notify the user: "Review is not yet complete or did not pass. Run `/review [####]` first."
 
@@ -22,7 +22,10 @@ If not, stop and notify the user: "Review is not yet complete or did not pass. R
 
 ## Step 1 — Map Acceptance Criteria to Tests
 
-For each acceptance criterion in stories.md, define at least one test.
+**Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
+Use its AC list as the source of truth for the mapping below.
+
+For each acceptance criterion, define at least one test.
 Print the mapping before writing any code:
 
 ```
@@ -87,18 +90,14 @@ Location: follow existing pattern in `cpr-ui/e2e/`
 
 ## Step 4 — Run Tests
 
-```bash
-# Backend
-dotnet test cpr-api --collect:"XPlat Code Coverage"
+Use the **`test-runner`** agent. Run backend and frontend tests **in parallel**:
+- Instance 1: `scope: backend`
+- Instance 2: `scope: frontend`
 
-# Frontend unit + component
-yarn --cwd cpr-ui test:coverage
+Once both pass, run E2E separately:
+- Instance 3: `scope: e2e`
 
-# E2E
-yarn --cwd cpr-ui test:e2e
-```
-
-Record the result of each test run (pass/fail, coverage %). Note any failures with the error message.
+Record the structured results returned by the agent.
 
 **Coverage thresholds** (from `CLAUDE.md`):
 - Overall: minimum 80%

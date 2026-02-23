@@ -695,7 +695,7 @@ List any unresolved questions or decisions needed before implementation:
 - Data Model: `specifications/0001-[feature-name]/data-model.md` (if applicable)
 - Research: `specifications/0001-[feature-name]/research.md` (if applicable)
 - Constitution: `constitution.md`
-- Architecture: `architecture.md`
+- Architecture: `documents/architecture.md`
 
 ---
 

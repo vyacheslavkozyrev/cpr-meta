@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "mcp__git-meta__git_status",
+      "mcp__git-meta__git_log",
+      "mcp__git-meta__git_diff_unstaged"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "git-meta",
+    "git-api",
+    "git-ui",
+    "postgres",
+    "sequential-thinking"
+  ]
+}

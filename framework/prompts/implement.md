@@ -4,7 +4,7 @@ Execute the tasks in plan.md in order to produce working code that satisfies the
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Plan** shows ✅ Complete.
 If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` first."
 
@@ -15,7 +15,7 @@ If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` 
 - `plan.md` — ordered task list
 - `stories.md` — acceptance criteria (reference while implementing)
 - `api.md`, `schema.md`, `wireframes.md` — spec reference
-- `cpr-meta/architecture.md`, `CLAUDE.md` — conventions
+- `documents/architecture.md`, `CLAUDE.md` — conventions
 
 ---
 
@@ -23,7 +23,7 @@ If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` 
 
 Read `plan.md`. Note which tasks are already checked off (resume from first unchecked).
 Read `stories.md` acceptance criteria — these define what "done" means.
-Read `cpr-meta/architecture.md` for architectural patterns to follow.
+Read `documents/architecture.md` for architectural patterns to follow.
 
 ---
 
@@ -46,17 +46,12 @@ section of `progress.md` and notify the user before proceeding.
 
 ### Build checkpoints
 
-Run the appropriate build after every 3–5 tasks or after completing a full layer:
+After every 3–5 tasks or after completing a full layer, use the **`build-validator`** agent:
+- Pass `project: api` after backend tasks
+- Pass `project: ui` after frontend tasks
+- Pass `project: both` for a full checkpoint
 
-```bash
-# After backend tasks
-dotnet build cpr-api
-
-# After frontend tasks
-yarn --cwd cpr-ui build
-```
-
-Fix all build errors before continuing to the next task.
+Continue only if the agent reports PASS. Fix all listed errors before proceeding.
 Do not accumulate build errors across tasks.
 
 ### Quality while implementing
@@ -72,14 +67,9 @@ Do not accumulate build errors across tasks.
 
 ## Step 3 — Final Build Verification
 
-After all tasks are complete, run both builds:
+After all tasks are complete, use the **`build-validator`** agent with `project: both`.
 
-```bash
-dotnet build cpr-api
-yarn --cwd cpr-ui build
-```
-
-Both must exit with code 0. If either fails, fix the errors — do not mark Implement complete.
+Both must report PASS. If either fails, fix the errors — do not mark Implement complete.
 
 ---
 

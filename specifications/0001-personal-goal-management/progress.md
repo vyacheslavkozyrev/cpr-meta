@@ -744,7 +744,7 @@ No deployment environment available yet. Feature is production-ready and can be 
 ### Related Documents
 - [Feature Specification](./description.md)
 - [Constitution](../../constitution.md)
-- [Architecture](../../architecture.md)
+- [Architecture](../../documents/architecture.md)
 - [Workflow](../../framework/workflow.md)
 
 ---

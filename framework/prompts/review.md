@@ -5,7 +5,7 @@ Produce a scored report and gate progression at ≥ 80/100.
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Implement** shows ✅ Complete.
 If not, stop and notify the user: "Implement is not yet complete. Run `/implement [####]` first."
 
@@ -15,15 +15,16 @@ If not, stop and notify the user: "Implement is not yet complete. Run `/implemen
 - Feature number `[####]`
 - All files listed in `plan.md` (every `[x]` task's target file)
 - `stories.md`, `api.md`, `schema.md`, `wireframes.md`
-- `cpr-meta/architecture.md`, `CLAUDE.md`
+- `documents/architecture.md`, `CLAUDE.md`
 
 ---
 
 ## Step 1 — Read All Context
 
-Read `stories.md`, `api.md`, `schema.md`, and `wireframes.md` — these are the comparison baseline.
+**Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
+Its output provides the comparison baseline (stories/ACs, API contracts, schema, wireframe flows).
 
-Read every file targeted by a completed task in `plan.md`.
+Read every file targeted by a completed task in `plan.md` directly.
 Also read any files modified as a side effect (e.g. DI registration files, route configs).
 
 ---

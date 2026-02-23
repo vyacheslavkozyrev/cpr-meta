@@ -5,7 +5,7 @@ then gate progression based on conflict severity.
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Specify** shows ✅ Complete.
 If not, stop and notify the user: "Specify is not yet complete. Run `/specify [####]` first."
 
@@ -13,44 +13,15 @@ If not, stop and notify the user: "Specify is not yet complete. Run `/specify [#
 
 ## Inputs
 - Feature number `[####]`
-- New feature's spec docs: `stories.md`, `api.md` (if exists), `schema.md` (if exists)
-- `cpr-meta/specifications/registry.md`
 
 ---
 
-## Step 1 — Read Context
+## Steps 1–3 — Detect Conflicts
 
-1. Read `cpr-meta/specifications/registry.md` — compact overview of all features.
-2. Read the new feature's `stories.md`, `api.md`, `schema.md` from its spec folder.
+Delegate to the **`conflict-detector`** agent, passing feature number `[####]`.
 
----
-
-## Step 2 — Flag Potentially Conflicting Features
-
-Exclude feature `[####]` itself from the comparison — only analyze other features.
-From the remaining registry entries, identify features that share any of the following with the new feature:
-- Same or similar entity/model names
-- Overlapping API path prefixes
-- Same DB tables
-- Same business domain or user role actions
-
-For each flagged feature, read its full spec files (stories.md, api.md, schema.md).
-Skip features with **Status: Not Started** — their spec files do not exist yet and
-cannot be compared; note them as informational in the findings.
-
----
-
-## Step 3 — Analyze for Conflicts
-
-Check each flagged feature against the new spec:
-
-| Category | What to look for |
-|----------|-----------------|
-| **Naming** | Same entity or table name with different meaning or structure |
-| **Data model** | Duplicate columns, conflicting FK references, overlapping table responsibilities |
-| **API** | Duplicate paths, same endpoint with different request/response contract |
-| **Business logic** | Contradictory rules, duplicate user stories, overlapping acceptance criteria |
-| **Scope** | New feature duplicates functionality already implemented |
+The agent reads the registry, the new feature's specs, and all related feature specs,
+then returns a structured conflict report. Use that report as input to Steps 4–5 below.
 
 ---
 

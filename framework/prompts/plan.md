@@ -4,7 +4,7 @@ Generate a file-level, ordered implementation task list from the approved spec d
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Analyze** shows ✅ Complete.
 If not, stop and notify the user: "Analyze is not yet complete. Run `/analyze [####]` first."
 
@@ -13,32 +13,28 @@ If not, stop and notify the user: "Analyze is not yet complete. Run `/analyze [#
 ## Inputs
 - Feature number `[####]`
 - `stories.md`, `wireframes.md`, `api.md` (if exists), `schema.md` (if exists)
-- `cpr-meta/architecture.md` — existing patterns and conventions
+- `documents/architecture.md` — existing patterns and conventions
 - `CLAUDE.md` — naming conventions, build structure
 
 ---
 
 ## Step 1 — Read All Context
 
-Read all spec documents for this feature.
-Read `cpr-meta/architecture.md` to understand existing patterns:
-repository layer, service layer, controller conventions, frontend structure.
-Read `cpr-meta/data.md` to understand the existing database schema — avoid re-creating
-tables or columns that already exist, and ensure FK references target correct tables.
+**Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
+Use its output as the spec context throughout this phase.
 
-Also scan the relevant parts of the codebase to understand current patterns:
-- `cpr-api/src/CPR.Api/Controllers/` — existing controller structure and base classes
-- `cpr-api/src/CPR.Application/Services/` — existing service patterns
-- `cpr-api/src/CPR.Domain/Repositories/` — existing repository interfaces
-- `cpr-ui/src/pages/` — existing page structure
-- `cpr-ui/src/hooks/` — existing React Query hook patterns
-- `cpr-ui/src/mocks/handlers/` — existing MSW handler style
+**Scan codebase patterns** — run the **`codebase-scanner`** agent twice **in parallel**:
+- Instance 1: `layer: backend`
+- Instance 2: `layer: frontend`
+
+Also read `documents/architecture.md` and `documents/data.md` directly for architectural context and the
+existing database schema (avoid re-creating tables or columns that already exist).
 
 ---
 
 ## Step 2 — Generate plan.md
 
-Create `cpr-meta/specifications/[####]-*/plan.md`.
+Create `specifications/[####]-*/plan.md`.
 
 ### Task format
 

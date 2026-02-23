@@ -1037,7 +1037,7 @@ See `endpoints.md` for complete endpoint specifications with DTOs, validation ru
 - **Data Model**: `specifications/0005-feedback-submission-collection/data-model.md` (backend already implemented, document for reference)
 - **Progress Tracking**: `specifications/0005-feedback-submission-collection/progress.md` (Phase 2 complete, Phase 3 in progress)
 - **Constitution**: `constitution.md` (CPR Constitutional Principles 1-11)
-- **Architecture**: `architecture.md` (System architecture patterns and standards)
+- **Architecture**: `documents/architecture.md` (System architecture patterns and standards)
 - **Features List**: `features-list.md` (Feature F005 context and dependencies)
 - **Related Features**:
   - F004 - Feedback Request Management (dependency, integration point)

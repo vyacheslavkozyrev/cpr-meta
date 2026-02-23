@@ -14,7 +14,7 @@ repositories:
   - cpr-ui
 related_documents:
   - ../../constitution.md
-  - ../../architecture.md
+  - ../../documents/architecture.md
   - ../../features-list.md
   - ../0004-feedback-request-management/description.md
 dependencies:
