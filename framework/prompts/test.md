@@ -5,7 +5,7 @@ Gate progression on full AC coverage, passing tests, and minimum code coverage.
 
 ## Step 0 — Verify Gate
 
-Read `specifications/[####]-*/progress.md`.
+Read `cpr-meta/specifications/[####]-*/progress.md`.
 Confirm **Review** shows ✅ Complete with score ≥ 80.
 If not, stop and notify the user: "Review is not yet complete or did not pass. Run `/review [####]` first."
 
@@ -140,7 +140,7 @@ Append to the **Test Results** section of `progress.md`:
 
 Update the Test row in the Phase Status table: ✅ Complete (PASS) or ❌ Blocked.
 
-Also update `registry.md`: change the feature's **Status** from `In Progress` to `Complete`.
+Also update `cpr-meta/specifications/registry.md`: change the feature's **Status** from `In Progress` to `Complete`.
 
 ---
 

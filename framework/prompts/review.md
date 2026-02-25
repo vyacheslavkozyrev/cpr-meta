@@ -5,7 +5,7 @@ Produce a scored report and gate progression at ≥ 80/100.
 
 ## Step 0 — Verify Gate
 
-Read `specifications/[####]-*/progress.md`.
+Read `cpr-meta/specifications/[####]-*/progress.md`.
 Confirm **Implement** shows ✅ Complete.
 If not, stop and notify the user: "Implement is not yet complete. Run `/implement [####]` first."
 
@@ -15,7 +15,7 @@ If not, stop and notify the user: "Implement is not yet complete. Run `/implemen
 - Feature number `[####]`
 - All files listed in `plan.md` (every `[x]` task's target file)
 - `stories.md`, `api.md`, `schema.md`, `wireframes.md`
-- `documents/architecture.md`, `CLAUDE.md`
+- `cpr-meta/documents/architecture.md`, `CLAUDE.md`
 
 ---
 

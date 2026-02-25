@@ -1,7 +1,7 @@
 # SDD Framework — Workflow Reference
 
 Spec-Driven Development: a free-text feature description flows through 6 phases to
-produce working, tested code. Specs live in `specifications/[####]-feature-name/`.
+produce working, tested code. Specs live in `cpr-meta/specifications/[####]-feature-name/`.
 
 ---
 
@@ -29,7 +29,7 @@ produce working, tested code. Specs live in `specifications/[####]-feature-name/
 | `plan.md` | Always | Plan |
 | `progress.md` | Always | Specify |
 
-Templates: `framework/templates/`
+Templates: `cpr-meta/framework/templates/`
 
 ---
 
@@ -48,7 +48,7 @@ Templates: `framework/templates/`
 
 ## Feature Registry
 
-`specifications/registry.md` — one compact entry per feature.
+`cpr-meta/specifications/registry.md` — one compact entry per feature.
 
 - Written at the end of Specify (after human confirms).
 - Read at the start of Analyze to detect cross-feature conflicts.
@@ -59,7 +59,7 @@ Templates: `framework/templates/`
 ## Folder Convention
 
 ```
-specifications/
+cpr-meta/specifications/
 ├── registry.md
 ├── 0001-personal-goal-management/
 │   ├── stories.md
@@ -101,13 +101,13 @@ Do not skip the re-analyze step; a spec change can introduce conflicts that were
 ## Skills Reference
 
 Skills live in `.claude/skills/` and are invoked as `/skill-name [####]`.
-Each skill reads its detailed prompt from `framework/prompts/`.
+Each skill reads its detailed prompt from `cpr-meta/framework/prompts/`.
 
 | Skill file | Prompt file |
 |------------|-------------|
-| `.claude/skills/specify/SKILL.md` | `framework/prompts/specify.md` |
-| `.claude/skills/analyze/SKILL.md` | `framework/prompts/analyze.md` |
-| `.claude/skills/plan/SKILL.md` | `framework/prompts/plan.md` |
-| `.claude/skills/implement/SKILL.md` | `framework/prompts/implement.md` |
-| `.claude/skills/review/SKILL.md` | `framework/prompts/review.md` |
-| `.claude/skills/test/SKILL.md` | `framework/prompts/test.md` |
+| `.claude/skills/specify/SKILL.md` | `cpr-meta/framework/prompts/specify.md` |
+| `.claude/skills/analyze/SKILL.md` | `cpr-meta/framework/prompts/analyze.md` |
+| `.claude/skills/plan/SKILL.md` | `cpr-meta/framework/prompts/plan.md` |
+| `.claude/skills/implement/SKILL.md` | `cpr-meta/framework/prompts/implement.md` |
+| `.claude/skills/review/SKILL.md` | `cpr-meta/framework/prompts/review.md` |
+| `.claude/skills/test/SKILL.md` | `cpr-meta/framework/prompts/test.md` |

@@ -10,21 +10,21 @@ Transform a free-text feature description into structured specification document
 
 ## Step 1 — Locate or Create Spec Folder
 
-Check `specifications/registry.md` to confirm `[####]` is not already registered
+Check `cpr-meta/specifications/registry.md` to confirm `[####]` is not already registered
 under a different feature name. If it is, stop and notify the user:
 "Feature [####] already exists in the registry as '[Name]'. Use a different number or run `/analyze [####]` if this is an amendment."
 
-Then check if `specifications/[####]-*/` exists.
+Then check if `cpr-meta/specifications/[####]-*/` exists.
 
 - If it exists: read its current contents and note what's already there.
 - If it doesn't exist: ask the user for a short kebab-case feature name
-  (e.g. `job-applications`), then create `specifications/[####]-[name]/`.
+  (e.g. `job-applications`), then create `cpr-meta/specifications/[####]-[name]/`.
 
 ---
 
 ## Step 2 — Ask Clarifying Questions
 
-Read `documents/personas.md` to understand the available roles and their access levels before identifying gaps.
+Read `cpr-meta/documents/personas.md` to understand the available roles and their access levels before identifying gaps.
 
 Read the feature description. Identify gaps across these areas:
 - **Roles**: who performs each action? (refer to documents/personas.md for role definitions)
@@ -50,7 +50,7 @@ Otherwise, wait for the user to answer before proceeding to Step 3.
 
 ## Step 3 — Generate Spec Documents
 
-Use templates from `framework/templates/` as the base structure.
+Use templates from `cpr-meta/framework/templates/` as the base structure.
 Replace all placeholder text with feature-specific content.
 Follow naming conventions from `CLAUDE.md` exactly:
 snake_case for all JSON fields and DB columns, kebab-case for URL paths,
@@ -106,7 +106,7 @@ update only the Specify row date and add an entry to the Amendments section.
 
 ## Step 5 — Propose Registry Entry
 
-Print (do not write yet) the proposed entry for `specifications/registry.md`:
+Print (do not write yet) the proposed entry for `cpr-meta/specifications/registry.md`:
 
 ```
 ## [####] — [Feature Name]
@@ -117,4 +117,4 @@ Print (do not write yet) the proposed entry for `specifications/registry.md`:
 **DB tables**: [table names] or "none"
 ```
 
-Ask the user to confirm. On confirmation, append the entry to `specifications/registry.md`.
+Ask the user to confirm. On confirmation, append the entry to `cpr-meta/specifications/registry.md`.

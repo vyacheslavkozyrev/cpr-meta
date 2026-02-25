@@ -33,46 +33,50 @@ Features are developed through the **Spec-Driven Development (SDD)** framework i
 
 ### Framework Structure
 
+Skills, agents, and settings live at the **repo root** (`source/`), shared across all three repos:
+
 ```
-.claude/
-├── skills/                  # Slash command entry points (invoke the prompts below)
-│   ├── specify/SKILL.md
-│   ├── analyze/SKILL.md
-│   ├── plan/SKILL.md
-│   ├── implement/SKILL.md
-│   ├── review/SKILL.md
-│   └── test/SKILL.md
-├── agents/                  # Subagents delegated to by phase prompts
-│   ├── spec-reader.md       # Load and summarize spec docs (haiku)
-│   ├── codebase-scanner.md  # Scan backend/frontend patterns (haiku)
-│   ├── conflict-detector.md # Detect cross-feature conflicts (sonnet)
-│   ├── build-validator.md   # Run builds, return pass/fail (haiku)
-│   └── test-runner.md       # Run tests, return structured results (haiku)
-└── settings.json            # Auto-approves all project MCP servers
+source/
+├── CLAUDE.md                    # Claude Code context (standards, rules, build commands)
+├── .mcp.json                    # MCP server definitions (project-scoped)
+└── .claude/
+    ├── skills/                  # Slash command entry points (invoke the prompts below)
+    │   ├── specify/SKILL.md
+    │   ├── analyze/SKILL.md
+    │   ├── plan/SKILL.md
+    │   ├── implement/SKILL.md
+    │   ├── review/SKILL.md
+    │   └── test/SKILL.md
+    ├── agents/                  # Subagents delegated to by phase prompts
+    │   ├── spec-reader.md       # Load and summarize spec docs (haiku)
+    │   ├── codebase-scanner.md  # Scan backend/frontend patterns — optional (haiku)
+    │   ├── conflict-detector.md # Detect cross-feature conflicts (sonnet)
+    │   ├── build-validator.md   # Run builds, return pass/fail (haiku)
+    │   └── test-runner.md       # Run tests, return structured results (haiku)
+    └── settings.json            # Auto-approves all project MCP servers
 
-.mcp.json                    # MCP server definitions (project-scoped)
-
-framework/
-├── workflow.md              # Phase reference
-├── prompts/                 # Detailed phase instructions (read by skills)
-│   ├── specify.md
-│   ├── analyze.md
-│   ├── plan.md
-│   ├── implement.md
-│   ├── review.md
-│   └── test.md
-└── templates/               # Spec document templates
-    ├── stories.md
-    ├── wireframes.md
-    ├── api.md
-    ├── schema.md
-    ├── plan.md
-    └── progress.md
+cpr-meta/
+└── framework/
+    ├── workflow.md              # Phase reference
+    ├── prompts/                 # Detailed phase instructions (read by skills)
+    │   ├── specify.md
+    │   ├── analyze.md
+    │   ├── plan.md
+    │   ├── implement.md
+    │   ├── review.md
+    │   └── test.md
+    └── templates/               # Spec document templates
+        ├── stories.md
+        ├── wireframes.md
+        ├── api.md
+        ├── schema.md
+        ├── plan.md
+        └── progress.md
 ```
 
 ### MCP Servers
 
-Project-level servers defined in `.mcp.json` (shared with team):
+Project-level servers defined in `source/.mcp.json` (shared with team):
 
 | Server | Package | Used in |
 |--------|---------|---------|
@@ -92,7 +96,7 @@ User-level server configured via `claude mcp add -s user` (token stored in `~/.c
 
 ### Skills
 
-Invoked as slash commands from Claude Code:
+Invoked as slash commands from Claude Code (run from `source/`):
 
 ```
 /specify 0008    # Run Specify phase for feature 0008
@@ -113,7 +117,7 @@ specifications/
 ├── 0001-personal-goal-management/           # Complete
 ├── 0004-feedback-request-management/        # In Progress
 ├── 0005-feedback-submission-collection/     # In Progress
-└── 0008-skills-taxonomy-career-framework/   # Not Started
+└── 0008-skills-taxonomy-career-framework/   # Plan ✅ — ready for /implement 0008
 ```
 
 Each spec folder contains: `stories.md`, `wireframes.md`, `api.md` (if applicable), `schema.md` (if applicable), `plan.md`, `progress.md`.
@@ -122,6 +126,6 @@ Each spec folder contains: `stories.md`, `wireframes.md`, `api.md` (if applicabl
 
 ## Related
 
-- `cpr-api/` — .NET 9 Web API backend
-- `cpr-ui/` — React 18 + TypeScript frontend
-- `CLAUDE.md` — Claude Code context (standards, rules, build commands)
+- `../cpr-api/` — .NET 9 Web API backend
+- `../cpr-ui/` — React 18 + TypeScript frontend
+- `../CLAUDE.md` — Claude Code context (standards, rules, build commands)
