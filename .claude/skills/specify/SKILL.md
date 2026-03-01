@@ -1,3 +1,13 @@
+---
+description: Run the Specify phase — turn a free-text feature description into structured spec documents (stories, wireframes, api, schema, progress).
+argument-hint: <feature-number>
+allowed-tools: Read, Write, Edit, Glob, Grep, Agent
+---
+
+You are executing the **Specify** phase of the SDD framework.
+
+Feature number: **$ARGUMENTS**
+
 # Specify Phase
 
 Transform a free-text feature description into structured specification documents.
@@ -10,11 +20,11 @@ Transform a free-text feature description into structured specification document
 
 ## Step 1 — Locate or Create Spec Folder
 
-Check `cpr-meta/specifications/registry.md` to confirm `[####]` is not already registered
+Check `specifications/registry.md` to confirm `[####]` is not already registered
 under a different feature name. If it is, stop and notify the user:
 "Feature [####] already exists in the registry as '[Name]'. Use a different number or run `/analyze [####]` if this is an amendment."
 
-Then check if `cpr-meta/specifications/[####]-*/` exists.
+Then check if `specifications/[####]-*/` exists.
 
 - If it exists: read its current contents and note what's already there.
 - If it doesn't exist: ask the user for a short kebab-case feature name
@@ -50,7 +60,7 @@ Otherwise, wait for the user to answer before proceeding to Step 3.
 
 ## Step 3 — Generate Spec Documents
 
-Use templates from `cpr-meta/framework/templates/` as the base structure.
+Use templates from `cpr-meta/templates/` as the base structure.
 Replace all placeholder text with feature-specific content.
 Follow naming conventions from `CLAUDE.md` exactly:
 snake_case for all JSON fields and DB columns, kebab-case for URL paths,

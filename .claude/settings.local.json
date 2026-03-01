@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp:*)",
+      "Bash(python3:*)",
+      "Bash(cd:*)",
+      "Bash(uvx:*)",
+      "Bash(echo pip not found:*)",
+      "Bash(npm show:*)",
+      "Bash(tail:*)",
+      "Bash(python:*)",
+      "Bash(git:*)",
+      "Bash(gh auth:*)",
+      "Bash(claude mcp:*)",
+      "Bash(grep:*)",
+      "mcp__git-meta__git_status",
+      "mcp__git-meta__git_log",
+      "mcp__git-meta__git_diff_unstaged",
+      "mcp__git-meta__git_diff_staged",
+      "mcp__git-meta__git_commit"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "git-meta",
+    "git-api",
+    "git-ui",
+    "postgres",
+    "sequential-thinking"
+  ]
+}

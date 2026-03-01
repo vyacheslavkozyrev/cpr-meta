@@ -42,3 +42,13 @@ One entry per feature. Updated at the end of each Specify phase.
 **Key entities**: `CareerPath`, `CareerTrack`, `Position`, `SkillCategory`, `Skill`, `SkillLevel`, `PositionToSkill`
 **API endpoints**: GET /api/taxonomy/career-paths, GET /api/taxonomy/career-paths/{id}, GET /api/taxonomy/career-tracks, GET /api/taxonomy/career-tracks/{id}, GET /api/taxonomy/positions/{id}, GET /api/taxonomy/skill-categories, GET /api/taxonomy/skills, GET /api/taxonomy/skills/{id}, POST /api/taxonomy/career-paths, PATCH /api/taxonomy/career-paths/{id}, POST /api/taxonomy/career-tracks, PATCH /api/taxonomy/career-tracks/{id}, POST /api/taxonomy/positions, PATCH /api/taxonomy/positions/{id}, POST /api/taxonomy/skill-categories, PATCH /api/taxonomy/skill-categories/{id}, POST /api/taxonomy/skills, PATCH /api/taxonomy/skills/{id}, DELETE /api/taxonomy/skills/{id}, POST /api/taxonomy/skills/{id}/levels, PATCH /api/taxonomy/skills/{id}/levels/{level_id}, POST /api/taxonomy/positions/{id}/skills, PATCH /api/taxonomy/positions/{id}/skills/{position_skill_id}, DELETE /api/taxonomy/positions/{id}/skills/{position_skill_id}
 **DB tables**: `career_paths`, `career_tracks`, `positions`, `skill_categories`, `skills`, `skill_levels`, `position_to_skill` (all existing — no new tables)
+
+---
+
+## 0006 — 360-Degree Feedback
+
+**Status**: In Progress
+**Summary**: Enables Directors to create and manage 360-degree review cycles for employees in their department, with peer nominations by both the subject employee and their manager, reviewer feedback submission (1–5 rating + comments), and role-based results visibility (aggregated/anonymous for employees; full attributed detail for managers and directors).
+**Key entities**: `ReviewCycle`, `ReviewNominee`, `ReviewResponse`
+**API endpoints**: POST /api/review-cycles, GET /api/review-cycles, GET /api/review-cycles/{id}, PATCH /api/review-cycles/{id}/status, POST /api/review-cycles/{id}/nominees, DELETE /api/review-cycles/{id}/nominees/{nominee_id}, GET /api/review-cycles/{id}/nominees, POST /api/review-cycles/{id}/responses, GET /api/review-cycles/{id}/results, GET /api/me/review-requests
+**DB tables**: `review_cycles`, `review_nominees`, `review_responses`

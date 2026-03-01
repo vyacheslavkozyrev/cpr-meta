@@ -1,3 +1,13 @@
+---
+description: Run the Plan phase — generate a file-level ordered implementation task list from the approved spec documents.
+argument-hint: <feature-number>
+allowed-tools: Read, Write, Edit, Glob, Grep, Agent
+---
+
+You are executing the **Plan** phase of the SDD framework.
+
+Feature number: **$ARGUMENTS**
+
 # Plan Phase
 
 Generate a file-level, ordered implementation task list from the approved spec documents.
@@ -22,7 +32,6 @@ If not, stop and notify the user: "Analyze is not yet complete. Run `/analyze [#
 
 **Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
 Use its output as the spec context throughout this phase.
-If the spec documents are already in context from the current session (e.g. Specify was just completed), skip this agent call.
 
 **Read conventions and architecture** directly:
 - `CLAUDE.md` — naming conventions, layer structure, build commands

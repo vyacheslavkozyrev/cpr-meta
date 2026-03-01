@@ -1,3 +1,13 @@
+---
+description: Run the Analyze phase — detect conflicts between a new feature spec and all existing features, then gate progression based on conflict severity.
+argument-hint: <feature-number>
+allowed-tools: Read, Write, Edit, Agent
+---
+
+You are executing the **Analyze** phase of the SDD framework.
+
+Feature number: **$ARGUMENTS**
+
 # Analyze Phase
 
 Detect conflicts between the new feature spec and all existing features,
