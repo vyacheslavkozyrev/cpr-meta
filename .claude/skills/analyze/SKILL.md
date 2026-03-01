@@ -15,7 +15,7 @@ then gate progression based on conflict severity.
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Specify** shows ✅ Complete.
 If not, stop and notify the user: "Specify is not yet complete. Run `/specify [####]` first."
 

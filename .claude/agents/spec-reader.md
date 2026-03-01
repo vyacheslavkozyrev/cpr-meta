@@ -13,7 +13,7 @@ You will receive a feature number `[####]`.
 
 ## Task
 
-1. Locate the spec folder: `cpr-meta/specifications/[####]-*/`
+1. Locate the spec folder: `specifications/[####]-*/`
 2. Read every file that exists in the folder: `progress.md`, `stories.md`, `wireframes.md`, `api.md`, `schema.md`, `plan.md`
 3. Return a condensed summary organized by document
 

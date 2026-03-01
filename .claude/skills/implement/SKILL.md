@@ -14,7 +14,7 @@ Execute the tasks in plan.md in order to produce working code that satisfies the
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Plan** shows ✅ Complete.
 If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` first."
 
@@ -25,7 +25,7 @@ If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` 
 - `plan.md` — ordered task list
 - `stories.md` — acceptance criteria (reference while implementing)
 - `api.md`, `schema.md`, `wireframes.md` — spec reference
-- `cpr-meta/documents/architecture.md`, `CLAUDE.md` — conventions
+- `documents/architecture.md`, `CLAUDE.md` — conventions
 
 ---
 
@@ -33,7 +33,7 @@ If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` 
 
 Read `plan.md`. Note which tasks are already checked off (resume from first unchecked).
 Read `stories.md` acceptance criteria — these define what "done" means.
-Read `cpr-meta/documents/architecture.md` for architectural patterns to follow.
+Read `documents/architecture.md` for architectural patterns to follow.
 
 ---
 

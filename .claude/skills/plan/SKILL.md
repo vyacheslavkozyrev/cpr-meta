@@ -14,7 +14,7 @@ Generate a file-level, ordered implementation task list from the approved spec d
 
 ## Step 0 — Verify Gate
 
-Read `cpr-meta/specifications/[####]-*/progress.md`.
+Read `specifications/[####]-*/progress.md`.
 Confirm **Analyze** shows ✅ Complete.
 If not, stop and notify the user: "Analyze is not yet complete. Run `/analyze [####]` first."
 
@@ -23,7 +23,7 @@ If not, stop and notify the user: "Analyze is not yet complete. Run `/analyze [#
 ## Inputs
 - Feature number `[####]`
 - `stories.md`, `wireframes.md`, `api.md` (if exists), `schema.md` (if exists)
-- `cpr-meta/documents/architecture.md` — existing patterns and conventions
+- `documents/architecture.md` — existing patterns and conventions
 - `CLAUDE.md` — naming conventions, build structure
 
 ---
@@ -35,8 +35,8 @@ Use its output as the spec context throughout this phase.
 
 **Read conventions and architecture** directly:
 - `CLAUDE.md` — naming conventions, layer structure, build commands
-- `cpr-meta/documents/architecture.md` — architectural patterns
-- `cpr-meta/documents/data.md` — existing DB schema (avoid re-creating tables or columns that already exist)
+- `documents/architecture.md` — architectural patterns
+- `documents/data.md` — existing DB schema (avoid re-creating tables or columns that already exist)
 
 > If you need concrete code examples for a specific entity (e.g. to verify an unusual pattern),
 > you may optionally run the **`codebase-scanner`** agent with `layer: backend` or `layer: frontend`
@@ -46,7 +46,7 @@ Use its output as the spec context throughout this phase.
 
 ## Step 2 — Generate plan.md
 
-Create `cpr-meta/specifications/[####]-*/plan.md`.
+Create `specifications/[####]-*/plan.md`.
 
 ### Task format
 

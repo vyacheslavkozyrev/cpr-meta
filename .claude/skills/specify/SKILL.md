@@ -28,13 +28,13 @@ Then check if `specifications/[####]-*/` exists.
 
 - If it exists: read its current contents and note what's already there.
 - If it doesn't exist: ask the user for a short kebab-case feature name
-  (e.g. `job-applications`), then create `cpr-meta/specifications/[####]-[name]/`.
+  (e.g. `job-applications`), then create `specifications/[####]-[name]/`.
 
 ---
 
 ## Step 2 — Ask Clarifying Questions
 
-Read `cpr-meta/documents/personas.md` to understand the available roles and their access levels before identifying gaps.
+Read `documents/personas.md` to understand the available roles and their access levels before identifying gaps.
 
 Read the feature description. Identify gaps across these areas:
 - **Roles**: who performs each action? (refer to documents/personas.md for role definitions)
@@ -60,7 +60,7 @@ Otherwise, wait for the user to answer before proceeding to Step 3.
 
 ## Step 3 — Generate Spec Documents
 
-Use templates from `cpr-meta/templates/` as the base structure.
+Use templates from `templates/` as the base structure.
 Replace all placeholder text with feature-specific content.
 Follow naming conventions from `CLAUDE.md` exactly:
 snake_case for all JSON fields and DB columns, kebab-case for URL paths,
@@ -116,7 +116,7 @@ update only the Specify row date and add an entry to the Amendments section.
 
 ## Step 5 — Propose Registry Entry
 
-Print (do not write yet) the proposed entry for `cpr-meta/specifications/registry.md`:
+Print (do not write yet) the proposed entry for `specifications/registry.md`:
 
 ```
 ## [####] — [Feature Name]
@@ -127,4 +127,4 @@ Print (do not write yet) the proposed entry for `cpr-meta/specifications/registr
 **DB tables**: [table names] or "none"
 ```
 
-Ask the user to confirm. On confirmation, append the entry to `cpr-meta/specifications/registry.md`.
+Ask the user to confirm. On confirmation, append the entry to `specifications/registry.md`.

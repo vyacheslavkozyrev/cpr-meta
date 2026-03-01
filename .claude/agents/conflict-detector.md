@@ -15,8 +15,8 @@ Feature number `[####]` to analyze.
 
 ### Step 1 — Load Context
 
-1. Read `cpr-meta/specifications/registry.md` — note all features: their key entities, API endpoints, DB tables, and status.
-2. Read the new feature's spec files from `cpr-meta/specifications/[####]-*/`: `stories.md`, `api.md` (if exists), `schema.md` (if exists).
+1. Read `specifications/registry.md` — note all features: their key entities, API endpoints, DB tables, and status.
+2. Read the new feature's spec files from `specifications/[####]-*/`: `stories.md`, `api.md` (if exists), `schema.md` (if exists).
 
 ### Step 2 — Flag Features to Compare
 
@@ -26,7 +26,7 @@ Exclude feature `[####]` itself. From the registry, flag features that share any
 - Same DB tables
 - Same business domain or user role actions
 
-For each flagged feature with **Status ≠ Not Started**: read its `stories.md`, `api.md`, `schema.md` from `cpr-meta/specifications/[####]-*/`.
+For each flagged feature with **Status ≠ Not Started**: read its `stories.md`, `api.md`, `schema.md` from `specifications/[####]-*/`.
 For **Status: Not Started** features: note them as informational only — no spec files to compare.
 
 ### Step 3 — Detect Conflicts
@@ -68,4 +68,4 @@ If no conflicts found: `No conflicts detected. Result: PASS.`
 - Only flag real conflicts — not superficial name similarities.
 - Be specific: quote the conflicting field names, endpoint paths, or story text.
 - "Not Started" features cannot be compared — list them as Minor/informational only.
-- The output must be ready to paste directly into the Conflict Analysis section of `cpr-meta/specifications/[####]-*/progress.md`.
+- The output must be ready to paste directly into the Conflict Analysis section of `specifications/[####]-*/progress.md`.

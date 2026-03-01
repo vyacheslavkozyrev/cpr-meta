@@ -2,8 +2,10 @@
   "mcpServers": {
     "postgres": {
       "type": "stdio",
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "-y",
         "@modelcontextprotocol/server-postgres",
         "postgresql://postgres:postgres@localhost:5432/cpr_dev"
@@ -12,8 +14,10 @@
     },
     "sequential-thinking": {
       "type": "stdio",
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
       ],
