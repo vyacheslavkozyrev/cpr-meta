@@ -2,6 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(cp:*)",
+      "Bash(ls:*)",
       "Bash(python3:*)",
       "Bash(cd:*)",
       "Bash(uvx:*)",
@@ -17,7 +18,23 @@
       "mcp__git-meta__git_log",
       "mcp__git-meta__git_diff_unstaged",
       "mcp__git-meta__git_diff_staged",
-      "mcp__git-meta__git_commit"
+      "mcp__git-meta__git_commit",
+      "Bash(dotnet build:*)",
+      "Bash(find:*)",
+      "Bash(head:*)",
+      "Bash(cat:*)",
+      "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && yarn build 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && yarn install 2>&1)",
+      "Bash(echo EXIT_CODE: $?:*)",
+      "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && yarn install --ignore-engines 2>&1 && yarn build 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && yarn build --ignore-engines 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && npx tsc -b 2>&1)",
+      "Bash(echo EXIT_CODE_UNIT:$?:*)",
+      "Bash(echo EXIT_CODE_INTEGRATION:$?:*)",
+      "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && npx tsc -b --noEmit 2>&1)",
+      "Skill(review)",
+      "Bash(npx tsc:*)",
+      "Skill(test)"
     ]
   },
   "enableAllProjectMcpServers": true,

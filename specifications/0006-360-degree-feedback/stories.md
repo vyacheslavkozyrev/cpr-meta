@@ -23,10 +23,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-001: A Director can POST to create a cycle with a required `title` (1–200 chars), required `subject_employee_id`, and optional `description` (max 2000 chars).
-- [ ] AC-002: The new cycle is created with status `draft`.
-- [ ] AC-003: The `subject_employee_id` must belong to an employee in the Director's department; if not, `403 Forbidden` is returned.
-- [ ] AC-004: Non-Director roles receive `403 Forbidden` when attempting to create a cycle.
+- [x] AC-001: A Director can POST to create a cycle with a required `title` (1–200 chars), required `subject_employee_id`, and optional `description` (max 2000 chars).
+- [x] AC-002: The new cycle is created with status `draft`.
+- [x] AC-003: The `subject_employee_id` must belong to an employee in the Director's department; if not, `403 Forbidden` is returned.
+- [x] AC-004: Non-Director roles receive `403 Forbidden` when attempting to create a cycle.
 
 ---
 
@@ -38,10 +38,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-005: A Director can PATCH the cycle status to `open` when it is currently `draft`.
-- [ ] AC-006: Only a Director can perform status transitions; other roles receive `403 Forbidden`.
-- [ ] AC-007: Attempting an invalid status transition (e.g., `draft` → `closed`) returns `409 Conflict` with detail `errors.review_cycle.invalid_transition`.
-- [ ] AC-008: The `opened_at` timestamp is recorded when the cycle transitions to `open`.
+- [x] AC-005: A Director can PATCH the cycle status to `open` when it is currently `draft`.
+- [x] AC-006: Only a Director can perform status transitions; other roles receive `403 Forbidden`.
+- [x] AC-007: Attempting an invalid status transition (e.g., `draft` → `closed`) returns `409 Conflict` with detail `errors.review_cycle.invalid_transition`.
+- [x] AC-008: The `opened_at` timestamp is recorded when the cycle transitions to `open`.
 
 ---
 
@@ -53,11 +53,11 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-009: An Employee can POST a nominee to their own cycle when the cycle status is `open`.
-- [ ] AC-010: The nominee must be an existing, active (non-deleted) employee; otherwise `404 Not Found` is returned.
-- [ ] AC-011: An employee cannot nominate themselves; attempting to do so returns `422 Unprocessable Entity` with detail `errors.review_nominee.self_nomination`.
-- [ ] AC-012: Duplicate nominees (same `reviewer_employee_id` on the same cycle) return `409 Conflict` with detail `errors.review_nominee.duplicate`.
-- [ ] AC-013: Nominations are rejected when the cycle status is not `open`, returning `409 Conflict` with detail `errors.review_cycle.nominations_closed`.
+- [x] AC-009: An Employee can POST a nominee to their own cycle when the cycle status is `open`.
+- [x] AC-010: The nominee must be an existing, active (non-deleted) employee; otherwise `404 Not Found` is returned.
+- [x] AC-011: An employee cannot nominate themselves; attempting to do so returns `422 Unprocessable Entity` with detail `errors.review_nominee.self_nomination`.
+- [x] AC-012: Duplicate nominees (same `reviewer_employee_id` on the same cycle) return `409 Conflict` with detail `errors.review_nominee.duplicate`.
+- [x] AC-013: Nominations are rejected when the cycle status is not `open`, returning `409 Conflict` with detail `errors.review_cycle.nominations_closed`.
 
 ---
 
@@ -69,9 +69,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-014: A PeopleManager can POST a nominee to a direct report's cycle when the cycle status is `open`.
-- [ ] AC-015: The same uniqueness and self-nomination rules apply as for Employee nominations (AC-011, AC-012, AC-013).
-- [ ] AC-016: A PeopleManager attempting to add nominees to a cycle for an employee who is not their direct report receives `403 Forbidden`.
+- [x] AC-014: A PeopleManager can POST a nominee to a direct report's cycle when the cycle status is `open`.
+- [x] AC-015: The same uniqueness and self-nomination rules apply as for Employee nominations (AC-011, AC-012, AC-013).
+- [x] AC-016: A PeopleManager attempting to add nominees to a cycle for an employee who is not their direct report receives `403 Forbidden`.
 
 ---
 
@@ -83,11 +83,11 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-017: A Director can PATCH the cycle status to `in_progress` when it is currently `open`.
-- [ ] AC-018: The cycle must have at least 2 nominees before transitioning to `in_progress`; if not, `422 Unprocessable Entity` is returned with detail `errors.review_cycle.insufficient_nominees`.
-- [ ] AC-019: After transitioning to `in_progress`, no new nominees can be added; attempts return `409 Conflict` with detail `errors.review_cycle.nominations_closed`.
-- [ ] AC-020: All nominees' status changes from `pending` to `invited` when the cycle moves to `in_progress`.
-- [ ] AC-021: The `started_at` timestamp is recorded when the cycle transitions to `in_progress`.
+- [x] AC-017: A Director can PATCH the cycle status to `in_progress` when it is currently `open`.
+- [x] AC-018: The cycle must have at least 2 nominees before transitioning to `in_progress`; if not, `422 Unprocessable Entity` is returned with detail `errors.review_cycle.insufficient_nominees`.
+- [x] AC-019: After transitioning to `in_progress`, no new nominees can be added; attempts return `409 Conflict` with detail `errors.review_cycle.nominations_closed`.
+- [x] AC-020: All nominees' status changes from `pending` to `invited` when the cycle moves to `in_progress`.
+- [x] AC-021: The `started_at` timestamp is recorded when the cycle transitions to `in_progress`.
 
 ---
 
@@ -99,11 +99,11 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-022: A nominated reviewer can POST a response to a cycle that is `in_progress`, including an `overall_rating` (integer 1–5) and `comments` (10–2000 characters).
-- [ ] AC-023: A reviewer can only submit one response per cycle; a second attempt returns `409 Conflict` with detail `errors.review_response.already_submitted`.
-- [ ] AC-024: A user who is not nominated for the cycle receives `403 Forbidden`.
-- [ ] AC-025: Responses are rejected when the cycle status is not `in_progress`; returns `409 Conflict` with detail `errors.review_cycle.not_accepting_responses`.
-- [ ] AC-026: Upon successful submission, the nominee's status is updated from `invited` to `submitted`.
+- [x] AC-022: A nominated reviewer can POST a response to a cycle that is `in_progress`, including an `overall_rating` (integer 1–5) and `comments` (10–2000 characters).
+- [x] AC-023: A reviewer can only submit one response per cycle; a second attempt returns `409 Conflict` with detail `errors.review_response.already_submitted`.
+- [x] AC-024: A user who is not nominated for the cycle receives `403 Forbidden`.
+- [x] AC-025: Responses are rejected when the cycle status is not `in_progress`; returns `409 Conflict` with detail `errors.review_cycle.not_accepting_responses`.
+- [x] AC-026: Upon successful submission, the nominee's status is updated from `invited` to `submitted`.
 
 ---
 
@@ -115,9 +115,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-027: A Director can PATCH the cycle status to `closed` when it is currently `in_progress`.
-- [ ] AC-028: Once `closed`, no new responses can be submitted; attempts return `409 Conflict` with detail `errors.review_cycle.not_accepting_responses`.
-- [ ] AC-029: The `closed_at` timestamp is recorded when the cycle transitions to `closed`.
+- [x] AC-027: A Director can PATCH the cycle status to `closed` when it is currently `in_progress`.
+- [x] AC-028: Once `closed`, no new responses can be submitted; attempts return `409 Conflict` with detail `errors.review_cycle.not_accepting_responses`.
+- [x] AC-029: The `closed_at` timestamp is recorded when the cycle transitions to `closed`.
 
 ---
 
@@ -129,10 +129,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-030: An Employee can GET aggregated results for their own closed cycle, including: average `overall_rating`, total response count, and an anonymized list of individual comments (without reviewer identity).
-- [ ] AC-031: Results are only available when cycle status is `closed`; otherwise `409 Conflict` is returned with detail `errors.review_cycle.results_not_available`.
-- [ ] AC-032: Individual reviewer identities (names, IDs) are never included in the Employee's results response.
-- [ ] AC-033: An Employee cannot access results for a cycle where they are not the subject; returns `403 Forbidden`.
+- [x] AC-030: An Employee can GET aggregated results for their own closed cycle, including: average `overall_rating`, total response count, and an anonymized list of individual comments (without reviewer identity).
+- [x] AC-031: Results are only available when cycle status is `closed`; otherwise `409 Conflict` is returned with detail `errors.review_cycle.results_not_available`.
+- [x] AC-032: Individual reviewer identities (names, IDs) are never included in the Employee's results response.
+- [x] AC-033: An Employee cannot access results for a cycle where they are not the subject; returns `403 Forbidden`.
 
 ---
 
@@ -144,9 +144,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-034: A PeopleManager can GET detailed results for a direct report's closed cycle, including each reviewer's `display_name`, their `overall_rating`, and their `comments`.
-- [ ] AC-035: Results are only available when cycle status is `closed`; otherwise `409 Conflict` is returned with detail `errors.review_cycle.results_not_available`.
-- [ ] AC-036: A PeopleManager cannot access results for a cycle whose subject is not their direct report; returns `403 Forbidden`.
+- [x] AC-034: A PeopleManager can GET detailed results for a direct report's closed cycle, including each reviewer's `display_name`, their `overall_rating`, and their `comments`.
+- [x] AC-035: Results are only available when cycle status is `closed`; otherwise `409 Conflict` is returned with detail `errors.review_cycle.results_not_available`.
+- [x] AC-036: A PeopleManager cannot access results for a cycle whose subject is not their direct report; returns `403 Forbidden`.
 
 ---
 
@@ -158,9 +158,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-037: A Director can GET detailed results for any employee's closed cycle in their department, including each reviewer's `display_name`, `overall_rating`, and `comments`.
-- [ ] AC-038: Results are only available when cycle status is `closed`; otherwise `409 Conflict` is returned with detail `errors.review_cycle.results_not_available`.
-- [ ] AC-039: A Director cannot access results for cycles in departments outside their scope; returns `403 Forbidden`.
+- [x] AC-037: A Director can GET detailed results for any employee's closed cycle in their department, including each reviewer's `display_name`, `overall_rating`, and `comments`.
+- [x] AC-038: Results are only available when cycle status is `closed`; otherwise `409 Conflict` is returned with detail `errors.review_cycle.results_not_available`.
+- [x] AC-039: A Director cannot access results for cycles in departments outside their scope; returns `403 Forbidden`.
 
 ---
 
@@ -172,9 +172,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-040: A Director can GET a paginated list of cycles for their department, with optional filtering by `status`.
-- [ ] AC-041: Each list item includes: `id`, `title`, `subject_display_name`, `status`, `nominee_count`, `response_count`, `created_at`, `closed_at`.
-- [ ] AC-042: The list is sorted by `created_at` descending by default.
+- [x] AC-040: A Director can GET a paginated list of cycles for their department, with optional filtering by `status`.
+- [x] AC-041: Each list item includes: `id`, `title`, `subject_display_name`, `status`, `nominee_count`, `response_count`, `created_at`, `closed_at`.
+- [x] AC-042: The list is sorted by `created_at` descending by default.
 
 ---
 
@@ -186,8 +186,8 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-043: An Employee can GET a paginated list of cycles where they are the subject, with optional filtering by `status`.
-- [ ] AC-044: Each list item includes: `id`, `title`, `status`, `nominee_count`, `response_count` (reviewer names excluded), `created_at`, `closed_at`.
+- [x] AC-043: An Employee can GET a paginated list of cycles where they are the subject, with optional filtering by `status`.
+- [x] AC-044: Each list item includes: `id`, `title`, `status`, `nominee_count`, `response_count` (reviewer names excluded), `created_at`, `closed_at`.
 
 ---
 
@@ -199,6 +199,6 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-045: Any authenticated user can GET a list of cycles where they are nominated, their nominee status is `invited`, and the cycle status is `in_progress`.
-- [ ] AC-046: Each item includes: `cycle_id`, `cycle_title`, `subject_display_name` (no PII such as email address), `nominee_status`.
-- [ ] AC-047: Cycles where the reviewer has already submitted (nominee status = `submitted`) are excluded from this list.
+- [x] AC-045: Any authenticated user can GET a list of cycles where they are nominated, their nominee status is `invited`, and the cycle status is `in_progress`.
+- [x] AC-046: Each item includes: `cycle_id`, `cycle_title`, `subject_display_name` (no PII such as email address), `nominee_status`.
+- [x] AC-047: Cycles where the reviewer has already submitted (nominee status = `submitted`) are excluded from this list.
