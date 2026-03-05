@@ -20,6 +20,21 @@ If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` 
 
 ---
 
+## Step 0.5 — Create Feature Branches
+
+Run the branch creation script to ensure `feature/[####]-*` branches exist in both `cpr-api` and `cpr-ui`:
+
+```bash
+bash .claude/skills/implement/scripts/create-feature-branch.sh [####] <short-feature-name>
+```
+
+Derive `<short-feature-name>` from the specification folder name (the part after `[####]-`).
+
+- If the branch already exists in a repo, the script checks it out instead of failing.
+- Both repos must end up on the feature branch before continuing.
+
+---
+
 ## Inputs
 
 - Feature number `[####]`
