@@ -47,7 +47,7 @@ One entry per feature. Updated at the end of each Specify phase.
 
 ## 0006 — 360-Degree Feedback
 
-**Status**: In Progress
+**Status**: Complete
 **Summary**: Enables Directors to create and manage 360-degree review cycles for employees in their department, with peer nominations by both the subject employee and their manager, reviewer feedback submission (1–5 rating + comments), and role-based results visibility (aggregated/anonymous for employees; full attributed detail for managers and directors).
 **Key entities**: `ReviewCycle`, `ReviewNominee`, `ReviewResponse`
 **API endpoints**: POST /api/review-cycles, GET /api/review-cycles, GET /api/review-cycles/{id}, PATCH /api/review-cycles/{id}/status, POST /api/review-cycles/{id}/nominees, DELETE /api/review-cycles/{id}/nominees/{nominee_id}, GET /api/review-cycles/{id}/nominees, POST /api/review-cycles/{id}/responses, GET /api/review-cycles/{id}/results, GET /api/me/review-requests
