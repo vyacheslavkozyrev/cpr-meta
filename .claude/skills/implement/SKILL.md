@@ -21,6 +21,7 @@ If not, stop and notify the user: "Plan is not yet complete. Run `/plan [####]` 
 ---
 
 ## Inputs
+
 - Feature number `[####]`
 - `plan.md` — ordered task list
 - `stories.md` — acceptance criteria (reference while implementing)
@@ -56,13 +57,36 @@ section of `progress.md` and notify the user before proceeding.
 
 ### Build checkpoints
 
-After every 3–5 tasks or after completing a full layer, use the **`build-validator`** agent:
+After every 3–5 tasks or after completing a full layer:
+
+**1. Build** — use the **`build-validator`** agent:
+
 - Pass `project: api` after backend tasks
 - Pass `project: ui` after frontend tasks
 - Pass `project: both` for a full checkpoint
 
-Continue only if the agent reports PASS. Fix all listed errors before proceeding.
-Do not accumulate build errors across tasks.
+If the build FAILs, fix all listed errors before continuing. Do not accumulate build errors across tasks.
+
+**2. Code review** — once the build reports PASS, use the **`code-reviewer`** agent:
+
+- Pass `base: develop` and `head: HEAD`
+- Pass `scope: api`, `scope: ui`, or `scope: both` to match what was just built
+
+The agent uses the following commands to produce the diff it reviews:
+
+```bash
+# Backend changes
+git -C cpr-api diff develop..HEAD
+
+# Frontend changes
+git -C cpr-ui diff develop..HEAD
+```
+
+The agent will diff all changes introduced by this branch against `develop` and apply the full CPR review checklist.
+
+**Blockers must be fixed before continuing to the next task batch.**
+Warnings should be fixed within the current batch where practical; if not, note them in `progress.md` Implementation Notes — they will be caught again in the Review phase.
+Do not proceed to the next task batch until the code-reviewer reports no Blockers.
 
 ### Quality while implementing
 
@@ -75,11 +99,19 @@ Do not accumulate build errors across tasks.
 
 ---
 
-## Step 3 — Final Build Verification
+## Step 3 — Final Build and Review
 
-After all tasks are complete, use the **`build-validator`** agent with `project: both`.
+After all tasks are complete, run the following in sequence:
 
-Both must report PASS. If either fails, fix the errors — do not mark Implement complete.
+1. **`build-validator`** with `project: both` — both must report PASS.
+2. **`code-reviewer`** with `base: develop`, `head: HEAD`, `scope: both` — must report no Blockers.
+
+```bash
+git -C cpr-api diff develop..HEAD
+git -C cpr-ui diff develop..HEAD
+```
+
+Fix any remaining build errors or Blocker findings before marking Implement complete. Warnings at this stage are noted in `progress.md` for the Review phase.
 
 ---
 

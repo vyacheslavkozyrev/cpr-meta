@@ -42,6 +42,13 @@ Use its output as the spec context throughout this phase.
 > you may optionally run the **`codebase-scanner`** agent with `layer: backend` or `layer: frontend`
 > and a `focus` value. This is not required when conventions are clear from the documents above.
 
+**If `schema.md` exists for this feature**, run both agents in parallel before generating the task list:
+
+- **`db-inspector`** — pass the table names defined in `schema.md` as `tables`. Its output reveals the current live DB state (existing columns, FKs, indexes). Use this to avoid re-creating things that already exist and to confirm what the migration must add.
+- **`migration-inspector`** — pass the primary entity name as `focus`. Its output shows any pending migrations already in the codebase and recent changes to the entity. Use this to avoid duplicating migration work.
+
+If either agent reveals pending migrations or an already-existing schema that conflicts with `schema.md`, note this in the `## Rationale` section and adjust the `[Migration]` tasks accordingly.
+
 ---
 
 ## Step 2 — Generate plan.md

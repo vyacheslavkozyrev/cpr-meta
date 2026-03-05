@@ -37,6 +37,13 @@ Its output provides the comparison baseline (stories/ACs, API contracts, schema,
 Read every file targeted by a completed task in `plan.md` directly.
 Also read any files modified as a side effect (e.g. DI registration files, route configs).
 
+**Run verification agents** — execute the following in parallel before scoring, where applicable:
+
+- **`api-contract-verifier`** (if `api.md` exists) — pass the feature number. Its findings feed directly into the **Spec compliance** score: each Missing or Shape drift finding counts as an unimplemented AC equivalent. Treat Undocumented endpoints as Major findings.
+- **`i18n-validator`** (if the feature has `[UI]` tasks in `plan.md`) — pass the feature number. Missing translation keys count as **Naming conventions** deductions (2 points each). Locale parity issues count as Major findings.
+
+Record the structured output from each agent; reference it explicitly when computing the score in Step 2.
+
 ---
 
 ## Step 2 — Score Against Review Categories

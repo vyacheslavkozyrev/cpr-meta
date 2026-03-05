@@ -17,7 +17,9 @@
       "mcp__git-meta__git_log",
       "mcp__git-meta__git_diff_unstaged",
       "mcp__git-meta__git_diff_staged",
-      "mcp__git-meta__git_commit"
+      "mcp__git-meta__git_commit",
+      "mcp__postgres__query",
+      "Bash(docker exec:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -117,10 +117,21 @@ If coverage falls below threshold, identify the uncovered paths and add tests to
 
 ---
 
-## Step 5 — Mark Covered ACs in stories.md
+## Step 5 — Verify AC Coverage
 
-For each AC that is fully covered by passing tests, change its checkbox in `stories.md`
-from `- [ ]` to `- [x]`. Leave uncovered or failing ACs as `- [ ]`.
+Use the **`ac-coverage-checker`** agent, passing the feature number.
+Its output provides the authoritative AC → test mapping used to gate progression.
+
+- If the agent reports any **Uncovered** ACs, write tests to cover them before continuing.
+- **Inferred** coverage is acceptable only when the test name clearly matches the AC intent; otherwise treat as Uncovered.
+- Do not proceed to Step 6 until the agent returns `Result: PASS`.
+
+---
+
+## Step 6 — Mark Covered ACs in stories.md
+
+For each AC confirmed as covered by the `ac-coverage-checker` output, change its checkbox
+in `stories.md` from `- [ ]` to `- [x]`. Leave uncovered or failing ACs as `- [ ]`.
 This gives a visual completion record directly in the spec document.
 
 ---
