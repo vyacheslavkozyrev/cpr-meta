@@ -36,7 +36,12 @@
       "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && npx tsc -b --noEmit 2>&1)",
       "Skill(review)",
       "Bash(npx tsc:*)",
-      "Skill(test)"
+      "Skill(test)",
+      "Bash(dotnet test:*)",
+      "Bash(sed:*)",
+      "Bash(dotnet add:*)",
+      "Bash(findstr:*)",
+      "Bash(node:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
