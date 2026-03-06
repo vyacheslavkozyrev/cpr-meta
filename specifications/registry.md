@@ -45,6 +45,16 @@ One entry per feature. Updated at the end of each Specify phase.
 
 ---
 
+## 0007 — Skills Self-Assessment
+
+**Status**: Complete
+**Summary**: Enables all authenticated employees to self-assess their proficiency level for each skill required by their current position, set aspirational target levels, view a radar chart comparing self-assessed vs required vs next-position levels, and link received feedback as evidence. People Managers can view their direct reports' assessments in read-only mode; Directors and Administrators can view any employee's assessment.
+**Key entities**: `EmployeeToSkill` (extended), `EmployeeSkillEvidence`, `Position` (extended)
+**API endpoints**: GET /api/me/skill-assessment, PUT /api/me/skill-assessment/skills/{skill_id}, DELETE /api/me/skill-assessment/skills/{skill_id}, PUT /api/me/skill-assessment/skills/{skill_id}/target, DELETE /api/me/skill-assessment/skills/{skill_id}/target, POST /api/me/skill-assessment/skills/{skill_id}/evidence, DELETE /api/me/skill-assessment/skills/{skill_id}/evidence/{feedback_id}, GET /api/employees/{employee_id}/skill-assessment, GET /api/me/team/skill-assessment-summary
+**DB tables**: `employee_to_skill` (add `notes` column + partial unique index), `positions` (add `sort_order` column), `employee_skill_evidence` (new)
+
+---
+
 ## 0006 — 360-Degree Feedback
 
 **Status**: Complete

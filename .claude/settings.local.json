@@ -34,7 +34,13 @@
       "Bash(cd \"C:\\\\Users\\\\serzh\\\\VSC_Projects\\\\cpr-meta\\\\source\\\\cpr-ui\" && npx tsc -b --noEmit 2>&1)",
       "Skill(review)",
       "Bash(npx tsc:*)",
-      "Skill(test)"
+      "Skill(test)",
+      "Bash(yarn lint:*)",
+      "Skill(specify)",
+      "Skill(implement)",
+      "Bash(yarn build:)",
+      "Bash(yarn build:*)",
+      "mcp__postgres__query"
     ]
   },
   "enableAllProjectMcpServers": true,
