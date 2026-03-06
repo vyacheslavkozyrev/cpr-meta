@@ -61,6 +61,14 @@ For each unchecked task in plan.md, in order:
    the existing patterns, imports, and naming conventions used nearby.
 2. Implement the task. Follow all conventions from `CLAUDE.md` exactly.
 3. Mark the task as `[x]` in `plan.md` immediately after completing it.
+4. Commit the changes to both repos using the commit script:
+
+```bash
+bash .claude/skills/implement/scripts/commit-task.sh [####] "<short task description>"
+```
+
+The script stages all changes and commits with message `feat([####]): <short task description>`.
+It skips any repo that has no changes. The branch must be a feature branch — the script will warn and skip if not.
 
 **EF Core migrations**: For `[Migration]` tasks, write the migration class directly
 (Up and Down methods) matching `schema.md` exactly. Do not run `dotnet ef migrations add` —
