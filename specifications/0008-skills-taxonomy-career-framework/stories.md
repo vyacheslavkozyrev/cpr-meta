@@ -24,10 +24,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-001: The career paths page lists all career paths where `is_deleted = false`, showing title and description for each.
-- [ ] AC-002: Career paths are sorted alphabetically by title.
-- [ ] AC-003: An empty state message is displayed when no active career paths exist.
-- [ ] AC-004: Each career path entry is clickable and navigates to the career path detail view.
+- [x] AC-001: The career paths page lists all career paths where `is_deleted = false`, showing title and description for each.
+- [x] AC-002: Career paths are sorted alphabetically by title.
+- [x] AC-003: An empty state message is displayed when no active career paths exist.
+- [x] AC-004: Each career path entry is clickable and navigates to the career path detail view.
 
 ---
 
@@ -39,10 +39,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-005: The career path detail displays the path title, description, and a list of all active career tracks belonging to it (`is_deleted = false`).
-- [ ] AC-006: Each career track is shown with its title and description.
-- [ ] AC-007: Each track is clickable and navigates to the career track detail view.
-- [ ] AC-008: An empty state is displayed if the career path has no active tracks.
+- [x] AC-005: The career path detail displays the path title, description, and a list of all active career tracks belonging to it (`is_deleted = false`).
+- [x] AC-006: Each career track is shown with its title and description.
+- [x] AC-007: Each track is clickable and navigates to the career track detail view.
+- [x] AC-008: An empty state is displayed if the career path has no active tracks.
 
 ---
 
@@ -54,10 +54,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-009: The career track detail displays the track title, description, and all active positions (`is_deleted = false`) belonging to that track.
-- [ ] AC-010: Positions are displayed in a visual vertical progression ladder (bottom = most junior, top = most senior), ordered by `sort_order` ascending (lower value = more junior); positions with equal `sort_order` are sorted alphabetically by title as a tiebreaker.
-- [ ] AC-011: Each position card shows title, description, and expectations (truncated to 3 lines with expand option if long).
-- [ ] AC-012: Clicking a position card navigates to the position detail view.
+- [x] AC-009: The career track detail displays the track title, description, and all active positions (`is_deleted = false`) belonging to that track.
+- [x] AC-010: Positions are displayed in a visual vertical progression ladder (bottom = most junior, top = most senior), ordered by `sort_order` ascending (lower value = more junior); positions with equal `sort_order` are sorted alphabetically by title as a tiebreaker.
+- [x] AC-011: Each position card shows title, description, and expectations (truncated to 3 lines with expand option if long).
+- [x] AC-012: Clicking a position card navigates to the position detail view.
 
 ---
 
@@ -69,12 +69,12 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-013: The position detail displays the position title, description, expectations, and its parent career track name (with a breadcrumb back to the track).
-- [ ] AC-014: A radar/spider chart is rendered showing all active required skills for the position; each axis represents one skill, with the axis value representing the required skill level value (1–5).
-- [ ] AC-015: Skills are grouped by skill category in the chart; each category uses a distinct colour.
-- [ ] AC-016: Mandatory skills are visually distinguished from optional skills in the chart (e.g. solid vs. dashed axis or a legend marker).
-- [ ] AC-017: A sortable table below the chart lists all active required skills with columns: Category, Skill, Required Level (title + value), Mandatory, Weight, Rationale.
-- [ ] AC-018: Skills whose `is_deleted = true` are excluded from both the chart and the table.
+- [x] AC-013: The position detail displays the position title, description, expectations, and its parent career track name (with a breadcrumb back to the track).
+- [x] AC-014: A radar/spider chart is rendered showing all active required skills for the position; each axis represents one skill, with the axis value representing the required skill level value (1–5).
+- [x] AC-015: Skills are grouped by skill category in the chart; each category uses a distinct colour.
+- [x] AC-016: Mandatory skills are visually distinguished from optional skills in the chart (e.g. solid vs. dashed axis or a legend marker).
+- [x] AC-017: A sortable table below the chart lists all active required skills with columns: Category, Skill, Required Level (title + value), Mandatory, Weight, Rationale.
+- [x] AC-018: Skills whose `is_deleted = true` are excluded from both the chart and the table.
 
 ---
 
@@ -86,8 +86,8 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-019: The skill detail panel/page shows the skill title, description, and its parent skill category.
-- [ ] AC-020: Proficiency levels are listed in ascending order by value (1–5), each showing the level title and description.
+- [x] AC-019: The skill detail panel/page shows the skill title, description, and its parent skill category.
+- [x] AC-020: Proficiency levels are listed in ascending order by value (1–5), each showing the level title and description.
 
 ---
 
@@ -99,10 +99,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-021: Administrator can create a career path with a required title (1–200 characters) and optional description (max 1000 characters).
-- [ ] AC-022: Administrator can edit the title and description of an existing career path.
-- [ ] AC-023: A duplicate title (case-insensitive) is rejected with a validation error (`errors.validation.title_duplicate`).
-- [ ] AC-024: Changes are saved immediately and reflected in the read-only view for all users.
+- [x] AC-021: Administrator can create a career path with a required title (1–200 characters) and optional description (max 1000 characters).
+- [x] AC-022: Administrator can edit the title and description of an existing career path.
+- [x] AC-023: A duplicate title (case-insensitive) is rejected with a validation error (`errors.validation.title_duplicate`).
+- [x] AC-024: Changes are saved immediately and reflected in the read-only view for all users.
 
 ---
 
@@ -114,10 +114,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-025: Administrator can create a career track with a required title (1–200 characters), optional description (max 1000 characters), and a required association to an existing active career path.
-- [ ] AC-026: Administrator can edit the title, description, and parent career path of an existing career track.
-- [ ] AC-027: Selecting a deleted or non-existent career path is rejected with a validation error.
-- [ ] AC-028: Changes are saved immediately and reflected in the read-only view for all users.
+- [x] AC-025: Administrator can create a career track with a required title (1–200 characters), optional description (max 1000 characters), and a required association to an existing active career path.
+- [x] AC-026: Administrator can edit the title, description, and parent career path of an existing career track.
+- [x] AC-027: Selecting a deleted or non-existent career path is rejected with a validation error.
+- [x] AC-028: Changes are saved immediately and reflected in the read-only view for all users.
 
 ---
 
@@ -129,9 +129,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-029: Administrator can create a position with a required title (1–200 characters), optional description (max 2000 characters), optional expectations (max 2000 characters), optional `sort_order` (non-negative integer, default 0), and a required association to an existing active career track.
-- [ ] AC-030: Administrator can edit the title, description, expectations, `sort_order`, and parent career track of an existing position.
-- [ ] AC-031: Changes are saved immediately and reflected in the progression ladder and position detail views.
+- [x] AC-029: Administrator can create a position with a required title (1–200 characters), optional description (max 2000 characters), optional expectations (max 2000 characters), optional `sort_order` (non-negative integer, default 0), and a required association to an existing active career track.
+- [x] AC-030: Administrator can edit the title, description, expectations, `sort_order`, and parent career track of an existing position.
+- [x] AC-031: Changes are saved immediately and reflected in the progression ladder and position detail views.
 
 ---
 
@@ -143,9 +143,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-032: Administrator can create a skill category with a required title (1–200 characters) and optional description (max 1000 characters).
-- [ ] AC-033: Administrator can edit the title and description of an existing skill category.
-- [ ] AC-034: A duplicate category title (case-insensitive) is rejected with a validation error (`errors.validation.title_duplicate`).
+- [x] AC-032: Administrator can create a skill category with a required title (1–200 characters) and optional description (max 1000 characters).
+- [x] AC-033: Administrator can edit the title and description of an existing skill category.
+- [x] AC-034: A duplicate category title (case-insensitive) is rejected with a validation error (`errors.validation.title_duplicate`).
 
 ---
 
@@ -157,12 +157,12 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-035: Administrator can create a skill with a required title (1–200 characters), optional description (max 1000 characters), and a required skill category.
-- [ ] AC-036: Administrator can add proficiency levels to a skill, each requiring a unique value (integer 1–5), a required title (1–100 characters), and optional description (max 500 characters); no duplicate values per skill.
-- [ ] AC-037: Administrator can edit a skill's title, description, and category.
-- [ ] AC-038: Administrator can edit a proficiency level's title, description, and value (value must remain unique within the skill).
-- [ ] AC-039: Administrator can soft-delete a skill; the skill is marked `is_deleted = true` in the DB and is immediately excluded from all read-only views (career path browsing, position skill requirements), but existing employee records that reference the skill are unaffected in the DB.
-- [ ] AC-040: Administrator cannot soft-delete an individual proficiency level while its parent skill is active; proficiency levels are managed only via the parent skill.
+- [x] AC-035: Administrator can create a skill with a required title (1–200 characters), optional description (max 1000 characters), and a required skill category.
+- [x] AC-036: Administrator can add proficiency levels to a skill, each requiring a unique value (integer 1–5), a required title (1–100 characters), and optional description (max 500 characters); no duplicate values per skill.
+- [x] AC-037: Administrator can edit a skill's title, description, and category.
+- [x] AC-038: Administrator can edit a proficiency level's title, description, and value (value must remain unique within the skill).
+- [x] AC-039: Administrator can soft-delete a skill; the skill is marked `is_deleted = true` in the DB and is immediately excluded from all read-only views (career path browsing, position skill requirements), but existing employee records that reference the skill are unaffected in the DB.
+- [x] AC-040: Administrator cannot soft-delete an individual proficiency level while its parent skill is active; proficiency levels are managed only via the parent skill.
 
 ---
 
@@ -174,8 +174,8 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-041: Administrator can add a skill requirement to a position specifying: skill (required, must be active), required skill level (required, must belong to the selected skill), mandatory flag (required, default `false`), weight (optional, positive decimal), and rationale (optional, max 500 characters).
-- [ ] AC-042: Only one skill requirement per skill per position is permitted; adding a duplicate is rejected with a validation error (`errors.validation.skill_already_assigned`).
-- [ ] AC-043: Administrator can edit the required skill level, mandatory flag, weight, and rationale of an existing position-to-skill entry.
-- [ ] AC-044: Administrator can soft-delete a position-to-skill entry; the skill requirement no longer appears in the position detail view.
-- [ ] AC-045: Attempting to add a soft-deleted skill as a position requirement is rejected with a validation error (`errors.validation.skill_deleted`).
+- [x] AC-041: Administrator can add a skill requirement to a position specifying: skill (required, must be active), required skill level (required, must belong to the selected skill), mandatory flag (required, default `false`), weight (optional, positive decimal), and rationale (optional, max 500 characters).
+- [x] AC-042: Only one skill requirement per skill per position is permitted; adding a duplicate is rejected with a validation error (`errors.validation.skill_already_assigned`).
+- [x] AC-043: Administrator can edit the required skill level, mandatory flag, weight, and rationale of an existing position-to-skill entry.
+- [x] AC-044: Administrator can soft-delete a position-to-skill entry; the skill requirement no longer appears in the position detail view.
+- [x] AC-045: Attempting to add a soft-deleted skill as a position requirement is rejected with a validation error (`errors.validation.skill_deleted`).
