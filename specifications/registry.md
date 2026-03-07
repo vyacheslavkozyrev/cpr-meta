@@ -52,3 +52,12 @@ One entry per feature. Updated at the end of each Specify phase.
 **Key entities**: `ReviewCycle`, `ReviewNominee`, `ReviewResponse`
 **API endpoints**: POST /api/review-cycles, GET /api/review-cycles, GET /api/review-cycles/{id}, PATCH /api/review-cycles/{id}/status, POST /api/review-cycles/{id}/nominees, DELETE /api/review-cycles/{id}/nominees/{nominee_id}, GET /api/review-cycles/{id}/nominees, POST /api/review-cycles/{id}/responses, GET /api/review-cycles/{id}/results, GET /api/me/review-requests
 **DB tables**: `review_cycles`, `review_nominees`, `review_responses`
+
+---
+
+## 0009 — Skills Gap Analysis & Development Planning
+**Status**: In Progress
+**Summary**: Compares an employee's manager-approved skill assessments against the requirements of the next-level position in their career track, highlights gaps per skill, and enables employees and their managers to create development goals directly from identified gaps.
+**Key entities**: `Position` (modified), `PositionToSkill`, `Skill`, `SkillLevel`, `EmployeeToSkill`, `Goal`
+**API endpoints**: GET /api/me/gap-analysis, GET /api/employees/{id}/gap-analysis
+**DB tables**: `positions` (added `sort_order` column — no new tables)

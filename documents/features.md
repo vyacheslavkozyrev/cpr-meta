@@ -1,102 +1,84 @@
 # CPR Feature List
 
-**Status legend**: ✅ Done · 🔄 Partial · ❌ Not started
-
 ---
 
-## Goal Management
+**F001 — Personal Goal Creation & Management**
+Contributors can create, edit, delete, and archive personal career goals, each with its own timeframe (week/month/quarter/year) and linked skill category. Goals have a clear status (not started / in progress / achieved) and a separate archive for completed ones.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F001 | Personal Goal Creation & Management | ✅ CRUD `/api/goals`, `/api/me/goals` | ❌ Placeholder | SDD spec: 0001 |
-| F002 | Goal Task Management | ✅ `/api/goals/{id}/tasks` | ❌ | |
-| F003 | Goal Progress Visualization | ❌ Basic only | ❌ Mock widgets | |
+**F002 — Goal Task Management**
+Each goal can be broken down into concrete tasks that contributors add, complete, or remove over time. Task completion feeds directly into the goal's overall progress and helps structure day-to-day work toward career milestones.
 
-## Feedback System
+**F003 — Goal Progress Visualization**
+Progress bars and charts show how far a contributor has advanced toward each goal relative to its timeframe. Visual indicators surface overdue or at-risk goals so contributors can reprioritize activities in time.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F004 | Feedback Request Management | ✅ incl. reminders, Hangfire, ICS | ✅ Substantial | Missing: manager team view. SDD spec: 0004 |
-| F005 | Feedback Submission & Collection | ✅ `/api/feedback`, `/api/me/feedback` | ❌ Placeholder | SDD spec: 0005 |
-| F006 | 360-Degree Feedback | 🔄 Multi-source supported | ❌ | |
+**F004 — Feedback Request Management**
+Contributors and managers can send targeted feedback requests to colleagues, track pending responses, and receive automatic reminders. Requests are linked to specific goals to ground feedback in concrete work evidence.
 
-## Skills & Development
+**F005 — Feedback Submission & Collection**
+Colleagues submit structured responses with ratings and written comments in response to feedback requests. Contributors can view collected feedback organized by goal or time period to support performance conversations.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F007 | Skills Self-Assessment | ✅ `/api/me/skills` | ❌ Placeholder | |
-| F008 | Skills Taxonomy & Career Framework | ✅ Full CRUD (paths, tracks, positions, skills) | ❌ | SDD spec: 0008 |
-| F009 | Skills Gap Analysis & Development Planning | ❌ | ❌ | |
+**F006 — 360-Degree Feedback**
+Feedback is gathered from multiple sources — peers, direct manager, and direct reports — giving a well-rounded view of a contributor's performance from all directions, not just top-down.
 
-## Team Management
+**F007 — Skills Self-Assessment**
+Contributors rate their current proficiency level for each skill and skill category. The results are saved and visible to both the contributor and their manager, making skill levels a shared reference point for growth conversations.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F010 | Team Member Dashboard (Manager View) | ✅ `/api/team`, `/api/team/members/{id}`, `/api/team/goals` | ❌ Placeholder | |
-| F011 | Project Team Management (Solution Owner) | ✅ Full project CRUD + team assignment | ❌ | |
-| F012 | Org Hierarchy & Employee Directory | ✅ Data in DB | ❌ | |
+**F008 — Skills Taxonomy & Career Framework**
+All users can browse the full hierarchy of career paths, tracks, positions, and skills, including position descriptions, expectations, and required skill criteria. This gives everyone a transparent map of what growth looks like in the company.
 
-## Analytics & Dashboards
+**F009 — Skills Gap Analysis & Development Planning**
+The system compares a contributor's self-assessed skill levels against the requirements of their current or target position and highlights gaps. This analysis provides a factual basis for setting meaningful goals and planning development investments.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F013 | Personal Performance Dashboard | 🔄 Basic endpoints | 🔄 Mock widgets | Real data not wired |
-| F014 | Performance Analytics & Reporting | ❌ | ❌ | |
-| F015 | Manager Analytics Dashboard | ❌ | ❌ | |
+**F010 — Team Member Dashboard (Manager View)**
+People leaders see an overview of each direct report's goals, statuses, progress, and skill levels in one place. Managers can mark goals as completed, suggest new goals, and confirm goal deletions to stay actively involved in their team's growth.
 
-## AI-Powered Features
+**F011 — Project Team Management (Solution Owner)**
+Solution owners can create and manage projects, assign team members, and track team composition over time. This gives a clear view of who is working on what and supports capacity and staffing decisions.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F016 | AI-Assisted Goal Setting | ❌ | ❌ | |
-| F017 | AI-Assisted Feedback Generation | ❌ | ❌ | |
-| F018 | Feedback Sentiment Analysis | ❌ | ❌ | |
-| F019 | Predictive Analytics & Retention Risk | ❌ | ❌ | |
+**F012 — Org Hierarchy & Employee Directory**
+A browsable organizational chart and employee directory reflects the full reporting structure of the company. Users can look up colleagues, understand team relationships, and navigate the org to find the right contacts.
 
-## Recognition & Rewards
+**F013 — Personal Performance Dashboard**
+A single dashboard aggregates a contributor's active goals, recent feedback, skill progress, and activity timeline. It serves as the daily starting point for tracking overall career health and performance at a glance.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F020 | Achievement Badges | ❌ | ❌ | |
-| F021 | Peer Recognition & Social Feedback | ❌ | ❌ | |
+**F014 — Performance Analytics & Reporting**
+Aggregated analytics present trends in goal completion, feedback scores, and skill progression over time. Reports give contributors and leaders data-driven evidence to support performance reviews and promotion cases.
 
-## User Account & Auth
+**F015 — Manager Analytics Dashboard**
+People leaders see team-level analytics including goal completion rates, skill distribution, and feedback trends across all their direct reports. This enables proactive coaching and helps leaders prioritize who needs support.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F022 | Authentication & Session Management | ✅ JWT + RBAC | 🔄 Entra integration in progress | |
-| F023 | User Profile Management | ✅ `GET /api/me` | 🔄 Basic display only | |
+**F016 — AI-Assisted Goal Setting**
+The application analyzes a contributor's draft goals and skill gaps, then suggests SMART improvements, estimates required effort based on availability, and proposes a ready-made set of goals to accelerate the goal-setting process.
 
-## System Integration
+**F017 — AI-Assisted Feedback Generation**
+The application drafts a performance review report for people leaders based on the reporter's goal progress and collected feedback. Leaders can review, adjust, and submit the draft, significantly reducing the time spent writing reviews.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F024 | HRIS Integration & Employee Data Sync | ❌ | ❌ | |
-| F025 | Learning Management System Integration | ❌ | ❌ | |
+**F018 — Feedback Sentiment Analysis**
+Submitted feedback text is automatically analyzed for sentiment to surface patterns — such as consistently positive or negative themes — across multiple feedback entries. This helps contributors and managers interpret qualitative feedback more objectively.
 
-## Mobile & Accessibility
+**F019 — Predictive Analytics & Retention Risk**
+The system identifies contributors who may be at risk of disengagement or attrition based on goal stagnation, low feedback scores, and skill gap trends. Leaders receive early signals so they can intervene before the risk materializes.
 
-| # | Feature | API | UI | Notes |
-|---|---------|-----|----|-------|
-| F026 | Mobile-Responsive Interface | ✅ REST APIs mobile-ready | ✅ MUI responsive | |
-| F027 | Accessibility & i18n | ✅ i18n data structures | 🔄 Framework in place, incomplete | |
+**F020 — Achievement Badges**
+Contributors earn badges when they hit meaningful milestones — completing goals, reaching new skill levels, or receiving outstanding feedback. Badges create visible recognition for progress and motivate continued growth.
 
----
+**F021 — Peer Recognition & Social Feedback**
+Colleagues can send lightweight recognition messages and kudos to each other outside of formal feedback cycles. A social feed surfaces these moments of appreciation across the team, reinforcing positive contributions publicly.
 
-## Summary
+**F022 — Authentication & Session Management**
+Users authenticate via JWT tokens with role-based access control (Employee, People Manager, Director, Administrator). Session management handles secure login, token refresh, and integration with Azure Entra ID for enterprise SSO.
 
-| Category | Total | API ✅ | UI ✅ | Fully Done |
-|----------|-------|--------|--------|------------|
-| Goal Management | 3 | 2 | 0 | 0 |
-| Feedback System | 3 | 3 | 1 | 0 |
-| Skills & Development | 3 | 2 | 0 | 0 |
-| Team Management | 3 | 3 | 0 | 0 |
-| Analytics & Dashboards | 3 | 1 | 0 | 0 |
-| AI-Powered Features | 4 | 0 | 0 | 0 |
-| Recognition & Rewards | 2 | 0 | 0 | 0 |
-| User Account & Auth | 2 | 2 | 0 | 0 |
-| System Integration | 2 | 0 | 0 | 0 |
-| Mobile & Accessibility | 2 | 2 | 2 | 0 |
-| **Total** | **27** | **15** | **3** | **0** |
+**F023 — User Profile Management**
+Each user can view and edit their personal profile, including contact information, job title, and preferences. The profile is the identity anchor across goals, feedback, and team features throughout the application.
 
-**Key gap**: Strong API coverage (15/27 features) with minimal UI (3/27). Primary focus: build frontend for existing APIs.
+**F024 — HRIS Integration & Employee Data Sync**
+Employee records, organizational structure, and reporting relationships are automatically synchronized from the company's HR Information System. This keeps the application's data consistent with the source of truth without manual maintenance.
+
+**F025 — Learning Management System Integration**
+The application connects to the company's LMS to surface relevant courses and learning resources alongside skill gaps and goals. Contributors can access suggested learning content directly within their development planning workflow.
+
+**F026 — Mobile-Responsive Interface**
+All pages and workflows are fully usable on mobile and tablet devices without loss of functionality. The layout adapts to screen size using responsive design, ensuring contributors can manage their goals and review feedback on the go.
+
+**F027 — Accessibility & i18n**
+The application supports multiple languages (EN, ES, FR, BE) and is built to meet WCAG 2.1 AA accessibility standards, including keyboard navigation and screen reader compatibility, making it usable by a diverse, global workforce.

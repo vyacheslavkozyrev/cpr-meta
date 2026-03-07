@@ -27,7 +27,7 @@ under a different feature name. If it is, stop and notify the user:
 Then check if `specifications/[####]-*/` exists.
 
 - If it exists: read its current contents and note what's already there.
-- If it doesn't exist: ask the user for a short kebab-case feature name
+- If it doesn't exist: check `documents/features.md` file for an existing entry, or ask the user for a short kebab-case feature name
   (e.g. `job-applications`), then create `specifications/[####]-[name]/`.
 
 ---
