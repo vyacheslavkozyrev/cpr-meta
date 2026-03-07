@@ -41,7 +41,9 @@
       "Bash(sed:*)",
       "Bash(dotnet add:*)",
       "Bash(findstr:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(bash:*)",
+      "Bash(yarn:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -21,7 +21,7 @@ FEATURE_NUMBER=$(printf "%04d" "$((10#$FEATURE_NUMBER))")
 BRANCH="feature/${FEATURE_NUMBER}-${SHORT_NAME}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
 API_DIR="$REPO_ROOT/source/cpr-api"
 UI_DIR="$REPO_ROOT/source/cpr-ui"
 

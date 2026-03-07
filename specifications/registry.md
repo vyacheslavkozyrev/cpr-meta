@@ -37,7 +37,7 @@ One entry per feature. Updated at the end of each Specify phase.
 
 ## 0008 — Skills Taxonomy & Career Framework
 
-**Status**: In Progress
+**Status**: Complete
 **Summary**: Enables all authenticated users to browse the company career framework (paths → tracks → positions) and view required skills per position via a radar/spider chart; gives Administrators full CRUD over career paths, tracks, positions, skill categories, skills, proficiency levels, and position skill requirements.
 **Key entities**: `CareerPath`, `CareerTrack`, `Position`, `SkillCategory`, `Skill`, `SkillLevel`, `PositionToSkill`
 **API endpoints**: GET /api/taxonomy/career-paths, GET /api/taxonomy/career-paths/{id}, GET /api/taxonomy/career-tracks, GET /api/taxonomy/career-tracks/{id}, GET /api/taxonomy/positions/{id}, GET /api/taxonomy/skill-categories, GET /api/taxonomy/skills, GET /api/taxonomy/skills/{id}, POST /api/taxonomy/career-paths, PATCH /api/taxonomy/career-paths/{id}, POST /api/taxonomy/career-tracks, PATCH /api/taxonomy/career-tracks/{id}, POST /api/taxonomy/positions, PATCH /api/taxonomy/positions/{id}, POST /api/taxonomy/skill-categories, PATCH /api/taxonomy/skill-categories/{id}, POST /api/taxonomy/skills, PATCH /api/taxonomy/skills/{id}, DELETE /api/taxonomy/skills/{id}, POST /api/taxonomy/skills/{id}/levels, PATCH /api/taxonomy/skills/{id}/levels/{level_id}, POST /api/taxonomy/positions/{id}/skills, PATCH /api/taxonomy/positions/{id}/skills/{position_skill_id}, DELETE /api/taxonomy/positions/{id}/skills/{position_skill_id}
