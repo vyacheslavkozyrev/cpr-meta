@@ -14,52 +14,52 @@
 
 ### Domain
 
-- [ ] T001 [Domain] Add/verify `CareerPath` entity with `Tracks` navigation collection — `cpr-api/src/CPR.Domain/Entities/CareerPath.cs`
-- [ ] T002 [Domain] Add/verify `CareerTrack` entity with `CareerPath` and `Positions` navigations — `cpr-api/src/CPR.Domain/Entities/CareerTrack.cs`
-- [ ] T003 [Domain] Add/verify `Position` entity with `CareerTrack` and `PositionSkills` navigations — `cpr-api/src/CPR.Domain/Entities/Position.cs`
-- [ ] T004 [Domain] Add/verify `SkillCategory` entity with `Skills` navigation collection — `cpr-api/src/CPR.Domain/Entities/SkillCategory.cs`
-- [ ] T005 [Domain] Add/verify `Skill` entity with `SkillCategory` and `Levels` navigations — `cpr-api/src/CPR.Domain/Entities/Skill.cs`
-- [ ] T006 [Domain] Add/verify `SkillLevel` entity with `Skill` navigation — `cpr-api/src/CPR.Domain/Entities/SkillLevel.cs`
-- [ ] T007 [Domain] Add/verify `PositionToSkill` entity with `Position`, `Skill`, and `SkillLevel` navigations — `cpr-api/src/CPR.Domain/Entities/PositionToSkill.cs`
-- [ ] T008 [Domain] Create `ITaxonomyRepository` interface (write operations: Add, Update, SoftDelete for all taxonomy entities) — `cpr-api/src/CPR.Domain/Repositories/ITaxonomyRepository.cs`
-- [ ] T009 [Domain] Create `ITaxonomyService` interface (all read + write operations matching api.md) — `cpr-api/src/CPR.Application/Services/ITaxonomyService.cs`
+- [x] T001 [Domain] Add/verify `CareerPath` entity with `Tracks` navigation collection — `cpr-api/src/CPR.Domain/Entities/CareerPath.cs`
+- [x] T002 [Domain] Add/verify `CareerTrack` entity with `CareerPath` and `Positions` navigations — `cpr-api/src/CPR.Domain/Entities/CareerTrack.cs`
+- [x] T003 [Domain] Add/verify `Position` entity with `CareerTrack` and `PositionSkills` navigations — `cpr-api/src/CPR.Domain/Entities/Position.cs`
+- [x] T004 [Domain] Add/verify `SkillCategory` entity with `Skills` navigation collection — `cpr-api/src/CPR.Domain/Entities/SkillCategory.cs`
+- [x] T005 [Domain] Add/verify `Skill` entity with `SkillCategory` and `Levels` navigations — `cpr-api/src/CPR.Domain/Entities/Skill.cs`
+- [x] T006 [Domain] Add/verify `SkillLevel` entity with `Skill` navigation — `cpr-api/src/CPR.Domain/Entities/SkillLevel.cs`
+- [x] T007 [Domain] Add/verify `PositionToSkill` entity with `Position`, `Skill`, and `SkillLevel` navigations — `cpr-api/src/CPR.Domain/Entities/PositionToSkill.cs`
+- [x] T008 [Domain] Create `ITaxonomyRepository` interface (write operations: Add, Update, SoftDelete for all taxonomy entities) — `cpr-api/src/CPR.Domain/Repositories/ITaxonomyRepository.cs`
+- [x] T009 [Domain] Create `ITaxonomyService` interface (all read + write operations matching api.md) — `cpr-api/src/CPR.Application/Services/ITaxonomyService.cs`
 
 ---
 
 ### Infrastructure
 
-- [ ] T010 [Infra] Update `CprDbContext` — add `DbSet<T>` declarations and `OnModelCreating` mappings for `CareerPath`, `CareerTrack`, `Position` (column names, FKs, navigation properties, soft-delete indexes) — `cpr-api/src/CPR.Infrastructure/Data/CprDbContext.cs`
-- [ ] T011 [Infra] Update `CprDbContext` — add `OnModelCreating` mappings for `SkillCategory`, `Skill`, `SkillLevel`, `PositionToSkill` (column names, unique index on `position_id + skill_id`, FKs, soft-delete filters) — `cpr-api/src/CPR.Infrastructure/Data/CprDbContext.cs`
-- [ ] T012 [Infra] Implement `TaxonomyRepository` — CRUD methods for all taxonomy entity writes using `CprDbContext`; set audit columns (`CreatedBy`, `CreatedAt`, `ModifiedBy`, `ModifiedAt`) on every operation — `cpr-api/src/CPR.Infrastructure/Data/Repositories/TaxonomyRepository.cs`
-- [ ] T013 [Infra] Implement `TaxonomyService` — all read queries (paginated lists, detail with includes, soft-delete filters) and all admin write operations; validate cross-entity references (e.g. active career path exists before creating track) — `cpr-api/src/CPR.Infrastructure/Services/TaxonomyService.cs`
+- [x] T010 [Infra] Update `CprDbContext` — add `DbSet<T>` declarations and `OnModelCreating` mappings for `CareerPath`, `CareerTrack`, `Position` (column names, FKs, navigation properties, soft-delete indexes) — `cpr-api/src/CPR.Infrastructure/Data/CprDbContext.cs`
+- [x] T011 [Infra] Update `CprDbContext` — add `OnModelCreating` mappings for `SkillCategory`, `Skill`, `SkillLevel`, `PositionToSkill` (column names, unique index on `position_id + skill_id`, FKs, soft-delete filters) — `cpr-api/src/CPR.Infrastructure/Data/CprDbContext.cs`
+- [x] T012 [Infra] Implement `TaxonomyRepository` — CRUD methods for all taxonomy entity writes using `CprDbContext`; set audit columns (`CreatedBy`, `CreatedAt`, `ModifiedBy`, `ModifiedAt`) on every operation — `cpr-api/src/CPR.Infrastructure/Data/Repositories/TaxonomyRepository.cs`
+- [x] T013 [Infra] Implement `TaxonomyService` — all read queries (paginated lists, detail with includes, soft-delete filters) and all admin write operations; validate cross-entity references (e.g. active career path exists before creating track) — `cpr-api/src/CPR.Infrastructure/Services/TaxonomyService.cs`
 
 ---
 
 ### Application
 
-- [ ] T014 [App] Create `CareerPathDtos` — `CareerPathSummaryDto`, `CareerPathDetailDto` (with tracks), `CreateCareerPathDto`, `UpdateCareerPathDto`; decorate with `[JsonPropertyName]` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/CareerPathDtos.cs`
-- [ ] T015 [App] Create `CareerTrackDtos` — `CareerTrackSummaryDto`, `CareerTrackDetailDto` (with positions), `CreateCareerTrackDto`, `UpdateCareerTrackDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/CareerTrackDtos.cs`
-- [ ] T016 [App] Create `PositionDtos` — `PositionSummaryDto`, `PositionDetailDto` (with `skills` array), `CreatePositionDto`, `UpdatePositionDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/PositionDtos.cs`
-- [ ] T017 [App] Create `SkillCategoryDtos` — `SkillCategoryDto`, `CreateSkillCategoryDto`, `UpdateSkillCategoryDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/SkillCategoryDtos.cs`
-- [ ] T018 [App] Create `SkillDtos` — `SkillSummaryDto`, `SkillDetailDto` (with `levels`), `SkillLevelSummaryDto`, `CreateSkillDto` (with optional `levels` array), `UpdateSkillDto`, `AddSkillLevelDto`, `UpdateSkillLevelDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/SkillDtos.cs`
-- [ ] T019 [App] Create `PositionSkillDtos` — `PositionSkillRequirementDto`, `AddPositionSkillDto`, `UpdatePositionSkillDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/PositionSkillDtos.cs`
-- [ ] T020 [App] Create `CareerPathDtoValidator` — FluentValidation for `CreateCareerPathDto` (title 1–200, unique) and `UpdateCareerPathDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/CareerPathDtoValidator.cs`
-- [ ] T021 [App] Create `CareerTrackDtoValidator` — FluentValidation for `CreateCareerTrackDto` (title 1–200, career_path_id required + active) and `UpdateCareerTrackDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/CareerTrackDtoValidator.cs`
-- [ ] T022 [App] Create `PositionDtoValidator` — FluentValidation for `CreatePositionDto` (title 1–200, description/expectations max 2000, career_track_id required + active) and `UpdatePositionDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/PositionDtoValidator.cs`
-- [ ] T023 [App] Create `SkillCategoryDtoValidator` — FluentValidation for `CreateSkillCategoryDto` (title 1–200, unique case-insensitive) and `UpdateSkillCategoryDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/SkillCategoryDtoValidator.cs`
-- [ ] T024 [App] Create `SkillDtoValidator` — FluentValidation for `CreateSkillDto` (title 1–200, category_id required + active, levels[].value unique 1–5, levels[].title 1–100), `UpdateSkillDto`, `AddSkillLevelDto`, `UpdateSkillLevelDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/SkillDtoValidator.cs`
-- [ ] T025 [App] Create `PositionSkillDtoValidator` — FluentValidation for `AddPositionSkillDto` (skill_id required + active, skill_level_id required + belongs to skill, weight > 0, rationale max 500) and `UpdatePositionSkillDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/PositionSkillDtoValidator.cs`
+- [x] T014 [App] Create `CareerPathDtos` — `CareerPathSummaryDto`, `CareerPathDetailDto` (with tracks), `CreateCareerPathDto`, `UpdateCareerPathDto`; decorate with `[JsonPropertyName]` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/CareerPathDtos.cs`
+- [x] T015 [App] Create `CareerTrackDtos` — `CareerTrackSummaryDto`, `CareerTrackDetailDto` (with positions), `CreateCareerTrackDto`, `UpdateCareerTrackDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/CareerTrackDtos.cs`
+- [x] T016 [App] Create `PositionDtos` — `PositionSummaryDto`, `PositionDetailDto` (with `skills` array), `CreatePositionDto`, `UpdatePositionDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/PositionDtos.cs`
+- [x] T017 [App] Create `SkillCategoryDtos` — `SkillCategoryDto`, `CreateSkillCategoryDto`, `UpdateSkillCategoryDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/SkillDtos.cs` (co-located)
+- [x] T018 [App] Create `SkillDtos` — `SkillSummaryDto`, `SkillDetailDto` (with `levels`), `SkillLevelSummaryDto`, `CreateSkillDto` (with optional `levels` array), `UpdateSkillDto`, `AddSkillLevelDto`, `UpdateSkillLevelDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/SkillDtos.cs`
+- [x] T019 [App] Create `PositionSkillDtos` — `PositionSkillRequirementDto`, `AddPositionSkillDto`, `UpdatePositionSkillDto` — `cpr-api/src/CPR.Application/DTOs/Taxonomy/PositionDtos.cs` (co-located)
+- [x] T020 [App] Create `CareerPathDtoValidator` — FluentValidation for `CreateCareerPathDto` (title 1–200, unique) and `UpdateCareerPathDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/CareerPathDtoValidator.cs`
+- [x] T021 [App] Create `CareerTrackDtoValidator` — FluentValidation for `CreateCareerTrackDto` (title 1–200, career_path_id required + active) and `UpdateCareerTrackDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/CareerTrackDtoValidator.cs`
+- [x] T022 [App] Create `PositionDtoValidator` — FluentValidation for `CreatePositionDto` (title 1–200, description/expectations max 2000, career_track_id required + active) and `UpdatePositionDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/PositionDtoValidator.cs`
+- [x] T023 [App] Create `SkillCategoryDtoValidator` — FluentValidation for `CreateSkillCategoryDto` (title 1–200, unique case-insensitive) and `UpdateSkillCategoryDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/SkillCategoryDtoValidator.cs`
+- [x] T024 [App] Create `SkillDtoValidator` — FluentValidation for `CreateSkillDto` (title 1–200, category_id required + active, levels[].value unique 1–5, levels[].title 1–100), `UpdateSkillDto`, `AddSkillLevelDto`, `UpdateSkillLevelDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/SkillDtoValidator.cs`
+- [x] T025 [App] Create `PositionSkillDtoValidator` — FluentValidation for `AddPositionSkillDto` (skill_id required + active, skill_level_id required + belongs to skill, weight > 0, rationale max 500) and `UpdatePositionSkillDto` — `cpr-api/src/CPR.Application/Validators/Taxonomy/PositionSkillDtoValidator.cs`
 
 ---
 
 ### API
 
-- [ ] T026 [API] Create `TaxonomyCareerPathsController` — `[Route("api/taxonomy/career-paths")]`; `GET` list (paginated, all authenticated); `GET {id}` (with tracks, all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomyCareerPathsController.cs`
-- [ ] T027 [API] Create `TaxonomyCareerTracksController` — `[Route("api/taxonomy/career-tracks")]`; `GET` list with `career_path_id` filter (all authenticated); `GET {id}` (with positions, all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomyCareerTracksController.cs`
-- [ ] T028 [API] Create `TaxonomyPositionsController` — `[Route("api/taxonomy/positions")]`; `GET {id}` (with active skills, all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator); `POST {id}/skills` add skill requirement (Administrator); `PATCH {id}/skills/{positionSkillId}` update (Administrator); `DELETE {id}/skills/{positionSkillId}` soft-delete (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomyPositionsController.cs`
-- [ ] T029 [API] Create `TaxonomySkillCategoriesController` — `[Route("api/taxonomy/skill-categories")]`; `GET` list paginated (all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomySkillCategoriesController.cs`
-- [ ] T030 [API] Create `TaxonomySkillsController` — `[Route("api/taxonomy/skills")]`; `GET` list with `category_id` filter (all authenticated); `GET {id}` with levels (all authenticated); `POST` create with optional levels (Administrator); `PATCH {id}` update (Administrator); `DELETE {id}` soft-delete (Administrator); `POST {id}/levels` add level (Administrator); `PATCH {id}/levels/{levelId}` update level (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomySkillsController.cs`
-- [ ] T031 [API] Register `ITaxonomyRepository → TaxonomyRepository` and `ITaxonomyService → TaxonomyService` in `InfrastructureRegistrar.AddInfrastructure()` — `cpr-api/src/CPR.Api/InfrastructureRegistrar.cs`
+- [x] T026 [API] Create `TaxonomyCareerPathsController` — `[Route("api/taxonomy/career-paths")]`; `GET` list (paginated, all authenticated); `GET {id}` (with tracks, all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomyCareerPathsController.cs`
+- [x] T027 [API] Create `TaxonomyCareerTracksController` — `[Route("api/taxonomy/career-tracks")]`; `GET` list with `career_path_id` filter (all authenticated); `GET {id}` (with positions, all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomyCareerTracksController.cs`
+- [x] T028 [API] Create `TaxonomyPositionsController` — `[Route("api/taxonomy/positions")]`; `GET {id}` (with active skills, all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator); `POST {id}/skills` add skill requirement (Administrator); `PATCH {id}/skills/{positionSkillId}` update (Administrator); `DELETE {id}/skills/{positionSkillId}` soft-delete (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomyPositionsController.cs`
+- [x] T029 [API] Create `TaxonomySkillCategoriesController` — `[Route("api/taxonomy/skill-categories")]`; `GET` list paginated (all authenticated); `POST` create (Administrator); `PATCH {id}` update (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomySkillCategoriesController.cs`
+- [x] T030 [API] Create `TaxonomySkillsController` — `[Route("api/taxonomy/skills")]`; `GET` list with `category_id` filter (all authenticated); `GET {id}` with levels (all authenticated); `POST` create with optional levels (Administrator); `PATCH {id}` update (Administrator); `DELETE {id}` soft-delete (Administrator); `POST {id}/levels` add level (Administrator); `PATCH {id}/levels/{levelId}` update level (Administrator) — `cpr-api/src/CPR.Api/Controllers/TaxonomySkillsController.cs`
+- [x] T031 [API] Register `ITaxonomyRepository → TaxonomyRepository` and `ITaxonomyService → TaxonomyService` in `InfrastructureRegistrar.AddInfrastructure()` — `cpr-api/src/CPR.Api/InfrastructureRegistrar.cs`
 
 ---
 
@@ -109,27 +109,27 @@
 
 - [ ] T054 [UI] Create `CareerFrameworkPage` — route `/career-framework`; fetches `useCareerPaths`; renders grid of `CareerPathCard`; loading skeleton (3 cards), empty state, error state; shows "+ Add Career Path" button for Administrator role (opens `CareerPathForm` modal) — `cpr-ui/src/pages/taxonomy/CareerFrameworkPage.tsx`
 - [ ] T055 [UI] Create `CareerPathDetailPage` — route `/career-framework/:pathId`; breadcrumb; fetches `useCareerPath`; renders path title, description, and list of `CareerTrackCard`; loading/empty/error states; Administrator: Edit button + "+ Add Track" button — `cpr-ui/src/pages/taxonomy/CareerPathDetailPage.tsx`
-- [ ] T056 [UI] Create `CareerTrackDetailPage` — route `/career-framework/:pathId/tracks/:trackId`; breadcrumb; fetches `useCareerTrack`; renders track title, description, and `ProgressionLadder` of positions; loading/empty/error states; Administrator: "+ Add Position" button — `cpr-ui/src/pages/taxonomy/CareerTrackDetailPage.tsx`
-- [ ] T057 [UI] Create `PositionDetailPage` — route `/career-framework/:pathId/tracks/:trackId/positions/:positionId`; breadcrumb; fetches `usePosition`; renders position title, description, expectations; `SkillRadarChart` + `SkillRequirementsTable`; `SkillDetailPanel` drawer on skill click; loading/empty/error states; Administrator: Edit button + Manage Skills button (opens `PositionSkillsPanel`) — `cpr-ui/src/pages/taxonomy/PositionDetailPage.tsx`
+- [x] T056 [UI] Create `CareerTrackDetailPage` — route `/career-framework/:pathId/tracks/:trackId`; breadcrumb; fetches `useCareerTrack`; renders track title, description, and `ProgressionLadder` of positions; loading/empty/error states; Administrator: "+ Add Position" button — `cpr-ui/src/pages/taxonomy/CareerTrackDetailPage.tsx`
+- [x] T057 [UI] Create `PositionDetailPage` — route `/career-framework/:pathId/tracks/:trackId/positions/:positionId`; breadcrumb; fetches `usePosition`; renders position title, description, expectations; `SkillRadarChart` + `SkillRequirementsTable`; `SkillDetailPanel` drawer on skill click; loading/empty/error states; Administrator: Edit button + Manage Skills button (opens `PositionSkillsPanel`) — `cpr-ui/src/pages/taxonomy/PositionDetailPage.tsx`
 
 ---
 
 ### UI — i18n & Routes
 
-- [ ] T058 [UI] Add taxonomy i18n keys to English translation file — keys under `pages.careerFramework.*`, `pages.careerPath.*`, `pages.careerTrack.*`, `pages.position.*`, `components.taxonomy.*`, `admin.taxonomy.*`; include all button labels, headings, empty states, error messages, success toasts, confirmation dialog text — `cpr-ui/public/locales/en/translation.json`
-- [ ] T059 [UI] Register taxonomy routes in the router — nest `/career-framework`, `/career-framework/:pathId`, `/career-framework/:pathId/tracks/:trackId`, `/career-framework/:pathId/tracks/:trackId/positions/:positionId` under the authenticated `AppLayout` parent; add `/settings/career-framework` route for `TaxonomyAdminTabs` wrapped in `<RoleGuard allowedRoles={[UserRole.ADMINISTRATOR]}>` — `cpr-ui/src/routes/index.tsx`
+- [x] T058 [UI] Add taxonomy i18n keys to English translation file — keys under `pages.careerFramework.*`, `pages.careerPath.*`, `pages.careerTrack.*`, `pages.position.*`, `components.taxonomy.*`, `admin.taxonomy.*`; include all button labels, headings, empty states, error messages, success toasts, confirmation dialog text — `cpr-ui/public/locales/en/translation.json`
+- [x] T059 [UI] Register taxonomy routes in the router — nest `/career-framework`, `/career-framework/:pathId`, `/career-framework/:pathId/tracks/:trackId`, `/career-framework/:pathId/tracks/:trackId/positions/:positionId` under the authenticated `AppLayout` parent; add `/settings/career-framework` route for `TaxonomyAdminTabs` wrapped in `<RoleGuard allowedRoles={[UserRole.ADMINISTRATOR]}>` — `cpr-ui/src/routes/index.tsx`
 
 ---
 
 ### Tests
 
-- [ ] T060 [Test] Unit tests for `TaxonomyService` — test all read methods (empty results, soft-delete filtering, cross-entity joins); test all admin write methods (happy path, duplicate title rejection, deleted-entity reference rejection, skill_level_mismatch) — `cpr-api/tests/CPR.UnitTests/Services/TaxonomyServiceTests.cs`
-- [ ] T061 [Test] Unit tests for all taxonomy validators — `CareerPathDtoValidator`, `CareerTrackDtoValidator`, `PositionDtoValidator`, `SkillCategoryDtoValidator`, `SkillDtoValidator`, `PositionSkillDtoValidator`; test required fields, length constraints, uniqueness rules, range checks — `cpr-api/tests/CPR.UnitTests/Validators/TaxonomyValidatorTests.cs`
-- [ ] T062 [Test] Integration tests for taxonomy read endpoints — all `GET /api/taxonomy/*` endpoints; assert 200 shape, 401 without auth, correct soft-delete filtering, pagination envelope — `cpr-api/tests/CPR.IntegrationTests/Controllers/TaxonomyReadEndpointsTests.cs`
-- [ ] T063 [Test] Integration tests for taxonomy admin write endpoints — all `POST`, `PATCH`, `DELETE` endpoints; assert 201/200/204 on success, 403 for non-admin roles, 400 for validation errors (duplicate, deleted reference, level mismatch), 404 for missing resources — `cpr-api/tests/CPR.IntegrationTests/Controllers/TaxonomyAdminEndpointsTests.cs`
-- [ ] T064 [Test] Frontend tests for `CareerFrameworkPage` and `CareerPathDetailPage` — render with MSW mocks; assert card rendering, navigation on click, empty/error/loading states, admin button visibility based on role — `cpr-ui/src/__tests__/pages/taxonomy/CareerFrameworkPage.test.tsx`
-- [ ] T065 [Test] Frontend tests for `PositionDetailPage` — render with position including skills; assert radar chart renders, skill table columns, skill detail panel opens on click, admin buttons visible only for Administrator — `cpr-ui/src/__tests__/pages/taxonomy/PositionDetailPage.test.tsx`
-- [ ] T066 [Test] Frontend unit tests for `SkillRadarChart` — renders correct number of axes, mandatory vs optional styling, bar chart fallback for < 3 skills, empty state — `cpr-ui/src/__tests__/components/taxonomy/SkillRadarChart.test.tsx`
+- [x] T060 [Test] Unit tests for `TaxonomyService` — test all read methods (empty results, soft-delete filtering, cross-entity joins); test all admin write methods (happy path, duplicate title rejection, deleted-entity reference rejection, skill_level_mismatch) — `cpr-api/tests/CPR.UnitTests/Services/TaxonomyServiceTests.cs`
+- [x] T061 [Test] Unit tests for all taxonomy validators — `CareerPathDtoValidator`, `CareerTrackDtoValidator`, `PositionDtoValidator`, `SkillCategoryDtoValidator`, `SkillDtoValidator`, `PositionSkillDtoValidator`; test required fields, length constraints, uniqueness rules, range checks — `cpr-api/tests/CPR.UnitTests/Validators/TaxonomyValidatorTests.cs`
+- [x] T062 [Test] Integration tests for taxonomy read endpoints — all `GET /api/taxonomy/*` endpoints; assert 200 shape, 401 without auth, correct soft-delete filtering, pagination envelope — `cpr-api/tests/CPR.IntegrationTests/Controllers/TaxonomyReadEndpointsTests.cs`
+- [x] T063 [Test] Integration tests for taxonomy admin write endpoints — all `POST`, `PATCH`, `DELETE` endpoints; assert 201/200/204 on success, 403 for non-admin roles, 400 for validation errors (duplicate, deleted reference, level mismatch), 404 for missing resources — `cpr-api/tests/CPR.IntegrationTests/Controllers/TaxonomyAdminEndpointsTests.cs`
+- [x] T064 [Test] Frontend tests for `CareerFrameworkPage` and `CareerPathDetailPage` — render with MSW mocks; assert card rendering, navigation on click, empty/error/loading states, admin button visibility based on role — `cpr-ui/src/__tests__/pages/taxonomy/CareerFrameworkPage.test.tsx`
+- [x] T065 [Test] Frontend tests for `PositionDetailPage` — render with position including skills; assert radar chart renders, skill table columns, skill detail panel opens on click, admin buttons visible only for Administrator — `cpr-ui/src/__tests__/pages/taxonomy/PositionDetailPage.test.tsx`
+- [x] T066 [Test] Frontend unit tests for `SkillRadarChart` — renders correct number of axes, mandatory vs optional styling, bar chart fallback for < 3 skills, empty state — `cpr-ui/src/__tests__/components/taxonomy/SkillRadarChart.test.tsx`
 
 ---
 

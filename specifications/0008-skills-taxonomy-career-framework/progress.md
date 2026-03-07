@@ -7,7 +7,7 @@
 | Specify | ✅ Complete | 2026-02-23 | |
 | Analyze | ✅ Complete | 2026-02-23 | Criticals resolved by adopting /api/taxonomy/* prefix — see Conflict Analysis |
 | Plan | ✅ Complete | 2026-02-23 | 66 tasks across Domain→Infra→App→API→UI→Test |
-| Implement | ⏳ Pending | | |
+| Implement | ✅ Complete | 2026-03-06 | |
 | Review | ⏳ Pending | | |
 | Test | ⏳ Pending | | |
 
@@ -31,7 +31,19 @@
 
 ## Implementation Notes
 
-_Populated by `/implement 0008`_
+### Implement — 2026-03-06
+
+**Tasks added during implementation**: none
+
+**Notes**:
+- T001–T059 completed in prior sessions (Domain entities, migrations, repositories, services, validators, controllers, UI components, hooks, MSW handlers, mock data).
+- T060–T066 completed in this session (backend unit tests, validator tests, integration tests, frontend page and component tests).
+- **B1 (code review)**: `TaxonomyService` injects `CprDbContext` directly. Confirmed this matches the established project pattern — `GoalService` and `SkillAssessmentService` both do the same. Not a project-specific violation; no change made.
+- **B2 (code review)**: `build.log` artefact committed — removed with `git rm --cached` and added to `.gitignore`.
+- **B3 (code review)**: Hardcoded English Zod validation messages in 7 admin form components — replaced with `t()` i18n keys using a `makeSchema(t)` factory pattern with `useMemo`.
+- W2 repository comment referencing the DbContext pattern updated to remove misleading text.
+- Integration tests (T062/T063) rely on `DatabaseSeeder` seeding career paths with well-known IDs; test isolation is handled by `IntegrationTestFixture` (Testcontainers + Respawn).
+- Frontend tests (T064/T066) mock recharts via `vi.mock('recharts', ...)` with `data-testid` elements to work around jsdom SVG/canvas limitations.
 
 ---
 
