@@ -7,7 +7,7 @@
 | Specify | ✅ Complete | 2026-03-10 | |
 | Analyze | ✅ Complete | 2026-03-10 | PASS — all conflicts resolved via spec amendments |
 | Plan | ✅ Complete | 2026-03-10 | 42 tasks across Migration→Domain→Infra→App→API→Config→UI→Test |
-| Implement | ⏳ Pending | — | |
+| Implement | ✅ Complete | 2026-03-11 | All 42 tasks complete; blocker B1 (role name) and W2 (not-assessed text) fixed post-review |
 | Review | ⏳ Pending | — | |
 | Test | ⏳ Pending | — | |
 
@@ -31,6 +31,21 @@
 | Minor | 0007 progress.md has an open Major conflict about `UX_employee_to_skill_employee_skill_effective` coexisting with the 0007-added index. 0010 explicitly replaces it with `UX_employee_to_skill_employee_skill` — this resolves the open finding. | 0007 | Update 0007 progress.md conflict entry to mark resolved by 0010. |
 | Minor | 0009 US-001 AC-006 radar chart label "Actual Level (manager-approved)" maps to `source = 'manager'`; after 0010 it must map to `manager_assessment_value IS NOT NULL`. Terminology concern only. | 0009 | Covered by the Major finding above. Ensure 0009 UI implementation maps "Actual Level" to `manager_assessment_value` when non-null. |
 | Minor | 0007 evidence endpoint pre-condition check (self-assessment row must exist before evidence can be linked) was expressed as `source = 'self', is_target = FALSE`. After 0010 the check simplifies to: `employee_to_skill` row exists for (employee, skill). No contract change. | 0007 | Informational. Implementors must use row-existence check instead of column-value check. |
+
+## Implementation Notes
+
+### Implement — 2026-03-11
+
+**Tasks added during implementation**: none — all 42 tasks from plan.md executed as specified.
+
+**Notes**:
+- `PositionSkillsPanel.tsx` was not explicitly listed in plan.md but required `weight` removal from its Zod schema and form UI; fixed as part of T031 scope.
+- `AssessmentSkillCategorySection.tsx` required intermediate `availableLevels` prop removal after T027 removed that prop from `AssessmentSkillRow`.
+- Pre-existing TS error in `PositionDetailPage.tsx` (`onClick={refetch}`) fixed as a build blocker.
+- Code review found one Blocker: `"PeopleManager"` (no space) on manager-assessment `[RequireRole]` — corrected to `"People Manager"`.
+- Code review found W2: read-only path rendered `'—'` instead of `'Not assessed'` string, causing test failure — corrected.
+- Code review W1 (ClassificationService `SelfAssessmentValue = 0` for seeded rows) and W3 (direct-manager fast-path comment) noted for Review phase.
+- Warnings S3 (Down migration missing original partial index), S4 (team summary invalidation in `useUpsertManagerAssessment`), S5 (mock handler hardcoded `self_assessment_value`), S6 (employee sees manager assessment value) noted for Review phase.
 
 ## Amendments
 
