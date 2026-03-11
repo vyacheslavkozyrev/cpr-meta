@@ -90,7 +90,7 @@ Returns a live skills gap analysis for the authenticated user, comparing their m
 |-------|-------------|
 | `next_position` | `null` if the employee is already at the highest `sort_order` in their career track — in this case `skill_gaps` is `[]` and `summary` counts are all `0`. |
 | `gap` | Integer: `required_level.value − actual_level.value`. Negative or zero means the requirement is met. |
-| `assessment_source` | `"manager"` — level comes from an approved `employee_to_skill` row (source = 'manager'); `"default"` — no manager assessment exists, minimum skill level used. |
+| `assessment_source` | `"manager"` — `manager_assessment_value IS NOT NULL` on the employee's `employee_to_skill` row; `"default"` — `manager_assessment_value IS NULL`, minimum skill level used. (The `source` column no longer exists — superseded by feature 0010.) |
 | `linked_goals` | Non-completed goals (`is_completed = false`) where `related_skill_id` matches the skill UUID. |
 
 ### Error Responses

@@ -20,7 +20,7 @@ The following are explicitly **not** part of this feature:
 ### US-001: View My Own Skills Gap Analysis
 
 **As an** Employee (or any authenticated user)
-**I want to** view a gap analysis comparing my manager-approved skill assessments against the requirements of the next level position in my career track
+**I want to** view a gap analysis comparing my manager-assessed skill values (`manager_assessment_value`) against the requirements of the next level position in my career track
 **So that** I know exactly which skills I need to develop to advance to the next level
 
 #### Acceptance Criteria
@@ -41,11 +41,11 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-006: A radar/spider chart renders with one axis per required skill of the next-level position, overlaying two series: "Required Level" (from `position_to_skill`) and "Actual Level" (from manager-approved `employee_to_skill`).
+- [ ] AC-006: A radar/spider chart renders with one axis per required skill of the next-level position, overlaying two series: "Required Level" (from `position_to_skill`) and "Actual Level" (from `employee_to_skill.manager_assessment_value` when non-null; otherwise the position minimum level value).
 - [ ] AC-007: A skills table renders below the radar chart with the following columns: Skill Name, Category, Required Level, Actual Level, Gap, Mandatory.
 - [ ] AC-008: Rows where `gap > 0` (actual level value < required level value) are visually highlighted (e.g., warning colour); rows where `gap ≤ 0` display "Met" in the Gap column.
 - [ ] AC-009: Skills in the table are grouped by skill category, with a non-interactive category header row separating each group.
-- [ ] AC-010: When the employee's actual level is derived from the position default (no manager-approved `employee_to_skill` entry exists for that skill), the Actual Level cell displays the level title followed by "(default)".
+- [ ] AC-010: When `manager_assessment_value` is `NULL` on the employee's `employee_to_skill` row (or no row exists), the Actual Level cell displays the position minimum level title followed by "(default)" and `assessment_source` is `"default"`.
 
 ---
 
@@ -86,7 +86,7 @@ The following are explicitly **not** part of this feature:
 #### Acceptance Criteria
 
 - [ ] AC-017: A PeopleManager can navigate to `/employees/{id}/gap-analysis` for any employee whose `manager_id` equals the manager's own `employees.id`.
-- [ ] AC-018: The PeopleManager sees the same radar chart and skills table populated with the direct report's manager-approved skill data, applying the same default-level fallback rule as AC-010.
+- [ ] AC-018: The PeopleManager sees the same radar chart and skills table populated with the direct report's `manager_assessment_value` data, applying the same default-level fallback rule as AC-010.
 - [ ] AC-019: If the target employee is not a direct report of the requesting PeopleManager, the API returns `403 Forbidden` (`errors.auth.forbidden`).
 
 ---

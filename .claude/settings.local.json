@@ -43,7 +43,13 @@
       "Bash(findstr:*)",
       "Bash(node:*)",
       "Bash(bash:*)",
-      "Bash(yarn:*)"
+      "Bash(yarn:*)",
+      "Bash(psql:*)",
+      "Bash(where psql)",
+      "Bash(\"/c/Program Files/PostgreSQL/16/bin/psql\" --version)",
+      "Read(//c/Program Files/**)",
+      "Bash(dotnet:*)",
+      "Bash(npx:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
