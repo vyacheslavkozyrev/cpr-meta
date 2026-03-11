@@ -66,7 +66,7 @@ One entry per feature. Updated at the end of each Specify phase.
 
 ## 0010 — Skill Assessment Schema Refactor
 
-**Status**: In Progress
+**Status**: Complete
 **Summary**: Renames `employee_to_skill.persist_value` → `self_assessment_value` (NOT NULL numeric), adds `manager_assessment_value` (nullable numeric) for PeopleManager ratings, drops the `source` and `is_target` legacy columns, removes `position_to_skill.weight`, updates all affected API endpoints, adds a numeric self-assessment input to the /skills UI form, adds a Manager Assessment column to the employee assessment page, and documents the existing `employee_skill_evidence` table in data.md.
 **Key entities**: `EmployeeToSkill`, `PositionToSkill`, `EmployeeSkillEvidence`
 **API endpoints**: GET /api/me/skill-assessment, PUT /api/me/skill-assessment/skills/{skillId}, DELETE /api/me/skill-assessment/skills/{skillId}, POST /api/me/skill-assessment/skills/{skillId}/evidence, DELETE /api/me/skill-assessment/skills/{skillId}/evidence/{feedbackId}, GET /api/employees/{employeeId}/skill-assessment, PUT /api/employees/{employeeId}/skill-assessment/skills/{skillId}/manager-assessment, PATCH /api/taxonomy/positions/{id}/skills/{position_skill_id}, POST /api/taxonomy/positions/{id}/skills
