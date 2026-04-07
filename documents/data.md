@@ -201,10 +201,10 @@ CREATE TABLE position_to_skill (
     position_id     UUID     NOT NULL REFERENCES positions(id),
     skill_id        UUID     NOT NULL REFERENCES skills(id),
     skill_level_id  UUID     NOT NULL REFERENCES skill_levels(id),
-    weight          NUMERIC  NULL,          -- importance weight
     is_mandatory    BOOLEAN  DEFAULT FALSE,
     rationale       TEXT     NULL,
     -- Audit columns
+    -- Note: weight column removed in feature 0010
 );
 
 CREATE INDEX IX_position_to_skill_position_id ON position_to_skill(position_id);
@@ -214,24 +214,39 @@ CREATE UNIQUE INDEX UX_position_to_skill_position_skill ON position_to_skill(pos
 ```
 
 ### employee_to_skill
-Employee skill assessments.
+Employee skill assessments. Updated in feature 0010: `persist_value` renamed to `self_assessment_value` (NOT NULL),
+`manager_assessment_value` added, `source` and `is_target` columns dropped.
 ```sql
 CREATE TABLE employee_to_skill (
-    id              UUID        PRIMARY KEY,
-    employee_id     UUID        NOT NULL REFERENCES employees(id),
-    skill_id        UUID        NOT NULL REFERENCES skills(id),
-    skill_level_id  UUID        REFERENCES skill_levels(id),
-    persist_value   NUMERIC     NULL,           -- alternative numeric value
-    source          TEXT        NULL,           -- self | manager | peer
-    effective_date  TIMESTAMPTZ NULL,
-    is_target       BOOLEAN     DEFAULT FALSE,  -- target vs current
+    id                       UUID        PRIMARY KEY,
+    employee_id              UUID        NOT NULL REFERENCES employees(id),
+    skill_id                 UUID        NOT NULL REFERENCES skills(id),
+    skill_level_id           UUID        REFERENCES skill_levels(id),
+    self_assessment_value    NUMERIC     NOT NULL DEFAULT 0,   -- employee's numeric self-rating
+    manager_assessment_value NUMERIC     NULL,                 -- manager's numeric rating (nullable)
+    effective_date           TIMESTAMPTZ NULL,
+    notes                    TEXT        NULL,
     -- Audit columns
 );
 
 CREATE INDEX IX_employee_to_skill_employee_id ON employee_to_skill(employee_id);
 CREATE INDEX IX_employee_to_skill_skill_id ON employee_to_skill(skill_id);
-CREATE INDEX IX_employee_to_skill_skill_level_id ON employee_to_skill(skill_level_id);
-CREATE UNIQUE INDEX UX_employee_to_skill_employee_skill_effective ON employee_to_skill(employee_id, skill_id, effective_date);
+CREATE UNIQUE INDEX UX_employee_to_skill_employee_skill ON employee_to_skill(employee_id, skill_id) WHERE is_deleted = FALSE;
+```
+
+### employee_skill_evidence
+Links a received feedback item as evidence for a skill assessment.
+```sql
+CREATE TABLE employee_skill_evidence (
+    id                  UUID  PRIMARY KEY,
+    employee_to_skill_id UUID NOT NULL REFERENCES employee_to_skill(id),
+    feedback_id         UUID  NOT NULL REFERENCES feedback(id),
+    -- Audit columns
+);
+
+CREATE INDEX IX_employee_skill_evidence_employee_to_skill_id ON employee_skill_evidence(employee_to_skill_id);
+CREATE INDEX IX_employee_skill_evidence_feedback_id ON employee_skill_evidence(feedback_id);
+CREATE UNIQUE INDEX UX_employee_skill_evidence_skill_feedback ON employee_skill_evidence(employee_to_skill_id, feedback_id) WHERE is_deleted = FALSE;
 ```
 
 ---
