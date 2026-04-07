@@ -1,5 +1,8 @@
 # API Specification — Skills Self-Assessment (0007)
 
+> **Amendment 2026-03-10**: This spec has been updated to align with feature 0010 (Skill Assessment Schema Refactor).
+> Key changes: `skill_level_id` removed from PUT request body; `assessed` response shape updated to use `self_assessment_value` and `manager_assessment_value`; `target` object removed from all responses; target-level endpoints removed.
+
 All endpoints require a valid bearer token. JSON fields use snake_case. URL paths use kebab-case.
 
 ---
@@ -50,21 +53,12 @@ Returns the authenticated user's full skill self-assessment for their current po
             "value": 5
           },
           "assessed": {
-            "id": "uuid",
-            "skill_level_id": "uuid",
-            "skill_level_title": "Intermediate",
-            "skill_level_value": 3,
+            "self_assessment_value": 3.5,
+            "manager_assessment_value": 4.0,
             "notes": "Led API migration in Q3"
-          },
-          "target": {
-            "id": "uuid",
-            "skill_level_id": "uuid",
-            "skill_level_title": "Advanced",
-            "skill_level_value": 4
           },
           "evidence": [
             {
-              "id": "uuid",
               "feedback_id": "uuid",
               "sender_display_name": "Alice Johnson",
               "rating": 4,
@@ -79,8 +73,9 @@ Returns the authenticated user's full skill self-assessment for their current po
 ```
 
 `next_position` is `null` when the user is at the highest `sort_order` in their track.
-`assessed` and `target` are `null` when no record exists.
-`next_position_required_level` is `null` when next position does not require this skill.
+`assessed` is `null` when no self-assessment row exists for the skill.
+`assessed.manager_assessment_value` is `null` until a manager sets it.
+`next_position_required_level` is `null` when the next position does not require this skill.
 
 **Error responses**
 
@@ -92,7 +87,7 @@ Returns the authenticated user's full skill self-assessment for their current po
 
 ## PUT /api/me/skill-assessment/skills/{skill_id}
 
-Upsert the authenticated user's **current** self-assessed level for a skill. Creates or updates the `employee_to_skill` record with `source = 'self'`, `is_target = FALSE`.
+Upsert the authenticated user's self-assessed numeric value for a skill. Creates or updates the `employee_to_skill` record. No `skill_level_id` is required or stored by this endpoint.
 
 **Auth**: Required — all roles.
 
@@ -106,7 +101,7 @@ Upsert the authenticated user's **current** self-assessed level for a skill. Cre
 
 ```json
 {
-  "skill_level_id": "uuid",
+  "self_assessment_value": 3.5,
   "notes": "Optional free-text up to 1000 chars"
 }
 ```
@@ -115,40 +110,27 @@ Upsert the authenticated user's **current** self-assessed level for a skill. Cre
 
 | Field | Required | Rules |
 |-------|----------|-------|
-| `skill_level_id` | Yes | Must be a valid `skill_levels.id` belonging to the given `skill_id` |
+| `self_assessment_value` | Yes | Numeric; must be > 0 |
 | `notes` | No | Max 1,000 characters |
 
 **Business rules**
 - `skill_id` must be in the user's current position's `position_to_skill` set; otherwise `404`.
-- If a target level record exists and its `value ≤` the new current level's `value`, the response is `422` — the client must clear or raise the target first.
 
-**Success response** `200 OK`
-
-```json
-{
-  "id": "uuid",
-  "skill_id": "uuid",
-  "skill_level_id": "uuid",
-  "skill_level_title": "Intermediate",
-  "skill_level_value": 3,
-  "notes": "Led API migration in Q3"
-}
-```
+**Success response** `200 OK` — returns the full `GET /api/me/skill-assessment` response shape.
 
 **Error responses**
 
 | Status | Code | Description |
 |--------|------|-------------|
 | 401 | `unauthorized` | Missing or invalid token |
+| 400 | `validation_error` | `self_assessment_value` missing, zero, or negative |
 | 404 | `skill_not_found` | `skill_id` not in user's position requirements |
-| 422 | `invalid_level` | `skill_level_id` does not belong to this skill |
-| 422 | `target_conflict` | Current level would equal or exceed existing target level |
 
 ---
 
 ## DELETE /api/me/skill-assessment/skills/{skill_id}
 
-Remove the authenticated user's current self-assessed level for a skill (`source = 'self'`, `is_target = FALSE`). Soft-deletes the record.
+Remove the authenticated user's self-assessment row for a skill. Soft-deletes the `employee_to_skill` record.
 
 **Auth**: Required — all roles.
 
@@ -165,79 +147,19 @@ Remove the authenticated user's current self-assessed level for a skill (`source
 | Status | Code | Description |
 |--------|------|-------------|
 | 401 | `unauthorized` | Missing or invalid token |
-| 404 | `assessment_not_found` | No current assessment record found for this skill |
+| 404 | `assessment_not_found` | No assessment record found for this skill |
 
 ---
 
-## PUT /api/me/skill-assessment/skills/{skill_id}/target
+## PUT /api/me/skill-assessment/skills/{skill_id}/target — REMOVED
 
-Upsert the authenticated user's **target** level for a skill (`source = 'self'`, `is_target = TRUE`).
-
-**Auth**: Required — all roles.
-
-**Path parameters**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `skill_id` | UUID | ID of the skill |
-
-**Request body**
-
-```json
-{
-  "skill_level_id": "uuid"
-}
-```
-
-**Validation rules**
-
-| Field | Required | Rules |
-|-------|----------|-------|
-| `skill_level_id` | Yes | Must be a valid `skill_levels.id` belonging to `skill_id`; value must be strictly greater than the current assessed level value (if one exists) |
-
-**Success response** `200 OK`
-
-```json
-{
-  "id": "uuid",
-  "skill_id": "uuid",
-  "skill_level_id": "uuid",
-  "skill_level_title": "Advanced",
-  "skill_level_value": 4
-}
-```
-
-**Error responses**
-
-| Status | Code | Description |
-|--------|------|-------------|
-| 401 | `unauthorized` | Missing or invalid token |
-| 404 | `skill_not_found` | `skill_id` not in user's position requirements |
-| 422 | `invalid_level` | `skill_level_id` does not belong to this skill |
-| 422 | `target_too_low` | Target level value must be strictly greater than current assessed level value |
+> **Removed by feature 0010.** Returns `404 Not Found`. Do not implement.
 
 ---
 
-## DELETE /api/me/skill-assessment/skills/{skill_id}/target
+## DELETE /api/me/skill-assessment/skills/{skill_id}/target — REMOVED
 
-Remove the authenticated user's target level for a skill (`source = 'self'`, `is_target = TRUE`). Soft-deletes the record.
-
-**Auth**: Required — all roles.
-
-**Path parameters**
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `skill_id` | UUID | ID of the skill |
-
-**Success response** `204 No Content`
-
-**Error responses**
-
-| Status | Code | Description |
-|--------|------|-------------|
-| 401 | `unauthorized` | Missing or invalid token |
-| 404 | `target_not_found` | No target record found for this skill |
+> **Removed by feature 0010.** Returns `404 Not Found`. Do not implement.
 
 ---
 
@@ -268,13 +190,12 @@ Link a received feedback item as evidence for the authenticated user's skill ass
 | `feedback_id` | Yes | Must be a valid `feedback.id` where `to_employee_id = current employee`; must not already be linked to this skill |
 
 **Business rules**
-- The `employee_to_skill` record (`source = 'self'`, `is_target = FALSE`) must already exist for this skill before evidence can be linked; returns `422` if not.
+- The `employee_to_skill` row must already exist for this skill (i.e. a self-assessment value has been saved) before evidence can be linked; returns `422` if not.
 
 **Success response** `201 Created`
 
 ```json
 {
-  "id": "uuid",
   "feedback_id": "uuid",
   "sender_display_name": "Alice Johnson",
   "rating": 4,
@@ -289,8 +210,8 @@ Link a received feedback item as evidence for the authenticated user's skill ass
 | 401 | `unauthorized` | Missing or invalid token |
 | 404 | `skill_not_found` | Skill not in user's position requirements |
 | 404 | `feedback_not_found` | Feedback item not found or not addressed to current user |
-| 422 | `assessment_required` | No current self-assessment exists for this skill; assess first |
-| 422 | `already_linked` | Feedback item already linked to this skill |
+| 422 | `assessment_required` | No self-assessment row exists for this skill; assess first |
+| 409 | `already_linked` | Feedback item already linked to this skill |
 
 ---
 
@@ -334,7 +255,7 @@ Read-only view of an employee's skill self-assessment. Accessible to PeopleManag
 |-----------|------|-------------|
 | `employee_id` | UUID | ID of the employee whose assessment is being viewed |
 
-**Success response** `200 OK` — same shape as `GET /api/me/skill-assessment` plus a top-level `employee` object:
+**Success response** `200 OK` — same shape as `GET /api/me/skill-assessment` plus a top-level `employee` object and `manager_assessment_value` populated in each `assessed` object:
 
 ```json
 {
@@ -342,9 +263,9 @@ Read-only view of an employee's skill self-assessment. Accessible to PeopleManag
     "id": "uuid",
     "display_name": "Jane Smith"
   },
-  "position": { ... },
-  "next_position": { ... },
-  "skill_categories": [ ... ]
+  "position": { "...": "..." },
+  "next_position": { "...": "..." },
+  "skill_categories": [ "..." ]
 }
 ```
 

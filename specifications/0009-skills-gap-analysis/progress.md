@@ -56,4 +56,16 @@ _Populated by `/test 0009`_
 
 ## Amendments
 
-_None yet._
+### Amendment — 2026-03-10 (triggered by feature 0010 conflict resolution)
+
+**Reason**: Feature 0010 drops the `source` column from `employee_to_skill` and replaces it with a dedicated `manager_assessment_value` column. The 0009 spec referenced `source = 'manager'` as the derivation for "manager-approved" assessments.
+
+**Changes made to 0009 specs:**
+
+| File | Change |
+|------|--------|
+| `api.md` `assessment_source` field note | Updated: `"manager"` now means `manager_assessment_value IS NOT NULL`; `"default"` means `manager_assessment_value IS NULL`. Removed reference to `source = 'manager'`. |
+| `stories.md` US-001 description | Changed "manager-approved skill assessments" → "manager-assessed skill values (`manager_assessment_value`)". |
+| `stories.md` US-002 AC-006 | Updated "Actual Level" radar series to source from `manager_assessment_value` (non-null) with position minimum fallback. |
+| `stories.md` US-002 AC-010 | Updated: fallback condition is `manager_assessment_value IS NULL` (not absence of a `source = 'manager'` row). |
+| `stories.md` US-005 AC-018 | Updated "manager-approved skill data" → "`manager_assessment_value` data". |

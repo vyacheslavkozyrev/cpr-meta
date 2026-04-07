@@ -48,7 +48,13 @@
       "Bash(for f:*)",
       "Bash(do)",
       "Read(//c/Users/serzh/VSC_Projects/cpr-meta/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(psql:*)",
+      "Bash(where psql)",
+      "Bash(\"/c/Program Files/PostgreSQL/16/bin/psql\" --version)",
+      "Read(//c/Program Files/**)",
+      "Bash(dotnet:*)",
+      "Bash(npx:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

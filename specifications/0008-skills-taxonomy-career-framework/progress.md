@@ -98,6 +98,24 @@ _(none — all prior B1–B6 resolved)_
 
 ## Amendments
 
+### Amendment — 2026-03-10 (triggered by feature 0010 conflict resolution)
+
+**Reason**: Feature 0010 drops the `weight` column from `position_to_skill`. Since 0008 is Complete, this is an intentional breaking change to live implemented code. The following 0008 ACs are superseded by 0010 US-007.
+
+**Superseded ACs (no longer valid after 0010 is deployed):**
+
+| AC | Original text | Superseded by |
+|----|---------------|---------------|
+| AC-017 | Position detail skills table includes a "Weight" column | 0010 US-007 AC-034 — `weight` column removed from DB and all responses |
+| AC-041 | `POST /api/taxonomy/positions/{id}/skills` accepts optional `weight` field | 0010 US-007 AC-036 — `weight` field silently ignored / removed from contract |
+| AC-043 | `PATCH /api/taxonomy/positions/{id}/skills/{id}` accepts optional `weight` field | 0010 US-007 AC-036 — same |
+
+**Implementation tasks required in 0010 plan.md:**
+- Remove the Weight column from the position detail skills table UI component.
+- Remove `weight` from `PositionToSkillDto` / `CreatePositionSkillDto` / `UpdatePositionSkillDto` in the backend.
+
+---
+
 ### Amendment — 2026-02-24 (triggered by F0007 conflict resolution)
 
 **Reason**: F0007 Analyze phase identified two Critical conflicts; both resolved via Option A — extending F0008's position management to own `sort_order`.
