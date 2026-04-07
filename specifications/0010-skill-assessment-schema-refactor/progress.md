@@ -7,7 +7,7 @@
 | Specify | ✅ Complete | 2026-03-10 | |
 | Analyze | ✅ Complete | 2026-03-10 | PASS — all conflicts resolved via spec amendments |
 | Plan | ✅ Complete | 2026-03-10 | 42 tasks across Migration→Domain→Infra→App→API→Config→UI→Test |
-| Implement | ⏳ Pending | — | |
+| Implement | ✅ Complete | 2026-04-06 | |
 | Review | ⏳ Pending | — | |
 | Test | ⏳ Pending | — | |
 
@@ -35,3 +35,12 @@
 ## Amendments
 
 _None._
+
+## Implementation Notes
+
+### Implement — 2026-04-06
+
+**Tasks added during implementation**: none
+**Notes**: All 42 plan tasks were already implemented in prior commits on the feature branch. The Implement phase session verified each task, updated `documents/data.md` (T017 — employee_to_skill schema and new employee_skill_evidence section), and fixed two code-reviewer Blockers:
+- **B1**: Added position-skill membership validation in `UpsertManagerAssessmentAsync` (AC-028: 404 if skill not in employee's position).
+- **B2**: Fixed `PUT /me/skill-assessment/skills/:skillId` MSW mock to return the full `ISkillAssessmentResponse` envelope; changed `POST /evidence` mock from `status: 201` to `200` to match the controller. Also fixed a TypeScript TS4111 index-signature error in `src/tests/setup.ts`.
