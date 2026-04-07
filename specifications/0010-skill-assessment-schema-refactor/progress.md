@@ -8,7 +8,7 @@
 | Analyze | ✅ Complete | 2026-03-10 | PASS — all conflicts resolved via spec amendments |
 | Plan | ✅ Complete | 2026-03-10 | 42 tasks across Migration→Domain→Infra→App→API→Config→UI→Test |
 | Implement | ✅ Complete | 2026-04-06 | |
-| Review | ⏳ Pending | — | |
+| Review | ✅ Complete | 2026-04-06 | Score 98/100 — PASS |
 | Test | ⏳ Pending | — | |
 
 ## Conflict Analysis
@@ -35,6 +35,25 @@
 ## Amendments
 
 _None._
+
+### Review — 2026-04-06
+
+**Score**: 98/100
+**Result**: PASS
+
+#### Blockers
+_None._
+
+#### Major
+_None._
+
+#### Minor
+- `cpr-api/src/CPR.Application/DTOs/SkillAssessment/SkillAssessmentResponseDtos.cs:124` — `AssessedLevelDto` exposes `id` and `skill_id` fields not in api.md spec shape. Amend api.md to document these fields.
+- `cpr-api/src/CPR.Application/DTOs/SkillAssessment/SkillAssessmentResponseDtos.cs:142` — `EvidenceItemDto` exposes `id` field not in api.md evidence shape. Amend api.md or remove if unused.
+- `cpr-api/src/CPR.Application/DTOs/Taxonomy/PositionDtos.cs` — `PositionSkillRequirementDto` returns enriched fields beyond the spec's defined shape for POST/PATCH position skills. Amend api.md.
+- `cpr-api/src/CPR.Infrastructure/Services/SkillAssessmentService.cs:65` — Role comparisons use magic string literals; extract to constants to prevent silent breakage if DB role titles change.
+
+---
 
 ## Implementation Notes
 
