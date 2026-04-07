@@ -1,7 +1,6 @@
 ---
 description: Run the Plan phase — generate a file-level ordered implementation task list from the approved spec documents.
 argument-hint: <feature-number>
-allowed-tools: Read, Write, Edit, Glob, Grep, Agent
 ---
 
 You are executing the **Plan** phase of the SDD framework.

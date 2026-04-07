@@ -1,7 +1,6 @@
 ---
 description: Run the Review phase — score implemented code against spec, architecture, naming, security, and quality; gate progression at 80/100.
 argument-hint: <feature-number>
-allowed-tools: Read, Write, Edit, Glob, Grep, Agent
 ---
 
 You are executing the **Review** phase of the SDD framework.

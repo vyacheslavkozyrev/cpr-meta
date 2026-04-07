@@ -43,7 +43,12 @@
       "Bash(findstr:*)",
       "Bash(node:*)",
       "Bash(bash:*)",
-      "Bash(yarn:*)"
+      "Bash(yarn:*)",
+      "Bash(dotnet --version 2>/dev/null && echo \"---\" && node --version 2>/dev/null && echo \"---\" && yarn --version 2>/dev/null && echo \"---\" && docker --version 2>/dev/null && echo \"---\" && docker ps 2>/dev/null | head -10)",
+      "Bash(for f:*)",
+      "Bash(do)",
+      "Read(//c/Users/serzh/VSC_Projects/cpr-meta/**)",
+      "Bash(done)"
     ]
   },
   "enableAllProjectMcpServers": true,
