@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "source/cpr-api"
+		},
+		{
+			"path": "source/cpr-ui"
+		}
+	],
+	"settings": {}
+}

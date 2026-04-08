@@ -8,8 +8,8 @@
 | Analyze | ✅ Complete | 2026-03-06 | PASS — all conflicts resolved |
 | Plan | ✅ Complete | 2026-03-06 | |
 | Implement | ✅ Complete | 2026-03-20 | |
-| Review | ⏳ Pending | | |
-| Test | ⏳ Pending | | |
+| Review | ✅ Complete | 2026-03-20 | PASS — 95/100 |
+| Test | ✅ Complete | 2026-03-21 | PASS — 27/27 ACs covered |
 
 ---
 
@@ -57,13 +57,38 @@
 
 ## Review
 
-_Populated by `/review 0009`_
+### Review — 2026-03-20
+
+**Score**: 95/100
+**Result**: PASS (≥80)
+
+#### Blockers
+None.
+
+#### Major
+- `source/cpr-api/src/CPR.Application/Repositories/IGapAnalysisRepository.cs` — Repository interface is in `CPR.Application.Repositories` namespace; cpr-api CLAUDE.md and project convention (e.g. `ITaxonomyRepository` in `CPR.Domain.Repositories`) require all repository interfaces in `CPR.Domain.Repositories`. Move to `CPR.Domain/Repositories/` and update namespace and DI registration.
+
+#### Minor
+- `source/cpr-api/src/CPR.Infrastructure/Services/GapAnalysisService.cs:161` — When `manager_assessment_value` doesn't map to any `SkillLevel.Value`, the fallback is `requiredLevel` (gap = 0) instead of position minimum (`MinBy`). This can silently hide a gap for stale assessment values; consider using the same `MinBy` fallback as the default path.
+- `source/cpr-ui/src/pages/gapAnalysis/GapAnalysisPage.tsx:62` and `source/cpr-ui/src/pages/gapAnalysis/EmployeeGapAnalysisPage.tsx:74` — Skeleton rows use array index as `key` (deferred from Implement phase). Non-functional but generates an unstable-key lint warning.
 
 ---
 
 ## Test Results
 
-_Populated by `/test 0009`_
+### Test — 2026-03-21
+
+**AC Coverage**: 27/27 criteria covered
+**Backend**: 473/473 tests pass
+**Frontend**: 423/423 tests pass
+**E2E**: not run (no e2e tests written — all ACs covered by unit/integration tests)
+**Result**: PASS
+
+#### Failed Tests
+None.
+
+#### Uncovered ACs
+None — all 27 ACs covered.
 
 ---
 

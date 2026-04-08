@@ -56,7 +56,7 @@ One entry per feature. Updated at the end of each Specify phase.
 ---
 
 ## 0009 — Skills Gap Analysis & Development Planning
-**Status**: In Progress
+**Status**: Complete
 **Summary**: Compares an employee's manager-approved skill assessments against the requirements of the next-level position in their career track, highlights gaps per skill, and enables employees and their managers to create development goals directly from identified gaps.
 **Key entities**: `Position` (modified), `PositionToSkill`, `Skill`, `SkillLevel`, `EmployeeToSkill`, `Goal`
 **API endpoints**: GET /api/me/gap-analysis, GET /api/employees/{id}/gap-analysis
