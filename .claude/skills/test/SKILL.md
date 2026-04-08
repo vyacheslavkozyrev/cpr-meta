@@ -1,7 +1,6 @@
 ---
 description: Run the Test phase — write and run backend, frontend, and E2E tests covering every acceptance criterion; gate on full AC coverage and minimum 80% code coverage.
 argument-hint: <feature-number>
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent
 ---
 
 You are executing the **Test** phase of the SDD framework.

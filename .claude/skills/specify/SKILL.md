@@ -1,7 +1,6 @@
 ---
 description: Run the Specify phase — turn a free-text feature description into structured spec documents (stories, wireframes, api, schema, progress).
 argument-hint: <feature-number>
-allowed-tools: Read, Write, Edit, Glob, Grep, Agent
 ---
 
 You are executing the **Specify** phase of the SDD framework.

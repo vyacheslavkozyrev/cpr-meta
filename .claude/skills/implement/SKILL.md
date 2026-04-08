@@ -1,7 +1,6 @@
 ---
 description: Run the Implement phase — execute plan.md tasks in order to produce working code that satisfies the spec, with build checkpoints after each layer.
 argument-hint: <feature-number>
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent
 ---
 
 You are executing the **Implement** phase of the SDD framework.
