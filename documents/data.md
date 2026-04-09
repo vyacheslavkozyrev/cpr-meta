@@ -204,6 +204,7 @@ CREATE TABLE position_to_skill (
     is_mandatory    BOOLEAN  DEFAULT FALSE,
     rationale       TEXT     NULL,
     -- Audit columns
+    -- Note: weight column removed in feature 0010
 );
 
 CREATE INDEX IX_position_to_skill_position_id ON position_to_skill(position_id);
@@ -213,17 +214,18 @@ CREATE UNIQUE INDEX UX_position_to_skill_position_skill ON position_to_skill(pos
 ```
 
 ### employee_to_skill
-Employee skill assessments. Each employee has at most one assessment row per skill (enforced by partial unique index).
+Employee skill assessments. Updated in feature 0010: `persist_value` renamed to `self_assessment_value` (NOT NULL),
+`manager_assessment_value` added, `source` and `is_target` columns dropped.
 ```sql
 CREATE TABLE employee_to_skill (
-    id                      UUID        PRIMARY KEY,
-    employee_id             UUID        NOT NULL REFERENCES employees(id),
-    skill_id                UUID        NOT NULL REFERENCES skills(id),
-    skill_level_id          UUID        REFERENCES skill_levels(id),
-    self_assessment_value   NUMERIC     NOT NULL DEFAULT 0,
-    manager_assessment_value NUMERIC    NULL,
-    notes                   TEXT        NULL,
-    effective_date          TIMESTAMPTZ NULL,
+    id                       UUID        PRIMARY KEY,
+    employee_id              UUID        NOT NULL REFERENCES employees(id),
+    skill_id                 UUID        NOT NULL REFERENCES skills(id),
+    skill_level_id           UUID        REFERENCES skill_levels(id),
+    self_assessment_value    NUMERIC     NOT NULL DEFAULT 0,   -- employee's numeric self-rating
+    manager_assessment_value NUMERIC     NULL,                 -- manager's numeric rating (nullable)
+    effective_date           TIMESTAMPTZ NULL,
+    notes                    TEXT        NULL,
     -- Audit columns
 );
 
@@ -243,7 +245,8 @@ CREATE TABLE employee_skill_evidence (
 );
 
 CREATE INDEX IX_employee_skill_evidence_employee_to_skill_id ON employee_skill_evidence(employee_to_skill_id);
-CREATE UNIQUE INDEX UX_employee_skill_evidence_assessment_feedback ON employee_skill_evidence(employee_to_skill_id, feedback_id) WHERE is_deleted = FALSE;
+CREATE INDEX IX_employee_skill_evidence_feedback_id ON employee_skill_evidence(feedback_id);
+CREATE UNIQUE INDEX UX_employee_skill_evidence_skill_feedback ON employee_skill_evidence(employee_to_skill_id, feedback_id) WHERE is_deleted = FALSE;
 ```
 
 ---

@@ -71,3 +71,13 @@ One entry per feature. Updated at the end of each Specify phase.
 **Key entities**: `EmployeeToSkill`, `PositionToSkill`, `EmployeeSkillEvidence`
 **API endpoints**: GET /api/me/skill-assessment, PUT /api/me/skill-assessment/skills/{skillId}, DELETE /api/me/skill-assessment/skills/{skillId}, POST /api/me/skill-assessment/skills/{skillId}/evidence, DELETE /api/me/skill-assessment/skills/{skillId}/evidence/{feedbackId}, GET /api/employees/{employeeId}/skill-assessment, PUT /api/employees/{employeeId}/skill-assessment/skills/{skillId}/manager-assessment, PATCH /api/taxonomy/positions/{id}/skills/{position_skill_id}, POST /api/taxonomy/positions/{id}/skills
 **DB tables**: `employee_to_skill` (modified), `position_to_skill` (modified), `employee_skill_evidence` (existing, documentation added)
+
+---
+
+## 0011 — Project Team Management
+
+**Status**: In Progress
+**Summary**: Enables SolutionOwners, Directors, and Administrators to create and manage projects, define project-specific roles, assign team members with date ranges, and track team composition over time; Employees can view their own project assignments and PeopleManagers can view their direct reports' assignments.
+**Key entities**: `Project`, `ProjectRole`, `ProjectTeam`
+**API endpoints**: POST /api/projects, GET /api/projects, GET /api/projects/{id}, PATCH /api/projects/{id}, DELETE /api/projects/{id}, GET /api/projects/{id}/roles, POST /api/projects/{id}/roles, PATCH /api/projects/{id}/roles/{roleId}, DELETE /api/projects/{id}/roles/{roleId}, GET /api/projects/{id}/team, POST /api/projects/{id}/roles/{roleId}/members, PATCH /api/projects/{id}/roles/{roleId}/members/{memberId}, DELETE /api/projects/{id}/roles/{roleId}/members/{memberId}, GET /api/me/project-assignments, GET /api/employees/{id}/project-assignments
+**DB tables**: `projects` (modified — added status, start_date, end_date), `project_teams` (modified — added start_date, end_date)
