@@ -235,12 +235,12 @@ CREATE UNIQUE INDEX UX_employee_to_skill_employee_skill ON employee_to_skill(emp
 ```
 
 ### employee_skill_evidence
-Links a received feedback item as evidence for a skill assessment.
+Links a feedback item as supporting evidence for an employee's skill assessment.
 ```sql
 CREATE TABLE employee_skill_evidence (
-    id                  UUID  PRIMARY KEY,
+    id                  UUID PRIMARY KEY,
     employee_to_skill_id UUID NOT NULL REFERENCES employee_to_skill(id),
-    feedback_id         UUID  NOT NULL REFERENCES feedback(id),
+    feedback_id         UUID NOT NULL REFERENCES feedback(id),
     -- Audit columns
 );
 
