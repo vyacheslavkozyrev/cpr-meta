@@ -81,3 +81,12 @@ One entry per feature. Updated at the end of each Specify phase.
 **Key entities**: `Project`, `ProjectRole`, `ProjectTeam`
 **API endpoints**: POST /api/projects, GET /api/projects, GET /api/projects/{id}, PATCH /api/projects/{id}, DELETE /api/projects/{id}, GET /api/projects/{id}/roles, POST /api/projects/{id}/roles, PATCH /api/projects/{id}/roles/{roleId}, DELETE /api/projects/{id}/roles/{roleId}, GET /api/projects/{id}/team, POST /api/projects/{id}/roles/{roleId}/members, PATCH /api/projects/{id}/roles/{roleId}/members/{memberId}, DELETE /api/projects/{id}/roles/{roleId}/members/{memberId}, GET /api/me/project-assignments, GET /api/employees/{id}/project-assignments
 **DB tables**: `projects` (modified — added status, start_date, end_date), `project_teams` (modified — added start_date, end_date)
+
+---
+
+## 0012 — Org Hierarchy & Employee Directory
+**Status**: In Progress
+**Summary**: Enables all authenticated users to browse a searchable flat employee directory (search by name, filter by role), view full employee profiles (contact details, org info, manager, direct reports), and navigate an interactive org chart in two modes: centred on themselves (manager, peers, direct reports) and full company tree (expand/collapse).
+**Key entities**: `User` (modified), `Employee` (modified)
+**API endpoints**: GET /api/employees, GET /api/employees/{id}, GET /api/org-chart/{employee_id}, GET /api/org-chart
+**DB tables**: `users` (modified — added email, phone, avatar_url, location_id), `employees` (modified — added hire_date)
