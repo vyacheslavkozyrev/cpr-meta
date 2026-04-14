@@ -81,3 +81,13 @@ One entry per feature. Updated at the end of each Specify phase.
 **Key entities**: `Project`, `ProjectRole`, `ProjectTeam`
 **API endpoints**: POST /api/projects, GET /api/projects, GET /api/projects/{id}, PATCH /api/projects/{id}, DELETE /api/projects/{id}, GET /api/projects/{id}/roles, POST /api/projects/{id}/roles, PATCH /api/projects/{id}/roles/{roleId}, DELETE /api/projects/{id}/roles/{roleId}, GET /api/projects/{id}/team, POST /api/projects/{id}/roles/{roleId}/members, PATCH /api/projects/{id}/roles/{roleId}/members/{memberId}, DELETE /api/projects/{id}/roles/{roleId}/members/{memberId}, GET /api/me/project-assignments, GET /api/employees/{id}/project-assignments
 **DB tables**: `projects` (modified — added status, start_date, end_date), `project_teams` (modified — added start_date, end_date)
+
+---
+
+## 0010a — Team Member Dashboard
+
+**Status**: In Progress
+**Summary**: Enables PeopleManagers and Directors to view a consolidated dashboard per direct report showing goals (with full details and tasks), received feedback, skill levels (self + manager assessment with gap analysis), and project assignments; managers can mark goals as completed, suggest new goals, directly delete goals, and approve or reject employee-initiated deletion requests.
+**Key entities**: `Goal` (modified), `GoalDeletionRequest`
+**API endpoints**: GET /api/me/team, GET /api/employees/{id}/goals, POST /api/employees/{id}/goals, PATCH /api/goals/{id}/suggestion, POST /api/goals/{id}/deletion-request, DELETE /api/goals/{id}/deletion-request, PATCH /api/goals/{id}/deletion-request, GET /api/employees/{id}/feedback, PATCH /api/goals/{id} (extended), DELETE /api/goals/{id} (extended)
+**DB tables**: `goals` (added `suggested_by_id` column, added `suggested` enum value), `goal_deletion_requests` (new)

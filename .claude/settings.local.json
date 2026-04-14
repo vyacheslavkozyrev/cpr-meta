@@ -54,7 +54,9 @@
       "Bash(\"/c/Program Files/PostgreSQL/16/bin/psql\" --version)",
       "Read(//c/Program Files/**)",
       "Bash(dotnet:*)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Read(//d/projects/CPR//**)",
+      "Read(//d/projects//**)"
     ]
   },
   "enableAllProjectMcpServers": true,
