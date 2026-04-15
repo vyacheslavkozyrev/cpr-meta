@@ -74,6 +74,15 @@ One entry per feature. Updated at the end of each Specify phase.
 
 ---
 
+## 0010a — Team Member Dashboard
+**Status**: In Progress
+**Summary**: Enables PeopleManagers and Directors to view a consolidated dashboard per direct report showing goals (with full details and tasks), received feedback, skill levels (self + manager assessment with gap analysis), and project assignments; managers can mark goals as completed, suggest new goals, directly delete goals, and approve or reject employee-initiated deletion requests.
+**Key entities**: `Goal` (modified), `GoalDeletionRequest`
+**API endpoints**: GET /api/me/team, GET /api/employees/{id}/goals, POST /api/employees/{id}/goals, PATCH /api/goals/{id}/suggestion, POST /api/goals/{id}/deletion-request, DELETE /api/goals/{id}/deletion-request, PATCH /api/goals/{id}/deletion-request, GET /api/employees/{id}/feedback, PATCH /api/goals/{id} (extended), DELETE /api/goals/{id} (extended)
+**DB tables**: `goals` (added `suggested_by_id` column, added `suggested` enum value), `goal_deletion_requests` (new)
+
+---
+
 ## 0011 — Project Team Management
 
 **Status**: In Progress
@@ -90,3 +99,4 @@ One entry per feature. Updated at the end of each Specify phase.
 **Key entities**: `User` (modified), `Employee` (modified)
 **API endpoints**: GET /api/employees, GET /api/employees/{id}, GET /api/org-chart/{employee_id}, GET /api/org-chart
 **DB tables**: `users` (modified — added email, phone, avatar_url, location_id), `employees` (modified — added hire_date)
+
