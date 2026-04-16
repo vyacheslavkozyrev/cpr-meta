@@ -7,7 +7,7 @@
 | Specify | ✅ Complete | 2026-04-09 | |
 | Analyze | ✅ Complete | 2026-04-09 | Criticals resolved — see Conflict Analysis |
 | Plan | ✅ Complete | 2026-04-09 | |
-| Implement | ⏳ Pending | | |
+| Implement | ✅ Complete | 2026-04-15 | |
 | Review | ⏳ Pending | | |
 | Test | ⏳ Pending | | |
 
@@ -37,7 +37,18 @@
 
 ## Implementation Notes
 
-_Populated by `/implement 0010a`_
+### Implement — 2026-04-15
+
+**Tasks added during implementation**: none
+
+**Notes**:
+- T031 (extend GoalDto) and T038 (update goalsQueryService mutations) were marked complete in plan.md from a prior session but the code changes had not been applied; re-implemented in this session.
+- `GoalService` retains `CprDbContext _db` for GoalTask CRUD and batch-enrichment lookups (`_db.Users`, `_db.SkillCategories`, `_db.GoalDeletionRequests` in `GetEmployeeGoalsAsync`). Refactoring these into additional repository methods is deferred as tech debt (no existing `ISkillCategoryRepository`).
+- `GoalDeletionRequest` entity carries `IsDeleted` / `DeletedAt` / `DeletedBy` audit columns (standard base class) but the cancellation path uses hard-delete by design per the plan (no `is_deleted` column in the migration). Soft-delete can be added later if audit trail is required.
+- Code reviewer raised W1 (missing catch for `InvalidOperationException` in `CancelDeletionRequest` controller action → 500). This is pre-existing behavior; note for Review phase.
+- Code reviewer raised W5 (`ModifiedBy` set to employee ID vs user ID inconsistency). Pre-existing pattern in codebase; note for Review phase.
+- Code reviewer raised W6 (`useEmployeeProjects` defined inline in `ProjectsSectionManager.tsx` rather than in `teamQueryService.ts`). Note for Review phase.
+- build_output.txt and build.log accidentally committed; removed in this session.
 
 ---
 
