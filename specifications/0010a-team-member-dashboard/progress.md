@@ -8,8 +8,8 @@
 | Analyze | ✅ Complete | 2026-04-09 | Criticals resolved — see Conflict Analysis |
 | Plan | ✅ Complete | 2026-04-09 | |
 | Implement | ✅ Complete | 2026-04-15 | |
-| Review | ⏳ Pending | | |
-| Test | ⏳ Pending | | |
+| Review | ✅ Complete | 2026-04-16 | Score 83/100 — PASS |
+| Test | ✅ Complete | 2026-04-17 | All 42 ACs covered — PASS |
 
 ---
 
@@ -54,13 +54,57 @@
 
 ## Review
 
-_Populated by `/review 0010a`_
+### Review — 2026-04-16 (re-run after blocker fixes)
+
+**Score**: 83/100
+**Result**: PASS (≥80)
+
+#### Scoring breakdown
+
+| Category | Score | Max | Notes |
+|----------|-------|-----|-------|
+| Spec compliance | 28 | 30 | All 42 ACs implemented; -2 for additive shape drifts on accept/reject-deletion responses |
+| Architecture | 20 | 25 | GoalService bypasses repository layer with direct `_db` in new methods (1 violation × -5) |
+| Naming conventions | 15 | 15 | All 39 i18n keys present across en/be/es/fr; JSON/C# naming correct |
+| Security | 11 | 15 | 3 employee-only endpoints over-permissive at `[RequireRole]`; service-level ownership compensates; (10/14)×15 |
+| Code quality | 9 | 15 | Debug.WriteLine in TeamController (-3); missing InvalidOperationException catch in CancelDeletionRequest (-3) |
+
+#### Blockers
+_None._
+
+#### Major
+
+- `cpr-api/src/CPR.Api/Controllers/GoalsController.cs:130,160,197` — `PATCH /api/goals/{id}/suggestion`, `POST /api/goals/{id}/deletion-request`, and `DELETE /api/goals/{id}/deletion-request` are spec-gated to `Employee` only but admit all roles via `[RequireRole(...)]`. A manager bypasses the controller-level gate and hits service-level ownership checks. Tighten to `[RequireRole("Employee")]`.
+- `cpr-api/src/CPR.Infrastructure/Services/GoalService.cs` — new 0010a methods use `CprDbContext _db` directly for `Users`, `SkillCategories`, and `GoalDeletionRequests` lookups, bypassing the repository layer. Tech debt — deferred per implementation notes.
+- `cpr-api/src/CPR.Api/Controllers/TeamController.cs:91` — `System.Diagnostics.Debug.WriteLine` in production controller. Replace with `ILogger`.
+- `cpr-api/src/CPR.Api/Controllers/GoalsController.cs:202` — `CancelDeletionRequest` does not catch `InvalidOperationException`; double-cancel returns 500. Add a catch returning `409 Conflict` to match `RequestDeletion`.
+
+#### Minor
+
+- `cpr-api/src/CPR.Api/Controllers/GoalsController.cs:230` — `PATCH /api/goals/{id}/deletion-request` admits `Administrator` (spec: PeopleManager/Director only); undocumented deviation.
+- `cpr-api/src/CPR.Api/Controllers/GoalsController.cs:145` — Accept path returns full `GoalDto`; spec defines slim `{ id, status, suggested_by_id }`. Additive only.
+- `cpr-api/src/CPR.Application/Contracts/GoalDto.cs:91-116` — Legacy alias fields (`title`, `deadline`, `progress_percent`, etc.) duplicated alongside new canonical fields in every response.
 
 ---
 
 ## Test Results
 
-_Populated by `/test 0010a`_
+### Test — 2026-04-17
+
+**AC Coverage**: 42/42 criteria covered (24 explicit, 18 inferred)
+**Backend**: All unit and integration tests pass · build clean
+**Frontend**: 493/493 tests pass
+**E2E**: Deferred (MSW mock environment; happy-path flows covered by component tests)
+**Result**: PASS
+
+#### Failed Tests
+_None._
+
+#### Uncovered ACs
+_None._
+
+#### MSW Blockers
+_None._
 
 ---
 
