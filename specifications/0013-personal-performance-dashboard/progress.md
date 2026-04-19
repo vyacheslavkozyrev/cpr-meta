@@ -8,7 +8,7 @@
 | Analyze | ✅ Complete | 2026-04-16 | PASS — 0 Critical, 3 Major, 5 Minor |
 | Plan | ✅ Complete | 2026-04-16 | |
 | Implement | ✅ Complete | 2026-04-16 | |
-| Review | ⏳ Pending | | |
+| Review | ✅ Complete | 2026-04-19 | PASS — 89/100 |
 | Test | ⏳ Pending | | |
 
 ---
@@ -50,7 +50,23 @@
 
 ## Review
 
-_Populated by `/review 0013`_
+### Review — 2026-04-19
+
+**Score**: 89/100
+**Result**: PASS (≥80)
+
+#### Blockers
+None.
+
+#### Major
+- `source/cpr-ui/src/components/dashboard/widgets/FeedbackSummaryWidget.tsx:259` — AC-015: widget always shows "General Feedback" constant; spec requires actual goal title or "No linked goal" for null goal_id. RecentFeedback model missing goalTitle field.
+- `source/cpr-api/src/CPR.Application/Contracts/DashboardDtos.cs:202` — `RecentFeedbackDto.GoalTitle` is `string` (non-nullable) but spec defines goal_title as `string | null`. Should be `string?`.
+- `source/cpr-api/src/CPR.Api/Controllers/DashboardController.cs` — 400 responses for invalid period/days params return plain strings instead of RFC 7807 ProblemDetails with i18n detail key. Affects 4 of 5 endpoints.
+- `source/cpr-ui/public/locales/es/translation.json` and `fr/translation.json` — 13 keys used by ActivityFeedWidget.tsx missing from es and fr locale files, including `dashboard.widgets.activityFeed` that T006 depends on.
+
+#### Minor
+- `source/cpr-ui/src/pages/dashboard/DashboardPage.tsx:29` — AC-008: no error handling for useDashboardSummary failure; stat cards silently show 0 instead of error state with retry option.
+- `source/cpr-meta/specifications/0013-personal-performance-dashboard/stories.md` — US-009 (AC-037/038/039) based on false premise (apiClient has no envelope wrapper). Should be amended or removed.
 
 ---
 
