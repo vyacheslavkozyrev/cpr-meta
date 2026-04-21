@@ -100,3 +100,12 @@ One entry per feature. Updated at the end of each Specify phase.
 **API endpoints**: GET /api/employees, GET /api/employees/{id}, GET /api/org-chart/{employee_id}, GET /api/org-chart
 **DB tables**: `users` (modified — added email, phone, avatar_url, location_id), `employees` (modified — added hire_date)
 
+---
+
+## 0013 — Personal Performance Dashboard
+**Status**: Complete
+**Summary**: Provides every authenticated user with a consolidated dashboard at `/dashboard` (default landing page) showing summary stat cards, and five widgets — Goals Summary, Feedback Summary, Feedback Requests, Skill Progress, and Activity Feed — each backed by a dedicated API endpoint. The spec also captures four correctness fixes: wiring stat cards to the real API, fixing INNER JOIN bugs that drop goal-less feedback, aligning the service layer envelope pattern, and eliminating mock-only fields from the skills DTO.
+**Key entities**: `Goal`, `Feedback`, `FeedbackRequest`, `EmployeeToSkill`
+**API endpoints**: GET /api/dashboard/summary, GET /api/dashboard/goals-summary, GET /api/dashboard/feedback-summary, GET /api/dashboard/skills-summary, GET /api/dashboard/activity
+**DB tables**: none
+
