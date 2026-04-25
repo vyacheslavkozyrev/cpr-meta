@@ -57,6 +57,10 @@
       "Bash(npx:*)",
       "Read(//d/projects/CPR//**)",
       "Read(//d/projects//**)",
+      "Bash(/c/Users/serzh/VSC_Projects/cpr-meta/source/cpr-ui)",
+      "Bash(node_modules/.bin/lint-staged --version)",
+      "Bash(awk '/dashboard.*cards/,/All files/ {if \\(/dashboard/ || /^\\\\s*[0-9]/\\) print}')",
+      "Bash(awk '/\\\\.\\\\.\\\\.shboard\\\\/cards/,/\\\\.\\\\.\\\\.shboard\\\\/widgets.*index/ {print}')"
       "Bash(tee build.log)",
       "Bash(echo \"EXIT_CODE: $?\")",
       "Bash(tee build_output.txt)",
