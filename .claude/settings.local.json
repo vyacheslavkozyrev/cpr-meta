@@ -61,6 +61,16 @@
       "Bash(node_modules/.bin/lint-staged --version)",
       "Bash(awk '/dashboard.*cards/,/All files/ {if \\(/dashboard/ || /^\\\\s*[0-9]/\\) print}')",
       "Bash(awk '/\\\\.\\\\.\\\\.shboard\\\\/cards/,/\\\\.\\\\.\\\\.shboard\\\\/widgets.*index/ {print}')"
+      "Bash(tee build.log)",
+      "Bash(echo \"EXIT_CODE: $?\")",
+      "Bash(tee build_output.txt)",
+      "Bash(echo \"BUILD_EXIT_CODE=$?\")",
+      "Bash(awk NR==239:*)",
+      "Bash(taskkill /IM dotnet.exe /F)",
+      "Bash(taskkill /IM CPR.Api.exe /F)",
+      "Bash(rm -rf /d/projects/CPR/source/cpr-meta/source/cpr-api/src/CPR.Api/bin)",
+      "Bash(rm -rf /d/projects/CPR/source/cpr-meta/source/cpr-api/src/CPR.Api/obj)",
+      "Bash(tee /tmp/api_build.log)"
     ]
   },
   "enableAllProjectMcpServers": true,

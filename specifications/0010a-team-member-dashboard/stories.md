@@ -27,11 +27,11 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-001: The team list page is accessible only to users with the `PeopleManager` or `Director` role; any other role receives a 403 response.
-- [ ] AC-002: The page lists every employee whose `manager_id` equals the authenticated user's id.
-- [ ] AC-003: Each list item displays the team member's full name and job title.
-- [ ] AC-004: Clicking a list item navigates to that team member's individual dashboard.
-- [ ] AC-005: When the authenticated user has no direct reports the page displays an empty-state message.
+- [x] AC-001: The team list page is accessible only to users with the `PeopleManager` or `Director` role; any other role receives a 403 response.
+- [x] AC-002: The page lists every employee whose `manager_id` equals the authenticated user's id.
+- [x] AC-003: Each list item displays the team member's full name and job title.
+- [x] AC-004: Clicking a list item navigates to that team member's individual dashboard.
+- [x] AC-005: When the authenticated user has no direct reports the page displays an empty-state message.
 
 ---
 
@@ -43,9 +43,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-006: The dashboard URL is `/team/{employeeId}`; accessing it for an employee who is not a direct report of the authenticated user returns a 403 response.
-- [ ] AC-007: The dashboard header displays the team member's full name, job title, and current position (from the career framework).
-- [ ] AC-008: The dashboard is divided into four named sections: **Goals**, **Feedback**, **Skills**, and **Projects**.
+- [x] AC-006: The dashboard URL is `/team/{employeeId}`; accessing it for an employee who is not a direct report of the authenticated user returns a 403 response.
+- [x] AC-007: The dashboard header displays the team member's full name, job title, and current position (from the career framework).
+- [x] AC-008: The dashboard is divided into four named sections: **Goals**, **Feedback**, **Skills**, and **Projects**.
 
 ---
 
@@ -57,10 +57,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-009: The Goals section lists all non-deleted goals for the team member — including goals with status `suggested` and goals with a pending deletion request — showing name, status, due date, and progress percentage for each.
-- [ ] AC-010: Expanding a goal reveals its full details: description, linked skill category, timeframe, and all tasks with their individual completion status.
-- [ ] AC-011: Goals with status `suggested` are visually labelled "Suggested by you" (visible to the manager who suggested them) or "Suggested by [manager name]" (visible to other managers viewing).
-- [ ] AC-012: Goals that have a pending deletion request are visually labelled "Deletion Requested".
+- [x] AC-009: The Goals section lists all non-deleted goals for the team member — including goals with status `suggested` and goals with a pending deletion request — showing name, status, due date, and progress percentage for each.
+- [x] AC-010: Expanding a goal reveals its full details: description, linked skill category, timeframe, and all tasks with their individual completion status.
+- [x] AC-011: Goals with status `suggested` are visually labelled "Suggested by you" (visible to the manager who suggested them) or "Suggested by [manager name]" (visible to other managers viewing).
+- [x] AC-012: Goals that have a pending deletion request are visually labelled "Deletion Requested".
 
 ---
 
@@ -72,9 +72,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-013: A "Mark as Completed" action is available on any goal in the team member's Goals section whose current status is `not_started` or `in_progress`.
-- [ ] AC-014: Confirming the action updates the goal's status to `completed` immediately and the UI reflects the new status without a page reload.
-- [ ] AC-015: The "Mark as Completed" action is not displayed for goals already in `completed` or `suggested` status.
+- [x] AC-013: A "Mark as Completed" action is available on any goal in the team member's Goals section whose current status is `not_started` or `in_progress`.
+- [x] AC-014: Confirming the action updates the goal's status to `completed` immediately and the UI reflects the new status without a page reload.
+- [x] AC-015: The "Mark as Completed" action is not displayed for goals already in `completed` or `suggested` status.
 
 ---
 
@@ -86,10 +86,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-016: A "Suggest Goal" button is present in the Goals section header of the team member's dashboard.
-- [ ] AC-017: The form includes: name (required), description (optional), skill category (optional), timeframe (required, enum: `week` / `month` / `quarter` / `year`), and due date (optional).
-- [ ] AC-018: On successful submission the goal is persisted with `status = suggested` and `suggested_by_id` set to the authenticated user's id.
-- [ ] AC-019: The new suggested goal appears immediately in both the manager's view and the employee's own goal list, visually marked as a manager suggestion.
+- [x] AC-016: A "Suggest Goal" button is present in the Goals section header of the team member's dashboard.
+- [x] AC-017: The form includes: name (required), description (optional), skill category (optional), timeframe (required, enum: `week` / `month` / `quarter` / `year`), and due date (optional).
+- [x] AC-018: On successful submission the goal is persisted with `status = suggested` and `suggested_by_id` set to the authenticated user's id.
+- [x] AC-019: The new suggested goal appears immediately in both the manager's view and the employee's own goal list, visually marked as a manager suggestion.
 
 ---
 
@@ -101,10 +101,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-020: Goals with status `suggested` show "Accept" and "Reject" action buttons only to the employee who owns the goal (the `user_id`).
-- [ ] AC-021: Accepting a suggested goal changes its status to `not_started`, clears the suggestion indicator, and `suggested_by_id` is retained for audit purposes.
-- [ ] AC-022: Rejecting a suggested goal soft-deletes it; the goal no longer appears in either the employee's or the manager's view.
-- [ ] AC-023: After acceptance or rejection the "Accept" and "Reject" buttons are no longer displayed.
+- [x] AC-020: Goals with status `suggested` show "Accept" and "Reject" action buttons only to the employee who owns the goal (the `user_id`).
+- [x] AC-021: Accepting a suggested goal changes its status to `not_started`, clears the suggestion indicator, and `suggested_by_id` is retained for audit purposes.
+- [x] AC-022: Rejecting a suggested goal soft-deletes it; the goal no longer appears in either the employee's or the manager's view.
+- [x] AC-023: After acceptance or rejection the "Accept" and "Reject" buttons are no longer displayed.
 
 ---
 
@@ -116,10 +116,10 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-024: A "Request Deletion" action is available to the employee on their own goals with status `not_started`, `in_progress`, or `completed` that do not already have a pending deletion request.
-- [ ] AC-025: Submitting the request creates a `goal_deletion_requests` record with `status = pending` and the goal is visually marked "Deletion Requested" in the employee's view.
-- [ ] AC-026: While a deletion request is pending the employee cannot submit another deletion request for the same goal; the "Request Deletion" action is replaced by a "Cancel Request" action.
-- [ ] AC-027: The employee can cancel a pending deletion request via the "Cancel Request" action, which removes the `goal_deletion_requests` record and restores the normal goal view.
+- [x] AC-024: A "Request Deletion" action is available to the employee on their own goals with status `not_started`, `in_progress`, or `completed` that do not already have a pending deletion request.
+- [x] AC-025: Submitting the request creates a `goal_deletion_requests` record with `status = pending` and the goal is visually marked "Deletion Requested" in the employee's view.
+- [x] AC-026: While a deletion request is pending the employee cannot submit another deletion request for the same goal; the "Request Deletion" action is replaced by a "Cancel Request" action.
+- [x] AC-027: The employee can cancel a pending deletion request via the "Cancel Request" action, which removes the `goal_deletion_requests` record and restores the normal goal view.
 
 ---
 
@@ -131,9 +131,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-028: Goals labelled "Deletion Requested" in the manager's view show "Approve Deletion" and "Reject Deletion" action buttons.
-- [ ] AC-029: Approving the deletion soft-deletes the goal and all its tasks; the goal no longer appears in either the manager's or employee's view.
-- [ ] AC-030: Rejecting the deletion resolves the `goal_deletion_requests` record with `status = rejected`, removes the "Deletion Requested" label, and the goal returns to its pre-request visual state.
+- [x] AC-028: Goals labelled "Deletion Requested" in the manager's view show "Approve Deletion" and "Reject Deletion" action buttons.
+- [x] AC-029: Approving the deletion soft-deletes the goal and all its tasks; the goal no longer appears in either the manager's or employee's view.
+- [x] AC-030: Rejecting the deletion resolves the `goal_deletion_requests` record with `status = rejected`, removes the "Deletion Requested" label, and the goal returns to its pre-request visual state.
 
 ---
 
@@ -145,9 +145,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-031: A "Delete" action is available to the manager on any goal in the team member's Goals section regardless of its status.
-- [ ] AC-032: On confirmation, the goal and all its tasks are soft-deleted; the goal no longer appears in either view.
-- [ ] AC-033: If a pending `goal_deletion_requests` record exists for the goal it is also resolved (set to `approved`) when the manager deletes the goal directly.
+- [x] AC-031: A "Delete" action is available to the manager on any goal in the team member's Goals section regardless of its status.
+- [x] AC-032: On confirmation, the goal and all its tasks are soft-deleted; the goal no longer appears in either view.
+- [x] AC-033: If a pending `goal_deletion_requests` record exists for the goal it is also resolved (set to `approved`) when the manager deletes the goal directly.
 
 ---
 
@@ -159,9 +159,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-034: The Feedback section displays all feedback entries received by the team member including: rating (1–5), comment text, submitter's full name, and submission date.
-- [ ] AC-035: Feedback entries are listed in reverse chronological order (most recent first).
-- [ ] AC-036: If no feedback has been received an empty-state message is displayed.
+- [x] AC-034: The Feedback section displays all feedback entries received by the team member including: rating (1–5), comment text, submitter's full name, and submission date.
+- [x] AC-035: Feedback entries are listed in reverse chronological order (most recent first).
+- [x] AC-036: If no feedback has been received an empty-state message is displayed.
 
 ---
 
@@ -173,9 +173,9 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-037: The Skills section lists every skill the team member has been assessed on, showing the skill name, self-assessment value, and manager-assessment value side by side.
-- [ ] AC-038: Skills where no assessment has been recorded show "Not Assessed" for the respective column.
-- [ ] AC-039: The gap analysis summary — skills below the required level for the employee's current or target position — is shown within the Skills section, reusing the `GET /api/employees/{id}/gap-analysis` endpoint.
+- [x] AC-037: The Skills section lists every skill the team member has been assessed on, showing the skill name, self-assessment value, and manager-assessment value side by side.
+- [x] AC-038: Skills where no assessment has been recorded show "Not Assessed" for the respective column.
+- [x] AC-039: The gap analysis summary — skills below the required level for the employee's current or target position — is shown within the Skills section, reusing the `GET /api/employees/{id}/gap-analysis` endpoint.
 
 ---
 
@@ -187,6 +187,6 @@ The following are explicitly **not** part of this feature:
 
 #### Acceptance Criteria
 
-- [ ] AC-040: The Projects section lists all project assignments for the team member including: project name, role title, start date, end date (or "Ongoing"), and assignment status (`Current` / `Past`).
-- [ ] AC-041: Assignments with no end date or a future end date are labelled "Current"; assignments with a past end date are labelled "Past".
-- [ ] AC-042: If no project assignments exist an empty-state message is displayed.
+- [x] AC-040: The Projects section lists all project assignments for the team member including: project name, role title, start date, end date (or "Ongoing"), and assignment status (`Current` / `Past`).
+- [x] AC-041: Assignments with no end date or a future end date are labelled "Current"; assignments with a past end date are labelled "Past".
+- [x] AC-042: If no project assignments exist an empty-state message is displayed.
