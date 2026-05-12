@@ -22,7 +22,7 @@ If not, stop and notify the user: "Implement is not yet complete. Run `/implemen
 
 ## Inputs
 - Feature number `[####]`
-- All files listed in `plan.md` (every `[x]` task's target file)
+- Git diff of all changes introduced by this feature branch against `develop`
 - `stories.md`, `api.md`, `schema.md`, `wireframes.md`
 - `documents/architecture.md`, `CLAUDE.md`
 
@@ -33,13 +33,19 @@ If not, stop and notify the user: "Implement is not yet complete. Run `/implemen
 **Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
 Its output provides the comparison baseline (stories/ACs, API contracts, schema, wireframe flows).
 
-Read every file targeted by a completed task in `plan.md` directly.
-Also read any files modified as a side effect (e.g. DI registration files, route configs).
+**Obtain implementation context via git diff** — run the following commands and use their output as the implementation to score (do not read plan.md target files individually):
+
+```bash
+git -C source/cpr-api diff develop..HEAD
+git -C source/cpr-ui diff develop..HEAD
+```
+
+This captures exactly what was changed in both repos. Also read any files modified as a side effect that appear in the diff but are not self-explanatory from the diff alone (e.g. DI registration files, route configs) — read those files directly only if needed for context.
 
 **Run verification agents** — execute the following in parallel before scoring, where applicable:
 
-- **`api-contract-verifier`** (if `api.md` exists) — pass the feature number. Its findings feed directly into the **Spec compliance** score: each Missing or Shape drift finding counts as an unimplemented AC equivalent. Treat Undocumented endpoints as Major findings.
-- **`i18n-validator`** (if the feature has `[UI]` tasks in `plan.md`) — pass the feature number. Missing translation keys count as **Naming conventions** deductions (2 points each). Locale parity issues count as Major findings.
+- **`api-contract-verifier`** (if `api.md` exists) — pass the feature number, use `model: haiku`. Its findings feed directly into the **Spec compliance** score: each Missing or Shape drift finding counts as an unimplemented AC equivalent. Treat Undocumented endpoints as Major findings.
+- **`i18n-validator`** (if the feature has `[UI]` tasks in `plan.md`) — pass the feature number, use `model: haiku`. Missing translation keys count as **Naming conventions** deductions (2 points each). Locale parity issues count as Major findings.
 
 Record the structured output from each agent; reference it explicitly when computing the score in Step 2.
 

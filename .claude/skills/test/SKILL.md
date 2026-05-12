@@ -157,7 +157,7 @@ Location: follow existing pattern in `cpr-ui/e2e/`
 
 ## Step 4 — Run Tests
 
-Use the **`test-runner`** agent. Run backend and frontend tests **in parallel**:
+Use the **`test-runner`** agent with `model: haiku`. Run backend and frontend tests **in parallel**:
 - Instance 1: `scope: backend`
 - Instance 2: `scope: frontend`
 
@@ -176,7 +176,7 @@ If coverage falls below threshold, identify the uncovered paths and add tests to
 
 ## Step 5 — Verify AC Coverage
 
-Use the **`ac-coverage-checker`** agent, passing the feature number.
+Use the **`ac-coverage-checker`** agent with `model: haiku`, passing the feature number.
 Its output provides the authoritative AC → test mapping used to gate progression.
 
 ### Coverage rules

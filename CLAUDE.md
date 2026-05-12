@@ -148,3 +148,4 @@ Skills live in `.claude/skills/` and are invoked as `/skill-name [####]` from `c
 | `/implement [####]` | Implement |
 | `/review [####]` | Review |
 | `/test [####]` | Test |
+| `/pipeline [####]` | All phases (Analyze → Test) in sequence |

@@ -64,7 +64,7 @@ Rules:
 - Each task targets exactly one file. Split multi-file work into separate tasks.
 - Description is imperative: "Create", "Add", "Implement", "Register", "Update".
 - File path is relative to the repo root.
-- Layer tag is one of: `[Migration]` `[Domain]` `[Infra]` `[App]` `[API]` `[UI]` `[Test]` `[Config]`
+- Layer tag is one of: `[Migration]` `[Domain]` `[Infra]` `[App]` `[API]` `[UI]` `[Config]`
 
 ### Ordering rules
 
@@ -76,7 +76,8 @@ Apply this sequence strictly:
 5. `[API]` — controllers, route registration, middleware
 6. `[Config]` — app configuration, environment settings, constants, feature flags
 7. `[UI]` — types, API clients, hooks, MSW mock handlers, components, pages, i18n translation keys, route registration (in that order)
-8. `[Test]` — test files last
+
+**Do not include `[Test]` tasks** — the Test phase writes all test files from scratch, driven by acceptance criteria. Adding tests to plan.md creates redundant overlap with no benefit.
 
 Within each layer, order by dependency (things that other things depend on come first).
 

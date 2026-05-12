@@ -111,3 +111,13 @@ One entry per feature. Updated at the end of each Specify phase.
 **Key entities**: `Goal`, `Feedback`, `FeedbackRequest`, `EmployeeToSkill`
 **API endpoints**: GET /api/dashboard/summary, GET /api/dashboard/goals-summary, GET /api/dashboard/feedback-summary, GET /api/dashboard/skills-summary, GET /api/dashboard/activity
 **DB tables**: none
+
+---
+
+## 0014 — Performance Analytics & Reporting
+
+**Status**: Complete
+**Summary**: Provides every authenticated user with a dedicated `/analytics` page (reachable via sidebar) showing personal goal analytics (stat cards, completion trend bar chart, goals-by-status donut chart) and skill progression analytics (per-skill sparklines, gap closure summary card), scoped to five fixed time-range presets (last 30/90/180 days, last quarter, last year) with URL persistence. PeopleManagers, Directors, and Administrators can also view the same sections as an "Analytics" tab on the Team Member Dashboard (`/team/:employeeId`). Skill assessment changes are automatically recorded to an immutable `employee_skill_history` audit table.
+**Key entities**: `EmployeeToSkill`, `EmployeeSkillHistory`, `Goal`
+**API endpoints**: GET /api/me/analytics/goals, GET /api/me/analytics/skills, GET /api/employees/{id}/analytics/goals, GET /api/employees/{id}/analytics/skills
+**DB tables**: `employee_skill_history` (new)
