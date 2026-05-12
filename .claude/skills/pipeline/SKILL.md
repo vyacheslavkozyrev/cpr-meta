@@ -66,6 +66,50 @@ If Specify is not ✅ Complete, stop immediately:
 
 ---
 
+## Pre-Phase: Load Spec Once (Option H)
+
+After confirming Specify ✅ Complete, run the **`spec-reader`** agent once with feature number `[####]`.
+Store the full output as `[SPEC_SUMMARY]`.
+
+When constructing prompts for the **Plan**, **Review**, and **Test** agents, insert the following block **between** the gate-skip prefix and the SKILL.md content:
+
+```
+=== SPEC SUMMARY (pre-loaded — do not run spec-reader) ===
+[SPEC_SUMMARY]
+=== END SPEC SUMMARY ===
+```
+
+The Plan, Review, and Test SKILL.md files each contain a spec-reader call in Step 1.
+**Skip that call** — the spec summary above is already available in context.
+
+---
+
+## Implement Resume Detection (Option G)
+
+Before spawning the Implement agent, read `specifications/[####]-*/plan.md` and count:
+- **Checked tasks** `[x]`: already complete
+- **Unchecked tasks** `[ ]`: still to do
+
+| State | Action |
+|-------|--------|
+| All tasks unchecked | Spawn Implement with the standard SKILL.md (no changes) |
+| Some checked, some unchecked | Prepend a resume prefix to the prompt (see below) |
+| All tasks checked but Implement not ✅ in progress.md | Mark Implement ✅ Complete and skip to Review |
+
+**Resume prefix** (prepend before the gate-skip line and the SKILL.md content):
+
+```
+RESUME MODE: Implementation is partially complete.
+Completed tasks (skip these entirely): [list checked T-numbers and their descriptions]
+First unchecked task: [T-number: description]
+Remaining unchecked tasks in order: [list remaining T-numbers]
+
+Do NOT re-run Step 0.5 (feature branches already exist).
+Do NOT re-read context you already have — start directly from the first unchecked task.
+```
+
+---
+
 ## Plan Human Gate (Phase 2)
 
 After the Plan agent completes and `progress.md` shows Plan ✅ Complete:

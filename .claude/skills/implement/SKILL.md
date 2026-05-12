@@ -52,50 +52,100 @@ Read `documents/architecture.md` for architectural patterns to follow.
 
 ---
 
-## Step 2 — Execute Tasks
+## Step 2 — Split and Execute Tasks in Parallel
 
-For each unchecked task in plan.md, in order:
+### Split the task list
 
-1. List the target file's parent directory and read 1–2 sibling files to understand
-   the existing patterns, imports, and naming conventions used nearby.
-2. Implement the task. Follow all conventions from `CLAUDE.md` exactly.
-3. Mark the task as `[x]` in `plan.md` immediately after completing it.
-4. Commit the changes to both repos using the commit script:
+From the unchecked tasks in `plan.md`, create two batches:
 
-```bash
-bash .claude/skills/implement/scripts/commit-task.sh [####] "<short task description>"
+- **Backend batch**: tasks tagged `[Migration]`, `[Domain]`, `[Infra]`, `[App]`, `[API]`, or `[Config]`
+- **UI batch**: tasks tagged `[UI]`
+
+### Spawn execution sub-agents
+
+- **If both batches are non-empty**: spawn them as **two parallel sub-agents** (see prompts below).
+- **If only one batch is non-empty**: spawn one sub-agent with the appropriate prompt.
+
+Backend and UI tasks operate on separate git repos (`source/cpr-api` and `source/cpr-ui`) — there are no commit conflicts when running in parallel.
+
+**Sub-agents must not modify `plan.md`**. After both return, the orchestrator (this agent) marks all completed task IDs as `[x]` in `plan.md`. If a sub-agent reports an unresolvable blocker, document it in `progress.md` and halt.
+
+---
+
+### Backend Sub-Agent Prompt
+
+Pass the following as the sub-agent's full prompt, filling in `[####]` and the task list:
+
+```
+You are implementing backend tasks for feature [####].
+
+Spec files (read as needed):
+- specifications/[####]-*/stories.md — acceptance criteria
+- specifications/[####]-*/api.md — endpoint contracts
+- specifications/[####]-*/schema.md — DB schema
+- documents/architecture.md — architectural patterns
+- CLAUDE.md — naming conventions
+
+Task list (execute in order — these are your only tasks):
+[paste backend task list here, one per line with original T-numbers]
+
+For each task:
+1. List the target directory; read 1–2 sibling files to understand existing patterns.
+2. Implement the task following CLAUDE.md conventions exactly.
+3. Commit: bash .claude/skills/implement/scripts/commit-task.sh [####] "<description>"
+
+EF Core migrations: write the class directly (Up + Down). Do not run dotnet ef migrations add.
+
+Build checkpoints: after every 3–5 tasks, run build-validator with project: api and model: haiku.
+Fix all build errors before continuing. Do not accumulate errors.
+
+Unresolvable errors: stop immediately and return a description of the blocker.
+
+When done, return: "Backend complete. Finished: T001, T002, ..." listing all task IDs completed.
 ```
 
-The script stages all changes and commits with message `feat([####]): <short task description>`.
-It skips any repo that has no changes. The branch must be a feature branch — the script will warn and skip if not.
+---
 
-**EF Core migrations**: For `[Migration]` tasks, write the migration class directly
-(Up and Down methods) matching `schema.md` exactly. Do not run `dotnet ef migrations add` —
-write the file by hand and place it in the Migrations folder.
+### UI Sub-Agent Prompt
 
-**Unresolvable errors**: If a build error cannot be fixed (e.g., missing dependency,
-environment issue), stop immediately. Document the blocker in the Implementation Notes
-section of `progress.md` and notify the user before proceeding.
+```
+You are implementing UI tasks for feature [####].
 
-### Build checkpoints
+Spec files (read as needed):
+- specifications/[####]-*/stories.md — acceptance criteria
+- specifications/[####]-*/api.md — endpoint contracts (UI must call these exactly)
+- specifications/[####]-*/wireframes.md — screen layouts and flows
+- documents/architecture.md — architectural patterns
+- CLAUDE.md — naming conventions
 
-After every 3–5 tasks or after completing a full layer:
+Task list (execute in order — these are your only tasks):
+[paste UI task list here, one per line with original T-numbers]
 
-**Build** — use the **`build-validator`** agent with `model: haiku`:
+For each task:
+1. List the target directory; read 1–2 sibling files to understand existing patterns.
+2. Implement the task following CLAUDE.md conventions exactly.
+3. Commit: bash .claude/skills/implement/scripts/commit-task.sh [####] "<description>"
 
-- Pass `project: api` after backend tasks
-- Pass `project: ui` after frontend tasks
-- Pass `project: both` for a full checkpoint
+Build checkpoints: after every 3–5 tasks, run build-validator with project: ui and model: haiku.
+Fix all build errors before continuing. Do not accumulate errors.
 
-If the build FAILs, fix all listed errors before continuing. Do not accumulate build errors across tasks.
+Unresolvable errors: stop immediately and return a description of the blocker.
 
-Code review runs **once only** — at the end in Step 3, after all tasks are complete. Do not run `code-reviewer` at intermediate checkpoints.
+When done, return: "UI complete. Finished: T031, T032, ..." listing all task IDs completed.
+```
 
-### Quality while implementing
+---
+
+### After both sub-agents return
+
+1. Mark all completed task IDs as `[x]` in `plan.md`.
+2. If any sub-agent reported an unresolvable error: document it in `progress.md` and halt.
+
+### Quality rules (enforced within each sub-agent)
 
 - Name everything exactly as specified in `api.md` and `schema.md`.
 - Do not add fields, endpoints, or UI elements not in the spec.
-- Do not create files not listed in `plan.md`. If you need a new file, add it to plan.md first.
+- Do not create files not listed in `plan.md`. If a new file is needed, halt and report it.
 - Each API endpoint must match `api.md` contract exactly (method, path, request, response).
 - Each migration must match `schema.md` exactly (table names, columns, types, constraints).
 - Auth/role checks must be present on every protected endpoint.

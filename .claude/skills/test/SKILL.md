@@ -46,7 +46,7 @@ If a finding is purely a code-style or documentation issue with no observable ru
 
 ## Step 1 — Map Acceptance Criteria to Tests
 
-**Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
+**Load spec documents** — if a `=== SPEC SUMMARY ===` block is already present in your context (injected by the pipeline orchestrator), use it as the AC source of truth and **skip the spec-reader call**. Otherwise, use the **`spec-reader`** agent, passing feature number `[####]`.
 Use its AC list as the source of truth for the mapping below.
 
 For each acceptance criterion, define at least one test and assign it a test ID.
@@ -84,52 +84,77 @@ Verify each handler's response shape matches `api.md` exactly (field names, type
 
 ---
 
-## Step 3 — Write Tests
+## Step 3 — Write Tests in Parallel
 
-### Backend (xUnit)
+Spawn two parallel test-writing sub-agents — one for backend (xUnit), one for frontend (Vitest). Each receives the relevant portion of the AC mapping from Step 1.
 
-- **Unit tests**: services, domain logic, validators.
-  Mock repository dependencies with an in-memory substitute or Moq.
-- **Integration tests**: API endpoints using `WebApplicationFactory`.
-  Verify request → response shape matches `api.md` contracts (field names, types, status codes).
+**How to split ACs between agents**:
+- **Backend agent**: ACs about API behaviour, business logic, validation rules, auth enforcement.
+- **Frontend agent**: ACs about UI rendering, user interactions, empty/error/loading states.
+- An AC that touches both (e.g. a form submission that calls an API) gets tests in both agents.
 
-#### Per-endpoint auth matrix (required)
+---
 
-For **every endpoint** defined in `api.md`, write one test per role combination:
+### Backend Test Sub-Agent Prompt
 
-| Scenario | Expected |
-|----------|----------|
-| Unauthenticated request | 401 |
-| Each role that is NOT allowed by the spec | 403 |
-| Each role that IS allowed | 2xx / expected status |
+```
+Write xUnit tests for feature [####].
 
-Name each test with the AC or RF identifier it covers, e.g.:
-`[Fact(DisplayName = "AC-001: GET /api/me/team returns 403 for Employee role")]`
+AC mapping (your targets — include ALL listed ACs):
+[paste backend-relevant AC → test mappings from Step 1]
 
-Do not rely on a single generic "auth test" — every endpoint must have its own matrix.
+Review Findings requiring tests:
+[paste RF items that involve API/business-logic from Step 0]
 
-#### Review findings tests (required)
+Spec files:
+- specifications/[####]-*/stories.md
+- specifications/[####]-*/api.md
 
-For each item in the Review Findings List from Step 0, write a test that directly exercises the
-failing behaviour and asserts the correct outcome. Examples:
+Rules:
+- Unit tests: services, domain logic, validators — mock repos with Moq.
+- Integration tests: API endpoints via WebApplicationFactory.
+  Verify request → response shape matches api.md (field names, types, status codes).
+- Per-endpoint auth matrix for every endpoint in api.md:
+    Unauthenticated → 401
+    Each disallowed role → 403
+    Each allowed role → 2xx / expected status
+  Do not use a single generic auth test — every endpoint needs its own matrix.
+- Every test name MUST include the AC identifier: [Fact(DisplayName = "AC-001: ...")]
+- RF tests: directly exercise the failing behaviour and assert the correct outcome.
+- File naming: [Entity]ServiceTests.cs, [Entity]ControllerTests.cs
+- Location: follow existing pattern in cpr-api/tests/
 
-- Auth over-permission finding → write a 403 test for the specific endpoint + role combination.
-- Missing error-handling finding → write a test that triggers the error path and asserts the
-  correct HTTP status (e.g. 409 Conflict on double-cancel, not 500).
-- Business-rule finding → write a test that asserts the rule is enforced.
+Return: "Backend tests complete. Files created: [list of file paths]"
+```
 
-File naming: `[Entity]ServiceTests.cs`, `[Entity]ControllerTests.cs`
-Location: follow existing pattern in `cpr-api/tests/`
+---
 
-### Frontend (Vitest + Testing Library)
+### Frontend Test Sub-Agent Prompt
 
-- **Component tests**: render components, simulate user interactions,
-  assert expected output matches wireframes.md flows.
-- Test empty states, error states, and loading states where applicable.
-- Include the AC identifier in each `describe` or `it` string.
+```
+Write Vitest + Testing Library tests for feature [####].
 
-File naming: `[Component].test.tsx`
-Location: follow existing pattern in `cpr-ui/src/`
+AC mapping (your targets — include ALL listed ACs):
+[paste frontend-relevant AC → test mappings from Step 1]
+
+Spec files:
+- specifications/[####]-*/stories.md
+- specifications/[####]-*/wireframes.md
+
+Rules:
+- Component tests: render components, simulate user interactions,
+  assert output matches wireframes.md flows.
+- Test empty states, error states, and loading states.
+- Every describe/it string MUST include the AC identifier: describe("[AC-001] ...")
+- File naming: [Component].test.tsx
+- Location: follow existing pattern in cpr-ui/src/
+
+Return: "Frontend tests complete. Files created: [list of file paths]"
+```
+
+---
+
+After both sub-agents return, proceed to E2E.
 
 ### E2E (Playwright)
 
