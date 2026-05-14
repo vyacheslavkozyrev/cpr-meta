@@ -29,8 +29,7 @@ If not, stop and notify the user: "Analyze is not yet complete. Run `/analyze [#
 
 ## Step 1 — Read All Context
 
-**Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
-Use its output as the spec context throughout this phase.
+**Load spec documents** — if a `=== SPEC SUMMARY ===` block is already present in your context (injected by the pipeline orchestrator), use it as the spec context and **skip the spec-reader call**. Otherwise, use the **`spec-reader`** agent, passing feature number `[####]`.
 
 **Read conventions and architecture** directly:
 - `CLAUDE.md` — naming conventions, layer structure, build commands

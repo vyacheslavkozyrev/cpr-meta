@@ -30,7 +30,7 @@ If not, stop and notify the user: "Implement is not yet complete. Run `/implemen
 
 ## Step 1 — Read All Context
 
-**Load spec documents** — use the **`spec-reader`** agent, passing feature number `[####]`.
+**Load spec documents** — if a `=== SPEC SUMMARY ===` block is already present in your context (injected by the pipeline orchestrator), use it as the spec baseline and **skip the spec-reader call**. Otherwise, use the **`spec-reader`** agent, passing feature number `[####]`.
 Its output provides the comparison baseline (stories/ACs, API contracts, schema, wireframe flows).
 
 **Obtain implementation context via git diff** — run the following commands and use their output as the implementation to score (do not read plan.md target files individually):
